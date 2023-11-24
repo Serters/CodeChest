@@ -1,0 +1,123 @@
+:root {
+  --brown: #6b4e36;
+  --lightbrown: #b19688;
+  --gray: #45464a;
+  --darkgray: #343539;
+  --lightgray: #67686b;
+}
+
+html.light {
+  --brown: #6b4e36;
+  --lightbrown: #b19688;
+  --gray: #45464a;
+  --darkgray: #343539;
+  --lightgray: #67686b;
+}
+
+html,
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Camtasia Code SemiBold", monospace;
+  font-size: 16px;
+  position: relative;
+}
+
+body {
+  background-color: var(--darkgray);
+  width: 100vw;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 100px;
+  padding: 0 1em;
+  background-color: var(--darkgray);
+  color: silver;
+  border-bottom: 4px solid var(--brown);
+}
+header .header-left {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+header .header-left #logo {
+  height: 85px;
+  margin: auto 0;
+}
+header .header-left span {
+  font-size: 40px;
+  text-shadow: 3px 4px 2px var(--brown);
+}
+header .header-right {
+  font-size: 24px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+header .header-right #search {
+  font-size: inherit;
+  width: 20em;
+  height: calc(1.5em + 10px);
+  line-height: 1.5em;
+  border: 4px solid var(--brown);
+  border-radius: 0.5em;
+  padding: 5px 0.5em;
+  background-color: var(--gray);
+  color: silver;
+  margin-right: 1em;
+}
+header .header-right #search:focus {
+  outline: none;
+}
+header .header-right #search::-moz-placeholder {
+  color: silver;
+  opacity: 1;
+}
+header .header-right #search::placeholder {
+  color: silver;
+  opacity: 1;
+}
+header .header-right #username {
+  font-size: inherit;
+  margin-right: 1em;
+}
+header .header-right #profile-picture {
+  height: 81px;
+  aspect-ratio: 1/1;
+  margin: auto 0;
+}
+
+main {
+  padding: 20px;
+  width: 100%;
+  min-height: calc(100vh - 160px);
+  background-color: var(--gray);
+}
+
+footer {
+  font-size: 24px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--darkgray);
+  color: silver;
+  border-top: 4px solid var(--brown);
+}
+footer span {
+  font-size: inherit;
+}/*# sourceMappingURL=main.css.map */
