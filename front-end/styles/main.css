@@ -102,18 +102,38 @@ main {
   min-height: calc(100vh - 200px);
   background-color: var(--gray);
   margin: 20px 20px 0 20px;
+  color: whitesmoke;
 }
 main .container {
   background-color: var(--darkgray);
-  padding: 2em;
   border: 4px solid var(--brown);
   display: flex;
   min-height: calc(100vh - 260px);
 }
 main .container .snippetDescription {
   flex: 2;
-  background-color: var(--gray);
-  border: 4px solid var(--brown);
+  background-color: var(--darkgray);
+  border-right: 4px solid var(--brown);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+main .container .snippetDescription .title {
+  margin-bottom: 1em;
+  width: 100%;
+  height: 1em;
+}
+main .container .snippetDescription .description {
+  width: 100%;
+  height: calc(100% - 4em);
+}
+main .container .snippetDescription #openSnippet {
+  width: 100%;
+  height: 2em;
+  background-color: var(--brown);
+  color: whitesmoke;
+  border: 1px solid var(--gray);
+  border-radius: 4px;
 }
 main .container .snippetList {
   flex: 5;
@@ -121,7 +141,9 @@ main .container .snippetList {
 main .container .snippetList .snippet {
   background-color: var(--gray);
   display: grid;
-  grid-template-areas: "titl titl" "desc actn" "tags actn";
+  gap: 1em;
+  grid: 1em auto 1em/calc(100% - 60px) 60px;
+  grid-template-areas: "titl actn" "desc actn" "tags actn";
   margin: 1em;
   padding: 1em;
   border: 4px solid var(--brown);
@@ -134,18 +156,32 @@ main .container .snippetList .snippet .shortDescription {
 }
 main .container .snippetList .snippet .tags {
   grid-area: tags;
+  color: black;
 }
 main .container .snippetList .snippet .tags .tag {
   background-color: var(--brown);
-  border-radius: 3px;
+  border-radius: 1em;
+  padding: 3px 7px;
+  line-height: 1em;
 }
 main .container .snippetList .snippet .actions {
   grid-area: actn;
-  width: 5%;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  padding: 0 15px;
   aspect-ratio: 1/1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 main .container .snippetList .snippet .actions button {
-  margin: 3px;
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 4px;
 }
 
 footer {
