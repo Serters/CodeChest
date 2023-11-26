@@ -1,9 +1,9 @@
 :root {
-  --brown: #6b4e36;
-  --lightbrown: #b19688;
-  --gray: #45464a;
-  --darkgray: #343539;
-  --lightgray: #67686b;
+  --brown: #523b27;
+  --lightbrown: rgb(155, 122, 122);
+  --gray: #212121;
+  --darkgray: #171717;
+  --lightgray: #dbdbdb;
 }
 
 html.light {
@@ -63,29 +63,6 @@ header .header-right {
   width: 50%;
   height: 100%;
 }
-header .header-right #search {
-  font-size: inherit;
-  width: 20em;
-  height: calc(1.5em + 10px);
-  line-height: 1.5em;
-  border: 4px solid var(--brown);
-  border-radius: 0.5em;
-  padding: 5px 0.5em;
-  background-color: var(--gray);
-  color: silver;
-  margin-right: 1em;
-}
-header .header-right #search:focus {
-  outline: none;
-}
-header .header-right #search::-moz-placeholder {
-  color: silver;
-  opacity: 1;
-}
-header .header-right #search::placeholder {
-  color: silver;
-  opacity: 1;
-}
 header .header-right #username {
   font-size: inherit;
   margin-right: 1em;
@@ -97,56 +74,35 @@ header .header-right #profile-picture {
 }
 
 main {
-  padding: 20px;
-  width: calc(100% - 40px);
+  padding: 20px 0;
+  width: 100%;
   min-height: calc(100vh - 200px);
   background-color: var(--gray);
-  margin: 20px 20px 0 20px;
+  margin-top: 20px;
   color: whitesmoke;
 }
 main .container {
-  background-color: var(--darkgray);
-  border: 4px solid var(--brown);
+  width: 70%;
+  margin: auto;
   display: flex;
   min-height: calc(100vh - 260px);
 }
-main .container .snippetDescription {
-  flex: 2;
-  background-color: var(--darkgray);
-  border-right: 4px solid var(--brown);
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-}
-main .container .snippetDescription .title {
-  margin-bottom: 1em;
-  width: 100%;
-  height: 1em;
-}
-main .container .snippetDescription .description {
-  width: 100%;
-  height: calc(100% - 4em);
-}
-main .container .snippetDescription #openSnippet {
-  width: 100%;
-  height: 2em;
-  background-color: var(--brown);
-  color: whitesmoke;
-  border: 1px solid var(--gray);
-  border-radius: 4px;
-}
 main .container .snippetList {
-  flex: 5;
+  flex: 65;
+  padding: 0 1em;
+  border-right: 4px solid var(--brown);
+  margin-right: 1em;
 }
 main .container .snippetList .snippet {
-  background-color: var(--gray);
+  background-color: var(--darkgray);
   display: grid;
   gap: 1em;
   grid: 1em auto 1em/calc(100% - 60px) 60px;
   grid-template-areas: "titl actn" "desc actn" "tags actn";
-  margin: 1em;
-  padding: 1em;
-  border: 4px solid var(--brown);
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  height: 144px;
 }
 main .container .snippetList .snippet .snippetTitle {
   grid-area: titl;
@@ -156,13 +112,12 @@ main .container .snippetList .snippet .shortDescription {
 }
 main .container .snippetList .snippet .tags {
   grid-area: tags;
-  color: var(--brown);
+  color: whitesmoke;
 }
 main .container .snippetList .snippet .tags .tag {
-  background-color: whitesmoke;
+  background-color: var(--brown);
   border-radius: 1em;
-  padding: 3px 7px;
-  line-height: 1em;
+  padding: 4px 8px;
 }
 main .container .snippetList .snippet .actions {
   grid-area: actn;
@@ -182,6 +137,99 @@ main .container .snippetList .snippet .actions button {
   background-color: whitesmoke;
   border: none;
   border-radius: 4px;
+}
+main .container .snippetList .snippet:nth-child(1) {
+  height: 48px;
+  width: 100%;
+  background-color: var(--darkgray);
+  text-align: center;
+  display: block;
+}
+main .container .snippetList .snippet:nth-child(1):hover {
+  color: var(--lightgray);
+}
+main .container .accessories {
+  flex: 35;
+  display: flex;
+  flex-direction: column;
+}
+main .container .accessories .title {
+  color: whitesmoke;
+}
+main .container .accessories .snippetDescription {
+  background-color: var(--darkgray);
+  border-left: 0;
+  border-radius: 16px;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+  height: 304px;
+}
+main .container .accessories .snippetDescription .title {
+  margin-bottom: 1em;
+  width: 100%;
+  height: 1em;
+}
+main .container .accessories .snippetDescription .description {
+  width: 100%;
+  height: calc(100% - 4em);
+}
+main .container .accessories .search {
+  width: 100%;
+  height: 48px;
+  margin-bottom: 1em;
+}
+main .container .accessories .search #search {
+  font-size: inherit;
+  width: 100%;
+  height: 100%;
+  line-height: 1.5em;
+  border: 0;
+  border-radius: 16px;
+  padding: 5px 16px;
+  background-color: var(--darkgray);
+  color: whitesmoke;
+}
+main .container .accessories .search #search:focus {
+  outline: none;
+}
+main .container .accessories .search #search::-moz-placeholder {
+  color: silver;
+  opacity: 1;
+}
+main .container .accessories .search #search::placeholder {
+  color: silver;
+  opacity: 1;
+}
+main .container .accessories .premium,
+main .container .accessories .storage,
+main .container .accessories .parrot {
+  background-color: var(--darkgray);
+  margin-bottom: 1em;
+  padding: 1em;
+  border-radius: 16px;
+  height: 100px;
+}
+main .container .accessories .storage #storage {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 50%;
+  background-color: var(--brown);
+  border-radius: 10px;
+}
+main .container .accessories .storage #storage .current {
+  width: 30%;
+  height: 100%;
+  background-color: var(--lightgray);
+  border-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+main .container .accessories .parrot {
+  flex: auto;
+  margin-bottom: 0;
 }
 
 footer {
