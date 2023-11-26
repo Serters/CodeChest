@@ -156,10 +156,10 @@ main .container .snippetList .snippet .shortDescription {
 }
 main .container .snippetList .snippet .tags {
   grid-area: tags;
-  color: black;
+  color: var(--brown);
 }
 main .container .snippetList .snippet .tags .tag {
-  background-color: var(--brown);
+  background-color: whitesmoke;
   border-radius: 1em;
   padding: 3px 7px;
   line-height: 1em;
