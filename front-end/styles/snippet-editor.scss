@@ -1,0 +1,45 @@
+@import "static";
+
+main {
+    .container {
+        .left {
+            flex: 65;
+            padding: 0 1em;
+            border-right: 4px solid var(--brown);
+            margin-right: 1em;
+
+            .code-editor {
+                padding: 16px;
+                background-color: var(--darkgray);
+                border-radius: 16px;
+                height: 100%;
+
+                .title {
+                    grid-area: title;
+                    margin-bottom: 16px;
+                }
+
+                textarea {
+                    grid-area: number-line;
+                    background-color: var(--gray);
+                    color: inherit;
+                    border: 0;
+                    width: 100%;
+                    height: calc(100% - 32px);
+                    resize: none;
+                    padding: 8px;
+                    border-radius: 8px;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+
+        .snippet-details {
+            flex: 35;
+            background-color: var(--darkgray);
+        }
+    }
+}

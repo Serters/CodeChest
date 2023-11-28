@@ -1,1 +1,143 @@
-/*# sourceMappingURL=snippet-editor.css.map */
+:root {
+  --brown: #523b27;
+  --lightbrown: rgb(109, 83, 61);
+  --gray: #212121;
+  --darkgray: #171717;
+  --lightgray: #dbdbdb;
+}
+
+html.light {
+  --brown: #6b4e36;
+  --lightbrown: #b19688;
+  --gray: #45464a;
+  --darkgray: #343539;
+  --lightgray: #67686b;
+}
+
+html,
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Courier New", monospace;
+  font-size: 16px;
+  position: relative;
+}
+
+body {
+  background-color: var(--gray);
+  color: whitesmoke;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 100px;
+  padding: 0 1em;
+  background-color: var(--darkgray);
+  color: silver;
+  border-bottom: 4px solid var(--brown);
+}
+header .header-left {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+header .header-left #logo {
+  height: 85px;
+  margin: auto 0;
+}
+header .header-left span {
+  font-size: 40px;
+  text-shadow: 3px 4px 2px var(--brown);
+}
+header .header-right {
+  font-size: 24px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+header .header-right #username {
+  font-size: inherit;
+  margin-right: 1em;
+}
+header .header-right #profile-picture {
+  height: 81px;
+  aspect-ratio: 1/1;
+  margin: auto 0;
+}
+
+main {
+  padding: 20px 0;
+  width: 100%;
+  min-height: calc(100vh - 200px);
+  background-color: var(--gray);
+  margin-top: 20px;
+}
+main .container {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  min-height: calc(100vh - 260px);
+}
+
+footer {
+  font-size: 24px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--darkgray);
+  color: silver;
+  border-top: 4px solid var(--brown);
+}
+footer span {
+  font-size: inherit;
+}
+
+main .container .left {
+  flex: 65;
+  padding: 0 1em;
+  border-right: 4px solid var(--brown);
+  margin-right: 1em;
+}
+main .container .left .code-editor {
+  padding: 16px;
+  background-color: var(--darkgray);
+  border-radius: 16px;
+  height: 100%;
+}
+main .container .left .code-editor .title {
+  grid-area: title;
+  margin-bottom: 16px;
+}
+main .container .left .code-editor textarea {
+  grid-area: number-line;
+  background-color: var(--gray);
+  color: inherit;
+  border: 0;
+  width: 100%;
+  height: calc(100% - 32px);
+  resize: none;
+  padding: 8px;
+  border-radius: 8px;
+}
+main .container .left .code-editor textarea:focus {
+  outline: none;
+}
+main .container .snippet-details {
+  flex: 35;
+  background-color: var(--darkgray);
+}/*# sourceMappingURL=snippet-editor.css.map */

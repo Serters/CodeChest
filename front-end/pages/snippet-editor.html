@@ -4,7 +4,6 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>CodeChest</title>
-        <link rel="stylesheet" href="../styles/main.css" />
         <link rel="stylesheet" href="../styles/snippet-editor.css" />
         <link
             rel="icon"
@@ -28,26 +27,45 @@
             </div>
         </header>
         <main>
-            <div class="code-editor">
-                <h2 class="title">Code Editor</h2>
-            </div>
-            <div class="snippet-details">
-                <div class="snippet-name">
-                    <input type="text" name="snippet-name" placeholder="Snippet name">
+            <div class="container">
+                <div class="left">
+                    <div class="code-editor">
+                        <h2 class="title">Code Editor</h2>
+                        <textarea
+                            name="code-editor"
+                            placeholder="Your code goes here."
+                        ></textarea>
+                    </div>
                 </div>
-                <div class="full-description">
-                    <h3>Full description</h3>
-                    <input type="text" name="full-description" placeholder="Full description">
+                <div class="snippet-details">
+                    <div class="snippet-name">
+                        <input
+                            type="text"
+                            name="snippet-name"
+                            placeholder="Snippet name"
+                        />
+                    </div>
+                    <div class="full-description">
+                        <h3>Full description</h3>
+                        <input
+                            type="text"
+                            name="full-description"
+                            placeholder="Full description"
+                        />
+                    </div>
+                    <div class="short-description">
+                        <h3>Short description</h3>
+                        <input
+                            type="text"
+                            name="short-description"
+                            placeholder="Short description"
+                        />
+                    </div>
+                    <div class="tags">
+                        <h3>Tags:</h3>
+                        <input type="text" name="tags" />
+                    </div>
                 </div>
-                <div class="short-description">
-                    <h3>Short description</h3>
-                    <input type="text" name="short-description" placeholder="Short description">
-                </div>
-                <div class="tags">
-                    <h3>Tags:</h3>
-                    <input type="text" name="tags">
-                </div>
-                
             </div>
         </main>
         <footer>
