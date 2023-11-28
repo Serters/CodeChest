@@ -2,101 +2,93 @@
 
 html,
 * {
-    box-sizing: border-box;
-    margin: 0;
-    font-family: "Courier New", monospace;
-    font-size: 16px;
-    position: relative;
+	box-sizing: border-box;
+	margin: 0;
+	font-family: "Courier New", monospace;
+	font-size: 16px;
 }
 
 body {
-    background-color: var(--gray);
-    color: whitesmoke;
-    width: 100vw;
-    min-height: calc(100vh);
+	background-color: var(--gray);
+	color: whitesmoke;
 }
 
 header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    height: 100px;
-    padding: 0 1em;
-    background-color: var(--darkgray);
-    color: silver;
-    border-bottom: 4px solid var(--brown);
+	width: 100%;
+	height: 100px;
+	background-color: var(--darkgray);
+	color: silver;
 
-    .header-left {
-        width: 50%;
-        height: 100%;
-        display: flex;
-        justify-content: left;
-        align-items: center;
+	padding: 0 16px;
+	border-bottom: 4px solid var(--brown);
+	margin-bottom: 48px;
 
-        #logo {
-            height: 85px;
-            margin: auto 0;
-        }
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 
-        span {
-            font-size: 40px;
-            text-shadow: 3px 4px 2px var(--brown);
-        }
-    }
+	.header-left {
+		width: 50%;
+		height: 100%;
 
-    .header-right {
-        font-size: 24px;
-        display: flex;
-        justify-content: right;
-        align-items: center;
-        width: 50%;
-        height: 100%;
+		display: flex;
+		justify-content: left;
+		align-items: center;
 
-        #username {
-            font-size: inherit;
-            margin-right: 1em;
-        }
+		#logo {
+			height: 85px;
+			margin: auto 0;
+		}
 
-        #profile-picture {
-            height: 81px;
-            aspect-ratio: 1/1;
-            margin: auto 0;
-        }
-    }
-}
+		span {
+			font-size: 40px;
+			text-shadow: 3px 4px 2px var(--brown);
+		}
+	}
 
-main {
-    padding: 20px 0;
-    width: 100%;
-    min-height: calc(100vh - 200px);
-    background-color: var(--gray);
-    margin-top: 20px;
+	.header-right {
+		width: 50%;
+		height: 100%;
+		font-size: 24px;
 
-    .container {
-        width: 70%;
-        margin: auto;
-        display: flex;
-        min-height: calc(100vh - 260px);
-    }
+		display: flex;
+		justify-content: right;
+		align-items: center;
+
+		#username {
+			font-size: inherit;
+			margin-right: 16px;
+		}
+
+		#profile-picture {
+			height: 81px;
+			aspect-ratio: 1/1;
+			margin: auto 0;
+		}
+	}
 }
 
 footer {
-    font-size: 24px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--darkgray);
-    color: silver;
-    border-top: 4px solid var(--brown);
+	font-size: 20px;
 
-    span {
-        font-size: inherit;
-    }
+	width: 100%;
+	height: calc(100vh - 916px);
+
+	background-color: var(--darkgray);
+	color: silver;
+
+	border-top: 4px solid var(--brown);
+	margin-top: 48px;
+
+	position: absolute;
+	bottom: 0;
+	left: 0;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	span {
+		font-size: inherit;
+	}
 }

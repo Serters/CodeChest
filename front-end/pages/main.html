@@ -1,125 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>CodeChest</title>
-        <link rel="stylesheet" href="../styles/main.css" />
-        <link
-            rel="icon"
-            type="image/x-icon"
-            href="../../assets/images/logo.png"
-        />
-    </head>
-    <body>
-        <header>
-            <div class="header-left">
-                <img id="logo" src="../../assets/images/logo.png" alt="Logo" />
-                <span>CodeChest</span>
-            </div>
-            <div class="header-right">
-                <span id="username">Username</span>
-                <img
-                    id="profile-picture"
-                    src="../../assets/images/profile-picture.png"
-                    alt="User profile picrure"
-                />
-            </div>
-        </header>
-        <main>
-            <div class="container">
-                <div class="snippetList">
-                    <div class="snippet">
-                        <h3 class="snippetTitle">Create new snippet</h3>
-                    </div>
-                    <div class="snippet">
-                        <h3 class="snippetTitle">Snippet 1</h3>
-                        <div class="shortDescription">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Vel, fugit.
-                        </div>
-                        <div class="tags">
-                            <span class="tag">HTML</span>
-                            <span class="tag">JavaScript</span>
-                        </div>
-                        <div class="actions">
-                            <button class="editSnippet">
-                                <img
-                                    src="../../assets/images/edit_icon.svg"
-                                    alt="edit icon"
-                                />
-                            </button>
-                            <button class="toggleFavourite">
-                                <img
-                                    src="../../assets/images/favourite.svg"
-                                    alt="star"
-                                />
-                            </button>
-                        </div>
-                    </div>
-                    <div class="snippet">
-                        <h3 class="snippetTitle">Snippet 1</h3>
-                        <div class="shortDescription">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit.
-                        </div>
-                        <div class="tags">
-                            <span class="tag">HTML</span>
-                            <span class="tag">JavaScript</span>
-                        </div>
-                        <div class="actions">
-                            <button class="editSnippet">
-                                <img
-                                    src="../../assets/images/edit_icon.svg"
-                                    alt="edit icon"
-                                />
-                            </button>
-                            <button class="toggleFavourite">
-                                <img
-                                    src="../../assets/images/favourite.svg"
-                                    alt="star"
-                                />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="accessories">
-                    <div class="search">
-                        <input
-                            type="text"
-                            name="search"
-                            id="search"
-                            placeholder="Search:"
-                        />
-                    </div>
-                    <div class="snippetDescription">
-                        <h2 class="title">Long Description</h2>
-                        <p class="description">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Magnam, ipsum et cumque hic eveniet quasi,
-                            nesciunt fugiat laudantium neque quibusdam excepturi
-                            ipsa quam, dolorem eaque unde? Accusamus, aliquid
-                            ex. Magni!
-                        </p>
-                    </div>
-                    <!-- <div class="storage">
-                        <h3 class="title">Your CodeChest: 30/100 snippets</h3>
-                        <div id="storage">
-                            <div class="current"></div>
-                        </div>
-                    </div>
-                    <div class="premium">
-                        <h3 class="title">Buy premium</h3>
-                    </div> -->
-                    <div class="parrot">
-                        <h3 class="title">Your pet parrot</h3>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <footer>
-            <span>&copy; CodeChest 2023</span>
-        </footer>
-        <script type="module" src="../scripts/main.js"></script>
-    </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>CodeChest</title>
+		<link rel="stylesheet" href="../styles/main.css" />
+		<link
+			rel="icon"
+			type="image/x-icon"
+			href="../../assets/images/logo.png"
+		/>
+		<!-- TODO type --> 
+	</head>
+
+	<body>
+		<header>
+			<div class="header-left">
+				<!-- LOGO & NAME -->
+				<img id="logo" src="../../assets/images/logo.png" alt="Logo" />
+				<span>CodeChest</span>
+			</div>
+
+			<div class="header-right">
+				<!-- User -->
+				<span id="username">Username</span>
+				<img
+					id="profile-picture"
+					src="../../assets/images/profile-picture.png"
+					alt="User profile picrure"
+				/>
+			</div>
+		</header>
+
+		<main>
+			<div class="container">
+				<!-- SVE -->
+				<div class="left">
+					<div class="snippetList">
+						<!-- LEFT -->
+
+						<div class="createSnippet">
+							<h3 class="snippetTitle">Create new snippet</h3>
+						</div>
+
+						<div class="snippet">
+							<h3 class="snippetTitle">Snippet 1</h3>
+							<div class="shortDescription">
+								Lorem ipsum dolor sit amet consectetur,
+								adipisicing elit. Vel, fugit.
+							</div>
+
+							<div class="tags">
+								<span class="tag">HTML</span>
+								<span class="tag">JavaScript</span>
+							</div>
+
+							<div class="actions">
+								<button class="editSnippet">
+									<img
+										src="../../assets/images/edit_icon.svg"
+										alt="edit icon"
+									/>
+								</button>
+								<button class="toggleFavourite">
+									<img
+										src="../../assets/images/favourite.svg"
+										alt="star"
+									/>
+								</button>
+							</div>
+						</div>
+
+						<div class="snippet">
+							<h3 class="snippetTitle">Snippet 1</h3>
+							<div class="shortDescription">
+								Lorem ipsum dolor sit amet, consectetur
+								adipisicing elit.
+							</div>
+							<div class="tags">
+								<span class="tag">HTML</span>
+								<span class="tag">JavaScript</span>
+							</div>
+							<div class="actions">
+								<button class="editSnippet">
+									<img
+										src="../../assets/images/edit_icon.svg"
+										alt="edit icon"
+									/>
+								</button>
+								<button class="toggleFavourite">
+									<img
+										src="../../assets/images/favourite.svg"
+										alt="star"
+									/>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="right">
+					<div class="search">
+						<input
+							type="text"
+							name="search"
+							id="search"
+							placeholder="Search:"
+						/>
+					</div>
+
+					<div class="snippetDescription">
+						<h3 class="title">Long Description</h3>
+						<p class="description">
+							Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Magnam, ipsum et cumque hic eveniet quasi,
+							nesciunt fugiat laudantium neque quibusdam excepturi
+							ipsa quam, dolorem eaque unde? Accusamus, aliquid
+							ex. Magni!
+						</p>
+					</div>
+
+					<div class="parrot">
+						<h3 class="title">Your pet parrot</h3>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer>
+			<span>&copy; CodeChest 2023</span>
+		</footer>
+
+		<script type="module" src="../scripts/main.js"></script>
+	</body>
 </html>

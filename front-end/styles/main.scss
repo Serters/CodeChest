@@ -1,200 +1,168 @@
 @import "static";
 
 main {
-    padding: 20px 0;
-    width: 100%;
-    min-height: calc(100vh - 200px);
-    background-color: var(--gray);
-    margin-top: 20px;
+	background-color: var(--gray);
+	width: 70%;
+	min-height: 720px;
+	margin: 0 auto;
+	display: block;
 
-    .container {
-        width: 70%;
-        margin: auto;
-        display: flex;
-        min-height: calc(100vh - 260px);
+	.container {
+		display: flex;
 
-        .snippetList {
-            flex: 65;
-            padding: 0 1em;
-            border-right: 4px solid var(--brown);
-            margin-right: 1em;
+		.snippetList {
+			flex: 65;
+			padding: 0 16px;
+			border-right: 4px solid var(--brown);
+			margin-right: 16px;
+			min-height: 100%;
 
-            .snippet {
-                background-color: var(--darkgray);
-                display: grid;
-                gap: 1em;
-                grid: 1em auto 1em / calc(100% - 60px) 60px;
-                grid-template-areas:
-                    "titl actn"
-                    "desc actn"
-                    "tags actn";
-                margin-bottom: 16px;
-                padding: 16px;
-                border-radius: 16px;
-                height: 144px;
+			.createSnippet {
+				height: 48px;
+				width: 100%;
 
-                .snippetTitle {
-                    grid-area: titl;
-                }
+				background-color: var(--darkgray);
+				text-align: center;
+				display: block;
 
-                .shortDescription {
-                    grid-area: desc;
-                }
+				margin-bottom: 16px;
+				padding: 16px;
+				border-radius: 16px;
 
-                .tags {
-                    grid-area: tags;
-                    color: whitesmoke;
+				&:hover {
+					text-decoration: underline;
+					text-decoration-color: whitesmoke;
+					cursor: default;
+					animation: shake 0.4s ease-in-out; /* Define the @keyframes shake animation */
+				}
+				@keyframes shake {
+					100% {
+						transform: translateX(0);
+					}
+					50% {
+						transform: translateY(-6px);
+					}
+				}
 
-                    .tag {
-                        background-color: var(--brown);
-                        border-radius: 1em;
-                        padding: 4px 8px;
-                    }
-                }
+				::selection {
+					color: inherit;
+					background-color: inherit;
+				}
+			}
 
-                .actions {
-                    grid-area: actn;
-                    width: 100%;
-                    height: 100%;
-                    margin: auto;
-                    padding: 0 15px;
-                    aspect-ratio: 1/1;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-around;
-                    align-items: center;
+			.snippet {
+				height: 152px;
 
-                    button {
-                        width: 100%;
-                        aspect-ratio: 1/1;
-                        background-color: whitesmoke;
-                        border: none;
-                        border-radius: 4px;
-                    }
-                }
-            }
+				background-color: var(--darkgray);
+				display: grid;
+				margin-bottom: 16px;
+				padding: 16px;
+				border-radius: 16px;
 
-            .snippet:nth-child(1) {
-                height: 48px;
-                width: 100%;
-                background-color: var(--darkgray);
-                text-align: center;
-                display: block;
+				grid: 16px auto 16px / calc(100% - 60px) 60px;
+				gap: 16px; //between grid elements
+				grid-template-areas:
+					"titl actn"
+					"desc actn"
+					"tags actn";
+				.snippetTitle {
+					grid-area: titl;
+				}
+				.shortDescription {
+					grid-area: desc;
+				}
+				.tags {
+					grid-area: tags;
+					.tag {
+						background-color: var(--brown);
+						color: whitesmoke;
+						border-radius: 16px;
+						padding: 4px 8px;
+					}
+				}
 
-                &:hover {
-                    text-decoration: underline;
-                    text-decoration-color: whitesmoke;
-                    cursor: default;
-                    animation: shake 0.4s ease-in-out; /* Define the @keyframes shake animation */
-                }
+				.actions {
+					grid-area: actn;
+					gap: 16px;
+					margin: auto;
+					display: flex;
+					flex-direction: column;
 
-                @keyframes shake {
-                    100% {
-                        transform: translateX(0);
-                    }
-                    50% {
-                        transform: translateY(-6px);
-                    }
-                }
+					button {
+						width: 100%;
+						aspect-ratio: 1/1;
+						background-color: whitesmoke;
+						border: none;
+						border-radius: 4px;
+					}
+				}
+			}
+		}
 
-                ::selection {
-                    color: inherit;
-                    background-color: inherit;
-                }
-            }
-        }
+		.right {
+			flex: 35;
+			display: flex;
+			flex-direction: column;
 
-        .accessories {
-            flex: 35;
-            display: flex;
-            flex-direction: column;
+			.title {
+				color: whitesmoke;
+			}
 
-            .title {
-                color: whitesmoke;
-            }
+			.snippetDescription {
+				height: 320px;
 
-            .snippetDescription {
-                background-color: var(--darkgray);
-                border-left: 0;
-                border-radius: 16px;
-                padding: 1em;
-                display: flex;
-                flex-direction: column;
-                margin-bottom: 1em;
-                height: 304px;
+				background-color: var(--darkgray);
+				border-left: 0;
+				border-radius: 16px;
+				padding: 16px;
+				margin-bottom: 16px;
+				display: flex;
+				flex-direction: column;
 
-                .title {
-                    margin-bottom: 1em;
-                    width: 100%;
-                    height: 1em;
-                }
-                .description {
-                    width: 100%;
-                    height: calc(100% - 4em);
-                }
-            }
+				.title {
+					margin-bottom: 16px;
+					width: 100%;
+					height: 16px;
+				}
+				.description {
+					width: 100%;
+					height: calc(100% - 4em);
+				}
+			}
 
-            .search {
-                width: 100%;
-                height: 48px;
-                margin-bottom: 1em;
+			.search {
+				width: 100%;
+				height: 48px;
+				margin-bottom: 16px;
 
-                #search {
-                    font-size: inherit;
-                    width: 100%;
-                    height: 100%;
-                    line-height: 1.5em;
-                    border: 0;
-                    border-radius: 16px;
-                    padding: 5px 16px;
-                    background-color: var(--darkgray);
-                    color: whitesmoke;
+				#search {
+					font-size: inherit;
+					color: whitesmoke;
+					background-color: var(--darkgray);
 
-                    &:focus {
-                        outline: none;
-                    }
+					width: 100%;
 
-                    &::placeholder {
-                        color: silver;
-                        opacity: 1;
-                    }
-                }
-            }
+					border: 0;
+					border-radius: 16px;
+					padding: 16px;
 
-            .premium,
-            .storage,
-            .parrot {
-                background-color: var(--darkgray);
-                margin-bottom: 1em;
-                padding: 1em;
-                border-radius: 16px;
-                height: 100px;
-            }
+					&:focus {
+						outline: none;
+					}
 
-            .storage {
-                #storage {
-                    margin: 0;
-                    padding: 0;
-                    width: 100%;
-                    height: 50%;
-                    background-color: var(--brown);
-                    border-radius: 10px;
+					&::placeholder {
+						color: silver;
+						opacity: 1;
+					}
+				}
+			}
+			.parrot {
+				height: 320px;
 
-                    .current {
-                        width: 30%;
-                        height: 100%;
-                        background-color: var(--lightgray);
-                        border-radius: 10px;
-                        border-top-right-radius: 0;
-                        border-bottom-right-radius: 0;
-                    }
-                }
-            }
-
-            .parrot {
-                flex: auto;
-                margin-bottom: 0;
-            }
-        }
-    }
+				background-color: var(--darkgray);
+				padding: 16px;
+				border-radius: 16px;
+			}
+		}
+	}
 }
