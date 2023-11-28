@@ -1,6 +1,6 @@
 :root {
   --brown: #523b27;
-  --lightbrown: rgb(155, 122, 122);
+  --lightbrown: rgb(109, 83, 61);
   --gray: #212121;
   --darkgray: #171717;
   --lightgray: #dbdbdb;
@@ -71,6 +71,25 @@ header .header-right #profile-picture {
   height: 81px;
   aspect-ratio: 1/1;
   margin: auto 0;
+}
+
+footer {
+  font-size: 24px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--darkgray);
+  color: silver;
+  border-top: 4px solid var(--brown);
+}
+footer span {
+  font-size: inherit;
 }
 
 main {
@@ -146,7 +165,26 @@ main .container .snippetList .snippet:nth-child(1) {
   display: block;
 }
 main .container .snippetList .snippet:nth-child(1):hover {
-  color: var(--lightgray);
+  text-decoration: underline;
+  text-decoration-color: whitesmoke;
+  cursor: default;
+  animation: shake 0.4s ease-in-out; /* Define the @keyframes shake animation */
+}
+@keyframes shake {
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+main .container .snippetList .snippet:nth-child(1) ::-moz-selection {
+  color: inherit;
+  background-color: inherit;
+}
+main .container .snippetList .snippet:nth-child(1) ::selection {
+  color: inherit;
+  background-color: inherit;
 }
 main .container .accessories {
   flex: 35;
@@ -230,23 +268,4 @@ main .container .accessories .storage #storage .current {
 main .container .accessories .parrot {
   flex: auto;
   margin-bottom: 0;
-}
-
-footer {
-  font-size: 24px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--darkgray);
-  color: silver;
-  border-top: 4px solid var(--brown);
-}
-footer span {
-  font-size: inherit;
 }/*# sourceMappingURL=main.css.map */

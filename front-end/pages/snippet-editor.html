@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CodeChest</title>
+        <link rel="stylesheet" href="../styles/main.css" />
+        <link rel="stylesheet" href="../styles/snippet-editor.css" />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="../../assets/images/logo.png"
+        />
+    </head>
+    <body>
+        <header>
+            <div class="header-left">
+                <img id="logo" src="../../assets/images/logo.png" alt="Logo" />
+                <span>CodeChest</span>
+            </div>
+            <div class="header-right">
+                <span id="username">Username</span>
+                <img
+                    id="profile-picture"
+                    src="../../assets/images/profile-picture.png"
+                    alt="User profile picrure"
+                />
+            </div>
+        </header>
+        <main>
+            <div class="code-editor">
+                <h2 class="title">Code Editor</h2>
+            </div>
+            <div class="snippet-details">
+                <div class="snippet-name">
+                    <input type="text" name="snippet-name" placeholder="Snippet name">
+                </div>
+                <div class="full-description">
+                    <h3>Full description</h3>
+                    <input type="text" name="full-description" placeholder="Full description">
+                </div>
+                <div class="short-description">
+                    <h3>Short description</h3>
+                    <input type="text" name="short-description" placeholder="Short description">
+                </div>
+                <div class="tags">
+                    <h3>Tags:</h3>
+                    <input type="text" name="tags">
+                </div>
+                
+            </div>
+        </main>
+        <footer>
+            <span>&copy; CodeChest 2023</span>
+        </footer>
+        <script type="module" src="js/main.js"></script>
+    </body>
+</html>

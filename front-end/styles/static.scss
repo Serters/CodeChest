@@ -1,0 +1,86 @@
+@import "colours";
+
+html,
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+    position: relative;
+}
+
+body {
+    background-color: var(--gray);
+    width: 100vw;
+    min-height: calc(100vh);
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100px;
+    padding: 0 1em;
+    background-color: var(--darkgray);
+    color: silver;
+    border-bottom: 4px solid var(--brown);
+
+    .header-left {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+
+        #logo {
+            height: 85px;
+            margin: auto 0;
+        }
+
+        span {
+            font-size: 40px;
+            text-shadow: 3px 4px 2px var(--brown);
+        }
+    }
+
+    .header-right {
+        font-size: 24px;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+
+        #username {
+            font-size: inherit;
+            margin-right: 1em;
+        }
+
+        #profile-picture {
+            height: 81px;
+            aspect-ratio: 1/1;
+            margin: auto 0;
+        }
+    }
+}
+
+footer {
+    font-size: 24px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--darkgray);
+    color: silver;
+    border-top: 4px solid var(--brown);
+
+    span {
+        font-size: inherit;
+    }
+}
