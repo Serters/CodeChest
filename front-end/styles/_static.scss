@@ -68,6 +68,14 @@ header {
 	}
 }
 
+main {
+	background-color: var(--gray);
+	width: 70%;
+	min-height: 720px;
+	margin: 0 auto;
+	display: flex;
+}
+
 footer {
 	font-size: 20px;
 

@@ -72,6 +72,14 @@ header .header-right #profile-picture {
   margin: auto 0;
 }
 
+main {
+  background-color: var(--gray);
+  width: 70%;
+  min-height: 720px;
+  margin: 0 auto;
+  display: flex;
+}
+
 footer {
   font-size: 20px;
   width: 100%;
@@ -91,24 +99,14 @@ footer span {
   font-size: inherit;
 }
 
-main {
-  background-color: var(--gray);
-  width: 70%;
-  min-height: 720px;
-  margin: 0 auto;
-  display: block;
-}
-main .container {
-  display: flex;
-}
-main .container .snippetList {
+main .snippetList {
   flex: 65;
   padding: 0 16px;
   border-right: 4px solid var(--brown);
   margin-right: 16px;
   min-height: 100%;
 }
-main .container .snippetList .createSnippet {
+main .snippetList .createSnippet {
   height: 48px;
   width: 100%;
   background-color: var(--darkgray);
@@ -118,7 +116,7 @@ main .container .snippetList .createSnippet {
   padding: 16px;
   border-radius: 16px;
 }
-main .container .snippetList .createSnippet:hover {
+main .snippetList .createSnippet:hover {
   text-decoration: underline;
   text-decoration-color: whitesmoke;
   cursor: default;
@@ -132,15 +130,15 @@ main .container .snippetList .createSnippet:hover {
     transform: translateY(-6px);
   }
 }
-main .container .snippetList .createSnippet ::-moz-selection {
+main .snippetList .createSnippet ::-moz-selection {
   color: inherit;
   background-color: inherit;
 }
-main .container .snippetList .createSnippet ::selection {
+main .snippetList .createSnippet ::selection {
   color: inherit;
   background-color: inherit;
 }
-main .container .snippetList .snippet {
+main .snippetList .snippet {
   height: 152px;
   background-color: var(--darkgray);
   display: grid;
@@ -151,44 +149,44 @@ main .container .snippetList .snippet {
   gap: 16px;
   grid-template-areas: "titl actn" "desc actn" "tags actn";
 }
-main .container .snippetList .snippet .snippetTitle {
+main .snippetList .snippet .snippetTitle {
   grid-area: titl;
 }
-main .container .snippetList .snippet .shortDescription {
+main .snippetList .snippet .shortDescription {
   grid-area: desc;
 }
-main .container .snippetList .snippet .tags {
+main .snippetList .snippet .tags {
   grid-area: tags;
 }
-main .container .snippetList .snippet .tags .tag {
+main .snippetList .snippet .tags .tag {
   background-color: var(--brown);
   color: whitesmoke;
   border-radius: 16px;
   padding: 4px 8px;
 }
-main .container .snippetList .snippet .actions {
+main .snippetList .snippet .actions {
   grid-area: actn;
   gap: 16px;
   margin: auto;
   display: flex;
   flex-direction: column;
 }
-main .container .snippetList .snippet .actions button {
+main .snippetList .snippet .actions button {
   width: 100%;
   aspect-ratio: 1/1;
   background-color: whitesmoke;
   border: none;
   border-radius: 4px;
 }
-main .container .right {
+main .right {
   flex: 35;
   display: flex;
   flex-direction: column;
 }
-main .container .right .title {
+main .right .title {
   color: whitesmoke;
 }
-main .container .right .snippetDescription {
+main .right .snippetDescription {
   height: 320px;
   background-color: var(--darkgray);
   border-left: 0;
@@ -198,21 +196,21 @@ main .container .right .snippetDescription {
   display: flex;
   flex-direction: column;
 }
-main .container .right .snippetDescription .title {
+main .right .snippetDescription .title {
   margin-bottom: 16px;
   width: 100%;
   height: 16px;
 }
-main .container .right .snippetDescription .description {
+main .right .snippetDescription .description {
   width: 100%;
   height: calc(100% - 4em);
 }
-main .container .right .search {
+main .right .search {
   width: 100%;
   height: 48px;
   margin-bottom: 16px;
 }
-main .container .right .search #search {
+main .right .search #search {
   font-size: inherit;
   color: whitesmoke;
   background-color: var(--darkgray);
@@ -221,18 +219,18 @@ main .container .right .search #search {
   border-radius: 16px;
   padding: 16px;
 }
-main .container .right .search #search:focus {
+main .right .search #search:focus {
   outline: none;
 }
-main .container .right .search #search::-moz-placeholder {
+main .right .search #search::-moz-placeholder {
   color: silver;
   opacity: 1;
 }
-main .container .right .search #search::placeholder {
+main .right .search #search::placeholder {
   color: silver;
   opacity: 1;
 }
-main .container .right .parrot {
+main .right .parrot {
   height: 320px;
   background-color: var(--darkgray);
   padding: 16px;

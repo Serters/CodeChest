@@ -72,6 +72,14 @@ header .header-right #profile-picture {
   margin: auto 0;
 }
 
+main {
+  background-color: var(--gray);
+  width: 70%;
+  min-height: 720px;
+  margin: 0 auto;
+  display: flex;
+}
+
 footer {
   font-size: 20px;
   width: 100%;
@@ -91,37 +99,83 @@ footer span {
   font-size: inherit;
 }
 
-main .container .left {
+main .left {
   flex: 65;
-  padding: 0 1em;
+  min-height: 100%;
+  padding: 0 16px;
+  margin-right: 16px;
   border-right: 4px solid var(--brown);
-  margin-right: 1em;
 }
-main .container .left .code-editor {
+main .left .code-editor {
+  height: 100%;
   padding: 16px;
   background-color: var(--darkgray);
   border-radius: 16px;
-  height: 100%;
 }
-main .container .left .code-editor .title {
+main .left .code-editor .title {
   grid-area: title;
   margin-bottom: 16px;
 }
-main .container .left .code-editor textarea {
-  grid-area: number-line;
-  background-color: var(--gray);
-  color: inherit;
-  border: 0;
+main .left .code-editor textarea {
   width: 100%;
   height: calc(100% - 32px);
-  resize: none;
-  padding: 8px;
+  color: inherit;
+  background-color: var(--darkgray);
+  border: 3px solid var(--gray);
   border-radius: 8px;
+  padding: 8px;
+  resize: none;
 }
-main .container .left .code-editor textarea:focus {
+main .left .code-editor textarea:focus {
   outline: none;
 }
-main .container .snippet-details {
+main .right {
   flex: 35;
+}
+main .right .snippet-name,
+main .right .full-description,
+main .right .short-description,
+main .right .tags {
+  width: 100%;
   background-color: var(--darkgray);
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 16px;
+}
+main .right .snippet-name h3,
+main .right .full-description h3,
+main .right .short-description h3,
+main .right .tags h3 {
+  margin-bottom: 16px;
+}
+main .right .snippet-name input,
+main .right .full-description input,
+main .right .short-description input,
+main .right .tags input {
+  width: 100%;
+  background-color: inherit;
+  color: inherit;
+  border: 0;
+}
+main .right .snippet-name input:focus,
+main .right .full-description input:focus,
+main .right .short-description input:focus,
+main .right .tags input:focus {
+  outline: none;
+}
+main .right .full-description input {
+  height: 48px;
+}
+main .right .actions {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+}
+main .right .actions .save, main .right .actions .delete {
+  height: 48px;
+  width: 50%;
+  background-color: var(--darkgray);
+  color: whitesmoke;
+  border: 0;
+  border-radius: 16px;
 }/*# sourceMappingURL=snippet-editor.css.map */
