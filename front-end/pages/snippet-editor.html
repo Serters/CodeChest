@@ -27,6 +27,7 @@
 			</div>
 		</header>
 		<main>
+	<!-- -------------------------- LEFT -------------------------- -->
 			<div class="left">
 				<div class="code-editor">
 					<h2 class="title">Code Editor</h2>
@@ -38,6 +39,7 @@
 			</div>
 	<!-- -------------------------- RIGHT -------------------------- -->
 			<div class="right">
+
 				<div class="snippet-name">
 					<input
 						type="text"
@@ -45,32 +47,39 @@
 						placeholder="Snippet name:"
 					/>
 				</div>
+
 				<div class="full-description">
 					<h3>Full description</h3>
-					<input
-						type="text"
+					<textarea
 						name="full-description"
 						placeholder="Full description:"
-					/>
+					></textarea>
 				</div>
+
 				<div class="short-description">
 					<h3>Short description</h3>
-					<input
-						type="text"
+					<textarea
 						name="short-description"
 						placeholder="Short description:"
-					/>
+					></textarea>
 				</div>
+
 				<div class="tags">
 					<h3>Tags:</h3>
-					<input type="text" name="tags" placeholder="Seperate your tags with commas:"/>
+					<input type="text" name="tags" placeholder="Add tag"/>
+					<div class="current-tags">
+						<span class="tag">HTML</span>
+						<span class="tag">JavaScript</span>
+					</div>
 				</div>
+
 				<div class="actions">
 					<button class="save">Save</button>
-					<button class="delete"></button>
+					<button class="delete">Delete</button>
 				</div>
+
 			</div>
-	<!-- -----------------------END RIGHT -------------------------- -->
+	<!-- ---------------------- END RIGHT -------------------------- -->
 		</main>
 		<footer>
 			<span>&copy; CodeChest 2023</span>

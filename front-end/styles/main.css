@@ -20,6 +20,7 @@ html,
   margin: 0;
   font-family: "Courier New", monospace;
   font-size: 16px;
+  outline: none;
 }
 
 body {
@@ -34,7 +35,7 @@ header {
   color: silver;
   padding: 0 16px;
   border-bottom: 4px solid var(--brown);
-  margin-bottom: 48px;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -87,7 +88,7 @@ footer {
   background-color: var(--darkgray);
   color: silver;
   border-top: 4px solid var(--brown);
-  margin-top: 48px;
+  margin-top: 40px;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -139,7 +140,7 @@ main .snippetList .createSnippet ::selection {
   background-color: inherit;
 }
 main .snippetList .snippet {
-  height: 152px;
+  height: 156px;
   background-color: var(--darkgray);
   display: grid;
   margin-bottom: 16px;
@@ -187,7 +188,7 @@ main .right .title {
   color: whitesmoke;
 }
 main .right .snippetDescription {
-  height: 320px;
+  height: 328px;
   background-color: var(--darkgray);
   border-left: 0;
   border-radius: 16px;
@@ -219,9 +220,6 @@ main .right .search #search {
   border-radius: 16px;
   padding: 16px;
 }
-main .right .search #search:focus {
-  outline: none;
-}
 main .right .search #search::-moz-placeholder {
   color: silver;
   opacity: 1;
@@ -231,7 +229,7 @@ main .right .search #search::placeholder {
   opacity: 1;
 }
 main .right .parrot {
-  height: 320px;
+  height: 328px;
   background-color: var(--darkgray);
   padding: 16px;
   border-radius: 16px;

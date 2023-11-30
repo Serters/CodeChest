@@ -42,7 +42,7 @@ main {
 		}
 
 		.snippet {
-			height: 152px;
+			height: 156px;
 
 			background-color: var(--darkgray);
 			display: grid;
@@ -100,7 +100,7 @@ main {
 		}
 
 		.snippetDescription {
-			height: 320px;
+			height: 328px;
 
 			background-color: var(--darkgray);
 			border-left: 0;
@@ -137,10 +137,6 @@ main {
 				border-radius: 16px;
 				padding: 16px;
 
-				&:focus {
-					outline: none;
-				}
-
 				&::placeholder {
 					color: silver;
 					opacity: 1;
@@ -148,7 +144,7 @@ main {
 			}
 		}
 		.parrot {
-			height: 320px;
+			height: 328px;
 
 			background-color: var(--darkgray);
 			padding: 16px;

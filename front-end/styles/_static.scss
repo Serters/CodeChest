@@ -6,6 +6,7 @@ html,
 	margin: 0;
 	font-family: "Courier New", monospace;
 	font-size: 16px;
+	outline: none;
 }
 
 body {
@@ -21,7 +22,7 @@ header {
 
 	padding: 0 16px;
 	border-bottom: 4px solid var(--brown);
-	margin-bottom: 48px;
+	margin-bottom: 40px;
 
 	display: flex;
 	flex-direction: row;
@@ -86,7 +87,7 @@ footer {
 	color: silver;
 
 	border-top: 4px solid var(--brown);
-	margin-top: 48px;
+	margin-top: 40px;
 
 	position: absolute;
 	bottom: 0;
