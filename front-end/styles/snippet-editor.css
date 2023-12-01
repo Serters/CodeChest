@@ -47,11 +47,11 @@ header .header-left {
   justify-content: left;
   align-items: center;
 }
-header .header-left #logo {
+header .header-left .logo {
   height: 85px;
   margin: auto 0;
 }
-header .header-left span {
+header .header-left h1 {
   font-size: 40px;
   text-shadow: 3px 4px 2px var(--brown);
 }

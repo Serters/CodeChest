@@ -1,28 +1,22 @@
-import { CodeChest } from "./codechest.js";
+import { draw_footer, draw_header } from "./codechest.js";
 
-// document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", render);
 
-// function init() {
-// 	// CodeChest.draw_static(document.body);
-// 	displayDiv();
-// }
+function render() {
+	draw_header(document.body);
+	draw_main(document.body);
+	draw_footer(document.body);
+}
 
-// function displayDiv() {
-// 	// Create a new div element
-// 	var newDiv = document.createElement("div");
+function draw_main(where) {
+	const m = document.createElement("main");
+	where.appendChild(m);
 
-// 	// Set some content for the div (you can customize this part)
-// 	newDiv.innerHTML = "This is a dynamically created div!";
+	const left = document.createElement("div");
+	left.className = "left";
+	m.appendChild(left);
 
-// 	// Set some styles for the div (you can customize this part)
-// 	newDiv.style.border = "1px solid black";
-// 	newDiv.style.padding = "10px";
-// 	newDiv.style.margin = "10px";
-
-// 	// Append the new div to the body of the document
-// 	document.body.appendChild(newDiv);
-// }
-
-// function init() {}
-
-CodeChest.draw_static(document.body);
+	const right = document.createElement("div");
+	right.className = "right";
+	m.appendChild(right);
+}

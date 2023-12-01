@@ -36,12 +36,12 @@ header {
 		justify-content: left;
 		align-items: center;
 
-		#logo {
+		.logo {
 			height: 85px;
 			margin: auto 0;
 		}
 
-		span {
+		h1 {
 			font-size: 40px;
 			text-shadow: 3px 4px 2px var(--brown);
 		}

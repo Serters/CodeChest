@@ -47,11 +47,11 @@ header .header-left {
   justify-content: left;
   align-items: center;
 }
-header .header-left #logo {
+header .header-left .logo {
   height: 85px;
   margin: auto 0;
 }
-header .header-left span {
+header .header-left h1 {
   font-size: 40px;
   text-shadow: 3px 4px 2px var(--brown);
 }
@@ -100,14 +100,14 @@ footer span {
   font-size: inherit;
 }
 
-main .snippetList {
+main .left {
   flex: 65;
   padding: 0 16px;
   border-right: 4px solid var(--brown);
   margin-right: 16px;
   min-height: 100%;
 }
-main .snippetList .createSnippet {
+main .left .createSnippet {
   height: 48px;
   width: 100%;
   background-color: var(--darkgray);
@@ -117,7 +117,7 @@ main .snippetList .createSnippet {
   padding: 16px;
   border-radius: 16px;
 }
-main .snippetList .createSnippet:hover {
+main .left .createSnippet:hover {
   text-decoration: underline;
   text-decoration-color: whitesmoke;
   cursor: default;
@@ -131,15 +131,15 @@ main .snippetList .createSnippet:hover {
     transform: translateY(-6px);
   }
 }
-main .snippetList .createSnippet ::-moz-selection {
+main .left .createSnippet ::-moz-selection {
   color: inherit;
   background-color: inherit;
 }
-main .snippetList .createSnippet ::selection {
+main .left .createSnippet ::selection {
   color: inherit;
   background-color: inherit;
 }
-main .snippetList .snippet {
+main .left .snippet {
   height: 156px;
   background-color: var(--darkgray);
   display: grid;
@@ -150,29 +150,29 @@ main .snippetList .snippet {
   gap: 16px;
   grid-template-areas: "titl actn" "desc actn" "tags actn";
 }
-main .snippetList .snippet .snippetTitle {
+main .left .snippet .snippetTitle {
   grid-area: titl;
 }
-main .snippetList .snippet .shortDescription {
+main .left .snippet .shortDescription {
   grid-area: desc;
 }
-main .snippetList .snippet .tags {
+main .left .snippet .tags {
   grid-area: tags;
 }
-main .snippetList .snippet .tags .tag {
+main .left .snippet .tags .tag {
   background-color: var(--brown);
   color: whitesmoke;
   border-radius: 16px;
   padding: 4px 8px;
 }
-main .snippetList .snippet .actions {
+main .left .snippet .actions {
   grid-area: actn;
   gap: 16px;
   margin: auto;
   display: flex;
   flex-direction: column;
 }
-main .snippetList .snippet .actions button {
+main .left .snippet .actions button {
   width: 100%;
   aspect-ratio: 1/1;
   background-color: whitesmoke;
