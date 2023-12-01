@@ -25,6 +25,4 @@ import { CodeChest } from "./codechest.js";
 
 // function init() {}
 
-let cc = new CodeChest("CodeChest");
-
-cc.draw_static(document.body);
+CodeChest.draw_static(document.body);

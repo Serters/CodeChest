@@ -3,7 +3,7 @@ export class CodeChest {
 		this.name = name;
 	}
 
-	draw_static(w) {
+	static draw_static(w) {
 		const h = document.createElement("div");
 		h.innerText = "test";
 		w.appendChild(h);
