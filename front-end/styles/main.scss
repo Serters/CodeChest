@@ -8,7 +8,7 @@ main {
 		margin-right: 16px;
 		min-height: 100%;
 
-		.createSnippet {
+		.create-snippet {
 			height: 48px;
 			width: 100%;
 
@@ -41,7 +41,7 @@ main {
 			}
 		}
 
-		.snippet {
+		.snippetList .snippet {
 			height: 156px;
 
 			background-color: var(--darkgray);

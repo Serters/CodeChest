@@ -107,7 +107,7 @@ main .left {
   margin-right: 16px;
   min-height: 100%;
 }
-main .left .createSnippet {
+main .left .create-snippet {
   height: 48px;
   width: 100%;
   background-color: var(--darkgray);
@@ -117,7 +117,7 @@ main .left .createSnippet {
   padding: 16px;
   border-radius: 16px;
 }
-main .left .createSnippet:hover {
+main .left .create-snippet:hover {
   text-decoration: underline;
   text-decoration-color: whitesmoke;
   cursor: default;
@@ -131,15 +131,15 @@ main .left .createSnippet:hover {
     transform: translateY(-6px);
   }
 }
-main .left .createSnippet ::-moz-selection {
+main .left .create-snippet ::-moz-selection {
   color: inherit;
   background-color: inherit;
 }
-main .left .createSnippet ::selection {
+main .left .create-snippet ::selection {
   color: inherit;
   background-color: inherit;
 }
-main .left .snippet {
+main .left .snippetList .snippet {
   height: 156px;
   background-color: var(--darkgray);
   display: grid;
@@ -150,29 +150,29 @@ main .left .snippet {
   gap: 16px;
   grid-template-areas: "titl actn" "desc actn" "tags actn";
 }
-main .left .snippet .snippetTitle {
+main .left .snippetList .snippet .snippetTitle {
   grid-area: titl;
 }
-main .left .snippet .shortDescription {
+main .left .snippetList .snippet .shortDescription {
   grid-area: desc;
 }
-main .left .snippet .tags {
+main .left .snippetList .snippet .tags {
   grid-area: tags;
 }
-main .left .snippet .tags .tag {
+main .left .snippetList .snippet .tags .tag {
   background-color: var(--brown);
   color: whitesmoke;
   border-radius: 16px;
   padding: 4px 8px;
 }
-main .left .snippet .actions {
+main .left .snippetList .snippet .actions {
   grid-area: actn;
   gap: 16px;
   margin: auto;
   display: flex;
   flex-direction: column;
 }
-main .left .snippet .actions button {
+main .left .snippetList .snippet .actions button {
   width: 100%;
   aspect-ratio: 1/1;
   background-color: whitesmoke;
