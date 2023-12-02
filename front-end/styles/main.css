@@ -211,7 +211,7 @@ main .right .search {
   height: 48px;
   margin-bottom: 16px;
 }
-main .right .search #search {
+main .right .search input {
   font-size: inherit;
   color: whitesmoke;
   background-color: var(--darkgray);
@@ -220,11 +220,11 @@ main .right .search #search {
   border-radius: 16px;
   padding: 16px;
 }
-main .right .search #search::-moz-placeholder {
+main .right .search input::-moz-placeholder {
   color: silver;
   opacity: 1;
 }
-main .right .search #search::placeholder {
+main .right .search input::placeholder {
   color: silver;
   opacity: 1;
 }

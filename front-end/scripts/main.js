@@ -29,4 +29,41 @@ function draw_main(where) {
 	const right = document.createElement("div");
 	right.className = "right";
 	m.appendChild(right);
+
+	const searchDiv = document.createElement("div");
+	searchDiv.className = "search";
+	right.appendChild(searchDiv);
+
+	const searchInput = document.createElement("input");
+	searchInput.type = "text";
+	searchInput.name = "search";
+	searchInput.placeholder = "Search:";
+	searchDiv.appendChild(searchInput);
+
+	const snippetDescriptionDiv = document.createElement("div");
+	snippetDescriptionDiv.className = "snippetDescription";
+	right.appendChild(snippetDescriptionDiv);
+
+	const snippetDescriptionTitle = document.createElement("h3");
+	snippetDescriptionTitle.innerText = "Long Description";
+	snippetDescriptionTitle.className = "title";
+	snippetDescriptionDiv.appendChild(snippetDescriptionTitle);
+
+	const snippetDescription = document.createElement("p");
+	snippetDescription.className = "description";
+	snippetDescription.innerText =
+		"Lorem ipsum dolor sit amet consectetur adipisicing elit. \
+	Magnam, ipsum et cumque hic eveniet quasi, nesciunt \
+	fugiat laudantium neque quibusdam excepturi ipsa quam, \
+	dolorem eaque unde? Accusamus, aliquid ex. Magni!";
+	snippetDescriptionDiv.appendChild(snippetDescription);
+
+	const parrotDiv = document.createElement("div");
+	parrotDiv.className = "parrot";
+	right.appendChild(parrotDiv);
+
+	var titleElement = document.createElement("h3");
+	titleElement.className = "title";
+	titleElement.textContent = "Your pet parrot";
+	parrotDiv.appendChild(titleElement);
 }
