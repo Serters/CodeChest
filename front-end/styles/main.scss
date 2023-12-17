@@ -51,7 +51,7 @@ main {
 			border-radius: 16px;
 
 			grid: 16px auto 16px / calc(100% - 60px) 60px;
-			gap: 16px; //between grid elements
+			gap: 16px;
 			grid-template-areas:
 				"titl actn"
 				"desc actn"
@@ -145,7 +145,6 @@ main {
 		}
 		.parrot {
 			height: 328px;
-
 			background-color: var(--darkgray);
 			padding: 16px;
 			border-radius: 16px;
