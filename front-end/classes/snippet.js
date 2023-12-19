@@ -1,4 +1,4 @@
-class MyClass {
+class snippet {
     constructor(snippet_id, name, code, short_desc, full_desc, favourite, snippet_list_id) {
       this.snippet_id = snippet_id;
       this.name = name;
@@ -30,8 +30,7 @@ class MyClass {
     }
   }
   
-  // Export the MyClass class for use in other files (optional)
   if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-    module.exports = MyClass;
+    module.exports = snippet;
   }
   
