@@ -1,4 +1,4 @@
-class snippet {
+export class snippet {
     constructor(snippet_id, name, code, short_desc, full_desc, favourite, snippet_list_id) {
       this.snippet_id = snippet_id;
       this.name = name;

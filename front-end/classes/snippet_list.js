@@ -1,4 +1,4 @@
-class snippet_list {
+export class snippet_list {
     constructor(snippet_list_id, max_storage, user_id, snippet_count, snippets) {
       this.snippet_list_id = snippet_list_id;
       this.max_storage = max_storage;
