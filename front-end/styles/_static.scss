@@ -99,3 +99,9 @@ footer {
 		font-size: inherit;
 	}
 }
+
+@media only screen and (max-width: 960px) {
+	main {
+		width: 92.5%;
+	}
+}
