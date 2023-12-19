@@ -1,4 +1,4 @@
-export class snippet {
+export class snippet_description {
 	constructor(
 		snippet_id,
 		name,
