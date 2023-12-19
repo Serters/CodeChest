@@ -1,12 +1,13 @@
-from flask import Flask, jsonify
+from flask import Flask
 from flask_cors import CORS
 import back_end.database_control.db_access as dba
 import back_end.database_control.db_queries as dbq
+import back_end.database_control.db_secret as dbs
 
 app = Flask(__name__)
 CORS(app)
 
-connection = dba.connect_to_database()
+connection = dba.connect_to_database(dbs.db_login)
 cursor = connection.cursor()
 
 @app.route('/snippets')

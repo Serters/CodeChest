@@ -1,11 +1,7 @@
 import mysql.connector
-from back_end.database_control.secret import db_secret
 
-def connect_to_database():
-    # Replace these temporary values with your actual database credentials
-    db_config = db_secret
+def connect_to_database(db_config):
     try:
-        # Establish a connection to the database
         connection = mysql.connector.connect(**db_config)
 
         if connection.is_connected():

@@ -1,5 +1,2 @@
 __pycache__/
-# front-end/styles/main.scss
-# front-end/styles/_colours.scss
-# front-end/styles/main.css.map
-secret.py
+db_secret.py
