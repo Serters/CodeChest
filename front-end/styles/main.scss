@@ -100,7 +100,8 @@ main {
 		}
 
 		.snippetDescription {
-			height: 328px;
+			// height: 328px;
+			flex: 1;
 
 			background-color: var(--darkgray);
 			border-left: 0;
@@ -143,11 +144,29 @@ main {
 				}
 			}
 		}
-		.parrot {
-			height: 328px;
-			background-color: var(--darkgray);
-			padding: 16px;
-			border-radius: 16px;
+
+		.actions {
+			width: 100%;
+			display: flex;
+			gap: 16px;
+
+			.edit,
+			.favourite {
+				height: 48px;
+				width: 50%;
+				background-color: var(--darkgray);
+				color: whitesmoke;
+				border: 0;
+				border-radius: 16px;
+				transition: color 0.3s;
+			}
+			
+			.edit:hover {
+				color: rgb(158, 230, 50);
+			}
+			.favourite:hover {
+				color: gold;
+			}
 		}
 	}
 }
