@@ -75,7 +75,7 @@ header .header-right #profile-picture {
 main {
   background-color: var(--gray);
   width: 70%;
-  min-height: calc(100vh - 280px);
+  min-height: calc(100vh - 180px);
   margin: 30px auto;
   display: flex;
 }
@@ -83,7 +83,7 @@ main {
 footer {
   font-size: 18px;
   width: 100%;
-  height: calc(100vh - 872px);
+  height: 60px;
   background-color: var(--darkgray);
   color: silver;
   border-top: 4px solid var(--brown);
@@ -98,6 +98,11 @@ footer span {
   font-size: inherit;
 }
 
+@media only screen and (max-width: 960px) {
+  main {
+    width: 92.5%;
+  }
+}
 main .left {
   flex: 65;
   padding-right: 16px;
@@ -174,6 +179,9 @@ main .left .snippetList .snippet .actions button {
   border: none;
   border-radius: 4px;
 }
+main .left .snippetList .snippet:last-child {
+  margin-bottom: 0;
+}
 main .right {
   flex: 35;
   display: flex;
@@ -243,10 +251,4 @@ main .right .actions .edit:hover {
 }
 main .right .actions .favourite:hover {
   color: gold;
-}
-
-@media only screen and (max-width: 960px) {
-  main {
-    width: 90%;
-  }
 }/*# sourceMappingURL=main.css.map */

@@ -4,7 +4,7 @@ main {
 	.left {
 		flex: 65;
 		min-height: 100%;
-		padding: 0 16px;
+		padding-right: 16px;
 		margin-right: 16px;
 		border-right: 4px solid var(--brown);
 
@@ -116,7 +116,7 @@ main {
 				border-radius: 16px;
 				transition: color 0.3s;
 			}
-			
+
 			.save:hover {
 				color: rgb(158, 230, 50);
 			}
