@@ -22,7 +22,6 @@ header {
 
 	padding: 0 16px;
 	border-bottom: 4px solid var(--brown);
-	// margin-bottom: 40px;
 
 	display: flex;
 	flex-direction: row;
@@ -72,9 +71,7 @@ header {
 main {
 	background-color: var(--gray);
 	width: 70%;
-	// min-height: 720px;
-	min-height: calc(100vh - 280px);
-	// margin: 0 auto;
+	min-height: calc(100vh - 180px);
 	margin: 30px auto;
 	display: flex;
 }
@@ -83,14 +80,12 @@ footer {
 	font-size: 18px;
 
 	width: 100%;
-	height: calc(100vh - 872px);
-	// height: 100px;
+	height: 60px;
 
 	background-color: var(--darkgray);
 	color: silver;
 
 	border-top: 4px solid var(--brown);
-	// margin-top: 40px;
 
 	position: absolute;
 	bottom: 0;

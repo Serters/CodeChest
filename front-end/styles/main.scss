@@ -84,6 +84,10 @@ main {
 				}
 			}
 		}
+
+		.snippetList .snippet:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	.right {
@@ -168,7 +172,7 @@ main {
 }
 
 @media only screen and (max-width: 960px) {
-	main{
-		width: 90%;
+	main {
+		width: 92.5%;
 	}
 }

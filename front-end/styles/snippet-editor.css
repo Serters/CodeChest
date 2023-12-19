@@ -75,7 +75,7 @@ header .header-right #profile-picture {
 main {
   background-color: var(--gray);
   width: 70%;
-  min-height: calc(100vh - 280px);
+  min-height: calc(100vh - 180px);
   margin: 30px auto;
   display: flex;
 }
@@ -83,7 +83,7 @@ main {
 footer {
   font-size: 18px;
   width: 100%;
-  height: calc(100vh - 872px);
+  height: 60px;
   background-color: var(--darkgray);
   color: silver;
   border-top: 4px solid var(--brown);
