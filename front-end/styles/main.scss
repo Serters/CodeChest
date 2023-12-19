@@ -3,7 +3,7 @@
 main {
 	.left {
 		flex: 65;
-		padding: 0 16px;
+		padding-right: 16px;
 		border-right: 4px solid var(--brown);
 		margin-right: 16px;
 		min-height: 100%;
@@ -50,18 +50,14 @@ main {
 			padding: 16px;
 			border-radius: 16px;
 
-			grid: 16px auto 16px / calc(100% - 60px) 60px;
+			display: flex;
+			flex-direction: column;
 			gap: 16px;
-			grid-template-areas:
-				"titl actn"
-				"desc actn"
-				"tags actn";
-			.snippetTitle {
-				grid-area: titl;
-			}
+
 			.shortDescription {
-				grid-area: desc;
+				height: 54px;
 			}
+
 			.tags {
 				grid-area: tags;
 				.tag {
@@ -160,7 +156,7 @@ main {
 				border-radius: 16px;
 				transition: color 0.3s;
 			}
-			
+
 			.edit:hover {
 				color: rgb(158, 230, 50);
 			}
@@ -168,5 +164,11 @@ main {
 				color: gold;
 			}
 		}
+	}
+}
+
+@media only screen and (max-width: 960px) {
+	main{
+		width: 90%;
 	}
 }
