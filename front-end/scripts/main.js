@@ -1,8 +1,8 @@
 import { draw_footer, draw_header } from "./codechest.js";
 import { snippet } from "../../front-end/classes/snippet.js";
 import { snippet_list } from "../../front-end/classes/snippet_list.js";
+import { snippet_description } from "../../front-end/classes/snippet_description.js";
 import { user } from "../../front-end/classes/user.js";
-
 document.addEventListener("DOMContentLoaded", render);
 
 function render() {
@@ -11,9 +11,11 @@ function render() {
 	draw_footer(document.body);
 }
 
-function draw_main(where) {
+async function draw_main(where) {
 	const m = document.createElement("main");
 	where.appendChild(m);
+
+	let active_snippet = 0;
 
 	//#region - - - - - -  LEFT - - - - - -
 
@@ -29,13 +31,9 @@ function draw_main(where) {
 	createSnippetText.innerText = "Create new snippet";
 	createSnippet.appendChild(createSnippetText);
 
-	const current_user = new user(1, "Korisnik", "korisnik2023@codechest.com")
-
-	const snippet_list_default = new snippet_list(1, current_user.user_id)
-	snippet_list_default.display(left)
-
-	render_snippet_list(left);
-
+	let snippet_list_default = await render_snippet_list(left);
+	snippet_list_default.display(left, click_callback);
+	
 	//#endregion - - - - - LEFT - - - - -
 
 	//#region - - - - - -  RIGHT - - - - - - 
@@ -53,25 +51,11 @@ function draw_main(where) {
 	searchInput.placeholder = "Search:";
 	searchDiv.appendChild(searchInput);
 
-	const snippetDescriptionDiv = document.createElement("div");
-	snippetDescriptionDiv.className = "snippetDescription";
-	right.appendChild(snippetDescriptionDiv);
+	// long desc
 
-	const snippetDescriptionTitle = document.createElement("h3");
-	snippetDescriptionTitle.innerText = "Long Description";
-	snippetDescriptionTitle.className = "title";
-	snippetDescriptionDiv.appendChild(snippetDescriptionTitle);
-
-	//LONG DESCRIPTION #TODO
-	const snippetDescription = document.createElement("p");
-	snippetDescription.className = "description";
-	snippetDescription.innerText =
-		"Lorem ipsum dolor sit amet consectetur adipisicing elit. \
-	Magnam, ipsum et cumque hic eveniet quasi, nesciunt \
-	fugiat laudantium neque quibusdam excepturi ipsa quam, \
-	dolorem eaque unde? Accusamus, aliquid ex. Magni!";
-	snippetDescriptionDiv.appendChild(snippetDescription);
-
+	let full_description = new snippet_description(snippet_list_default.snippets[active_snippet].full_desc);
+	full_description.display(right);
+	
 	// buttons
 	const actions_div = document.createElement("div");
 	actions_div.className = "actions";
@@ -79,7 +63,11 @@ function draw_main(where) {
 	
 	const edit_button = document.createElement("button");
 	edit_button.className = "edit";
-	edit_button.innerText = "Edit"
+	edit_button.innerText = "Edit";
+	edit_button.onclick = function() {
+		//window.location.assign("snippet-editor.html");
+		window.location.href = `snippet-editor.html?active_snippet=${active_snippet}`;
+	};
 	actions_div.appendChild(edit_button);
 
 	const favourite_button = document.createElement("button");
@@ -119,10 +107,17 @@ function draw_main(where) {
 			data.snippet_list_id
 		);
 	}
-	
+
+	function click_callback(active_snippet_id){
+		console.log("Snippet clicked! Index:", active_snippet_id);
+		active_snippet = active_snippet_id - 1;
+		
+		full_description.update_desc(snippet_list_default.snippets[active_snippet].full_desc);
+		console.log(active_snippet)
+	}
+
 	async function render_snippet_list(where) {
 		const snippet_list_data = await fetch_snippets();
-		const snippet_list_default = new snippet_list(1, 100, 1, snippet_list_data);
-		snippet_list_default.display(where);
+		return new snippet_list(1, 100, 1, snippet_list_data);
 	}	
 }

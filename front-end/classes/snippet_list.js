@@ -11,13 +11,13 @@ export class snippet_list {
 		this.snippets = snippets || [];
 	}
 
-	display(where) {
+	display(where, callback) {
 		const snippet_list_div = document.createElement("div");
 		snippet_list_div.className = "snippetList";
 		where.appendChild(snippet_list_div);
 
 		this.snippets.forEach(s => {
-			s.display(snippet_list_div)
+			s.display(snippet_list_div, callback)
 		});
 	}
 
