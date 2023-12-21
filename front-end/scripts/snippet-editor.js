@@ -5,15 +5,38 @@ document.addEventListener("DOMContentLoaded", render);
 
 // Get the value of active_snippet from the URL
 const urlParams = new URLSearchParams(window.location.search);
-const active_snippet = urlParams.get('active_snippet');
+const active_snippet = urlParams.get("active_snippet");
 
-// Now you can use the active_snippet variable in your script
-console.log(active_snippet);
+const user_id = 1;
+const snippet_id = active_snippet + 1;
+
+async function fetch_snippet() {
+	fetch(`http://127.0.0.1:5000/snippets/${user_id}/${snippet_id}`)
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			const snippet = create_fetched_snippet(snippet_data);
+			return snippet;
+		})
+		.catch((error) => console.error("Error:", error));
+}
 
 function render() {
 	draw_header(document.body);
 	draw_main(document.body);
 	draw_footer(document.body);
+}
+
+function create_fetched_snippet(data) {
+	return new snippet(
+		data.snippet_id,
+		data.name,
+		data.code,
+		data.short_desc,
+		data.full_desc,
+		data.favourite,
+		data.snippet_list_id
+	);
 }
 
 function draw_main(where) {
