@@ -12,6 +12,7 @@ html,
 body {
 	background-color: var(--gray);
 	color: whitesmoke;
+	position: relative;
 }
 
 header {
@@ -88,7 +89,7 @@ footer {
 	border-top: 4px solid var(--brown);
 
 	position: absolute;
-	bottom: 0;
+	bottom: -100px;
 	left: 0;
 
 	display: flex;
