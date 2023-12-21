@@ -14,16 +14,12 @@ async function fetch_snippet(user_id, snippet_id) {
 			`http://127.0.0.1:5000/snippets/${user_id}/${snippet_id}`
 		);
 		const snippet_data = await response.json();
-		console.log(snippet_data);
-
-		const snippet = create_fetched_snippet(snippet_data);
+		const snippet = create_fetched_snippet(snippet_data.snippet[0]);
 		return snippet;
 	} catch (error) {
 		console.error("Error:", error);
 	}
 }
-
-let current_snippet = fetch_snippet(1, active_snippet)
 
 function render() {
 	draw_header(document.body);
@@ -43,7 +39,9 @@ function create_fetched_snippet(data) {
 	);
 }
 
-function draw_main(where) {
+async function draw_main(where) {
+	const current_snippet = await fetch_snippet(1, active_snippet);
+
 	const m = document.createElement("main");
 	where.appendChild(m);
 
@@ -65,6 +63,7 @@ function draw_main(where) {
 	const code_editor_textarea = document.createElement("textarea");
 	code_editor_textarea.className = "code-editor";
 	code_editor_textarea.placeholder = "Your code goes here.";
+	code_editor_textarea.value = current_snippet.code;
 	code_editor.appendChild(code_editor_textarea);
 
 	//#endregion - - - - - LEFT - - - - -
@@ -83,6 +82,7 @@ function draw_main(where) {
 	snippet_name_input.name = "snippet-name";
 	snippet_name_input.type = "text";
 	snippet_name_input.placeholder = "Snippet name:";
+	snippet_name_input.value = current_snippet.name;
 	snippet_name.appendChild(snippet_name_input);
 
 	const full_description = document.createElement("div");
@@ -96,6 +96,7 @@ function draw_main(where) {
 	const full_description_textarea = document.createElement("textarea");
 	full_description_textarea.name = "full-description";
 	full_description_textarea.placeholder = "Full description:";
+	full_description_textarea.value = current_snippet.full_desc;
 	full_description.appendChild(full_description_textarea);
 
 	const short_description = document.createElement("div");
@@ -103,12 +104,13 @@ function draw_main(where) {
 	right.appendChild(short_description);
 
 	const short_description_title = document.createElement("h3");
-	short_description_title.innerText = "short description";
+	short_description_title.innerText = "Short description";
 	short_description.appendChild(short_description_title);
 
 	const short_description_textarea = document.createElement("textarea");
 	short_description_textarea.name = "short-description";
-	short_description_textarea.placeholder = "short description:";
+	short_description_textarea.placeholder = "Short description:";
+	short_description_textarea.value = current_snippet.short_desc;
 	short_description.appendChild(short_description_textarea);
 
 	const tags_div = document.createElement("div");
@@ -139,4 +141,13 @@ function draw_main(where) {
 	actions_div.appendChild(delete_button);
 
 	//#endregion - - - - - RIGHT - - - - -
+
+	const data = {
+		name: snippet_name_input.value,
+		code: code_editor_textarea.value,
+		short_desc: short_description_textarea.value,
+		full_desc: full_description_textarea.value,
+		favourite: 0,
+		snippet_list_id: 1,
+	};
 }
