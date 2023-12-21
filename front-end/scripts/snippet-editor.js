@@ -5,21 +5,25 @@ document.addEventListener("DOMContentLoaded", render);
 
 // Get the value of active_snippet from the URL
 const urlParams = new URLSearchParams(window.location.search);
-const active_snippet = urlParams.get("active_snippet");
+const active_snippet = parseInt(urlParams.get("active_snippet"), 10) + 1;
+//const snippet_id = active_snippet + 1;
 
-const user_id = 1;
-const snippet_id = active_snippet + 1;
+async function fetch_snippet(user_id, snippet_id) {
+	try {
+		const response = await fetch(
+			`http://127.0.0.1:5000/snippets/${user_id}/${snippet_id}`
+		);
+		const snippet_data = await response.json();
+		console.log(snippet_data);
 
-async function fetch_snippet() {
-	fetch(`http://127.0.0.1:5000/snippets/${user_id}/${snippet_id}`)
-		.then((response) => response.json())
-		.then((data) => {
-			console.log(data);
-			const snippet = create_fetched_snippet(snippet_data);
-			return snippet;
-		})
-		.catch((error) => console.error("Error:", error));
+		const snippet = create_fetched_snippet(snippet_data);
+		return snippet;
+	} catch (error) {
+		console.error("Error:", error);
+	}
 }
+
+let current_snippet = fetch_snippet(1, active_snippet)
 
 function render() {
 	draw_header(document.body);
