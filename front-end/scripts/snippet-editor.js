@@ -3,6 +3,13 @@ import { snippet } from "../../front-end/classes/snippet.js";
 
 document.addEventListener("DOMContentLoaded", render);
 
+// Get the value of active_snippet from the URL
+const urlParams = new URLSearchParams(window.location.search);
+const active_snippet = urlParams.get('active_snippet');
+
+// Now you can use the active_snippet variable in your script
+console.log(active_snippet);
+
 function render() {
 	draw_header(document.body);
 	draw_main(document.body);
