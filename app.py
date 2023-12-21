@@ -15,16 +15,17 @@ cursor = connection.cursor()
 def home():
     return "cats"
 
-
 @app.route("/snippets")
 def snippets():
     return dbq.get_snippets(cursor, 1)
-
 
 @app.route("/snippet_list")
 def snippet_list():
     return dbq.get_snippet_list(cursor, 1)
 
+@app.route('/insert_row', methods=['POST'])
+def create_new_snippet():
+    return dbq.insert_row(connection, cursor)
 
 @app.route("/snippets/<int:user_id>/<int:snippet_id>")
 def get_snippet_route(user_id, snippet_id):
@@ -33,7 +34,6 @@ def get_snippet_route(user_id, snippet_id):
         return result
     except Exception as e:
         return jsonify({"error": str(e)})
-
 
 if __name__ == "__main__":
     app.run(debug=True)

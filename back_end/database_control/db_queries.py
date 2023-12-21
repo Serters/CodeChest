@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import Flask, jsonify, request
 
 
 def get_snippets(cursor, snippet_list_id):
@@ -59,3 +59,34 @@ def get_snippet(cursor, user_id, snippet_id):
 
     except Exception as err:
         print(f"Error: {err}")
+
+def insert_row(connection, cursor):
+    try:
+        # Get data from the request
+        data = request.get_json()
+        
+        # Insert the new row into the table
+        query = '''
+            INSERT INTO snippets
+            (name, code, short_desc, full_desc, favourite, snippet_list_id)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        '''
+        values = (
+            data.get('name'),
+            data.get('code'),
+            data.get('short_desc'),
+            data.get('full_desc'),
+            data.get('favourite', 0),  # Default to 0 if not provided
+            data.get('snippet_list_id', 1),  # Default to 1 if not provided
+        )
+        cursor.execute(query, values)
+        connection.commit()
+
+        # Close the database connection
+        cursor.close()
+        connection.close()
+
+        return jsonify({'status': 'success', 'message': 'Row inserted successfully'})
+
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)})
