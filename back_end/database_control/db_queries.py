@@ -3,7 +3,7 @@ from flask import jsonify
 def get_snippets(cursor, snippet_list_id):
     try:
         query = """
-            SELECT snippet_id, snippets.name, code, short_desc, full_desc, favourite
+            SELECT snippet_id, snippets.name, code, short_desc, full_desc, favourite, snippets.snippet_list_id
             FROM snippets
             JOIN snippet_list ON snippets.snippet_list_id = snippet_list.snippet_list_id
             WHERE snippets.snippet_list_id = 1;

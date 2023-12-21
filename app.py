@@ -10,6 +10,10 @@ CORS(app)
 connection = dba.connect_to_database(dbs.db_login)
 cursor = connection.cursor()
 
+@app.route('/')
+def home():
+    return 'cats'
+
 @app.route('/snippets')
 def snippets():
     return dbq.get_snippets(cursor, 1)

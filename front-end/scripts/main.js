@@ -1,4 +1,7 @@
 import { draw_footer, draw_header } from "./codechest.js";
+import { snippet } from "../../front-end/classes/snippet.js";
+import { snippet_list } from "../../front-end/classes/snippet_list.js";
+import { user } from "../../front-end/classes/user.js";
 
 document.addEventListener("DOMContentLoaded", render);
 
@@ -12,7 +15,8 @@ function draw_main(where) {
 	const m = document.createElement("main");
 	where.appendChild(m);
 
-	// - - - - - - - - - - - - LEFT - - - - - - - - - - - -
+	//#region - - - - - -  LEFT - - - - - -
+
 	const left = document.createElement("div");
 	left.className = "left";
 	m.appendChild(left);
@@ -25,7 +29,15 @@ function draw_main(where) {
 	createSnippetText.innerText = "Create new snippet";
 	createSnippet.appendChild(createSnippetText);
 
-	// - - - - - - - - - - - - RIGHT - - - - - - - - - - - -
+	const current_user = new user(1, "Korisnik", "korisnik2023@codechest.com")
+
+	const snippet_list_default = new snippet_list(1, current_user.user_id)
+	snippet_list_default.display(left)
+
+	//const snippet_list_searched = new snippet_list()
+	//#endregion - - - - - LEFT - - - - -
+
+	//#region - - - - - -  RIGHT - - - - - - 
 	const right = document.createElement("div");
 	right.className = "right";
 	m.appendChild(right);
@@ -58,12 +70,20 @@ function draw_main(where) {
 	dolorem eaque unde? Accusamus, aliquid ex. Magni!";
 	snippetDescriptionDiv.appendChild(snippetDescription);
 
-	const parrotDiv = document.createElement("div");
-	parrotDiv.className = "parrot";
-	right.appendChild(parrotDiv);
+	// buttons
+	const actions_div = document.createElement("div");
+	actions_div.className = "actions";
+	right.appendChild(actions_div);
+	
+	const edit_button = document.createElement("button");
+	edit_button.className = "edit";
+	edit_button.innerText = "Edit"
+	actions_div.appendChild(edit_button);
 
-	var titleElement = document.createElement("h3");
-	titleElement.className = "title";
-	titleElement.textContent = "Your pet parrot";
-	parrotDiv.appendChild(titleElement);
+	const favourite_button = document.createElement("button");
+	favourite_button.className = "favourite";
+	favourite_button.innerText = "Favourite"
+	actions_div.appendChild(favourite_button);
+
+	//#endregion - - - - - RIGHT - - - - -  
 }
