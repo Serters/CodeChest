@@ -16,7 +16,7 @@ export class snippet_list {
 		snippet_list_div.className = "snippetList";
 		where.appendChild(snippet_list_div);
 
-		this.snippets.array.forEach(s => {
+		this.snippets.forEach(s => {
 			s.display(snippet_list_div)
 		});
 	}

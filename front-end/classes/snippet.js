@@ -17,10 +17,9 @@ export class snippet {
 		this.snippet_list_id = snippet_list_id;
 	}
 
-	display(targetDivId) {
-		const outputDiv = document.getElementById(targetDivId);
-		if (outputDiv) {
-			outputDiv.innerHTML += `
+	display(where) {
+		if (where) {
+			where.innerHTML += `
           <p>Snippet Information:</p>
           <ul>
             <li>Snippet ID: ${this.snippet_id}</li>
@@ -33,7 +32,7 @@ export class snippet {
           </ul>
         `;
 		} else {
-			console.error(`Target div with id "${targetDivId}" not found.`);
+			console.error(`Target div with id "${where}" not found.`);
 		}
 	}
 }
