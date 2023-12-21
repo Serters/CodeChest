@@ -19,24 +19,30 @@ export class snippet {
 
 	display(where) {
 		if (where) {
-			where.innerHTML += `
-          <p>Snippet Information:</p>
-          <ul>
-            <li>Snippet ID: ${this.snippet_id}</li>
-            <li>Name: ${this.name}</li>
-            <li>Code: ${this.code}</li>
-            <li>Short Description: ${this.short_desc}</li>
-            <li>Full Description: ${this.full_desc}</li>
-            <li>Favourite: ${this.favourite ? "Yes" : "No"}</li>
-            <li>Snippet List ID: ${this.snippet_list_id}</li>
-          </ul>
-        `;
+			const snippet_div = document.createElement("div");
+			snippet_div.className = "snippet";
+			where.appendChild(snippet_div);
+			
+			const snippet_name = document.createElement("h3");
+			snippet_name.className = "snippetTitle";
+			snippet_name.innerText = this.name;
+			snippet_div.appendChild(snippet_name);
+
+			const snippet_short_desc = document.createElement("div");
+			snippet_short_desc.className = "shortDescription";
+			snippet_short_desc.innerText = this.short_desc;
+			snippet_div.appendChild(snippet_short_desc);
+
+			const snippet_tags = document.createElement("div");
+			snippet_tags.className = "tags";
+			snippet_short_desc.innerText = this.short_desc;
+			snippet_div.appendChild(snippet_tags);
 		} else {
-			console.error(`Target div with id "${where}" not found.`);
+			console.error("Error: 'where' is not defined");
 		}
 	}
+	
 }
-
 if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
 	module.exports = snippet;
 }

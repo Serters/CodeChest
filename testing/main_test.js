@@ -2,52 +2,41 @@ import { snippet } from "../front-end/classes/snippet.js";
 import { snippet_list } from "../front-end/classes/snippet_list.js";
 import { user } from "../front-end/classes/user.js";
 
-const snippet_list_default = new snippet_list(1, 100, 1, []);
-
-async function fetchAndProcessSnippets() {
-    let sl = [];
-
+async function fetch_snippets() {
     try {
+		let fetched_snippets = [];
         const response = await fetch("http://127.0.0.1:5000/snippets");
         const data = await response.json();
+        const snippets_data = data.snippet;
 
-        const snippetsData = data.snippet;
-
-        snippetsData.forEach((snippetData) => {
-            const snippet = createSnippetObjectFromData(snippetData);
-            sl.push(snippet);
+        snippets_data.forEach((snippet_data) => {
+            const snippet = create_fetched_snippet(snippet_data);
+            fetched_snippets.push(snippet);
         });
+		return fetched_snippets;
 
-        snippet_list_default.snippets = sl;
-        // snippet_list_default.display(document.body);
-
-        console.log(sl);
-        
     } catch (error) {
         console.error("Error fetching snippets:", error);
     }
-
-    return sl;
 }
 
-function createSnippetObjectFromData(data) {
+function create_fetched_snippet(data) {
     return new snippet(
-        data[0],
-        data[1],
-        data[2],
-        data[3],
-        data[4],
-        data[5],
-        data[6]
+        data.snippet_id,
+        data.name,
+        data.code,
+        data.short_desc,
+        data.full_desc,
+        data.favourite,
+        data.snippet_list_id
     );
 }
 
-// Use an async function to wait for the fetch operation to complete
-async function initializeSnippetList() {
-    const snippetListData = await fetchAndProcessSnippets();
-    const snippet_list_new = new snippet_list(1, 100, 1, snippetListData);
-    snippet_list_new.display(document.body);
+async function render_snippet_list() {
+    const snippet_list_data = await fetch_snippets();
+    const snippet_list_default = new snippet_list(1, 100, 1, snippet_list_data);
+    snippet_list_default.display(document.body);
 }
 
-// Call the async function to initialize and display the snippet list
-initializeSnippetList();
+
+render_snippet_list();

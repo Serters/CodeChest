@@ -6,15 +6,22 @@ def get_snippets(cursor, snippet_list_id):
             SELECT snippet_id, snippets.name, code, short_desc, full_desc, favourite, snippets.snippet_list_id
             FROM snippets
             JOIN snippet_list ON snippets.snippet_list_id = snippet_list.snippet_list_id
-            WHERE snippets.snippet_list_id = 1;
+            WHERE snippets.snippet_list_id = %s;
         """ 
-        cursor.execute(query)
+        cursor.execute(query, (snippet_list_id,))
         rows = cursor.fetchall()
 
-        return jsonify({'snippet': rows}) 
+        # Get column names from cursor description
+        columns = [desc[0] for desc in cursor.description]
+
+        # Create a list of dictionaries
+        snippet_list = [dict(zip(columns, row)) for row in rows]
+
+        return jsonify({'snippet': snippet_list}) 
     
     except Exception as err:
         print(f"Error: {err}")
+
 
 def get_snippet_list(cursor, user_id):
     try:

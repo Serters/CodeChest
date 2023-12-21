@@ -34,7 +34,8 @@ function draw_main(where) {
 	const snippet_list_default = new snippet_list(1, current_user.user_id)
 	snippet_list_default.display(left)
 
-	//const snippet_list_searched = new snippet_list()
+	render_snippet_list(left);
+
 	//#endregion - - - - - LEFT - - - - -
 
 	//#region - - - - - -  RIGHT - - - - - - 
@@ -61,6 +62,7 @@ function draw_main(where) {
 	snippetDescriptionTitle.className = "title";
 	snippetDescriptionDiv.appendChild(snippetDescriptionTitle);
 
+	//LONG DESCRIPTION #TODO
 	const snippetDescription = document.createElement("p");
 	snippetDescription.className = "description";
 	snippetDescription.innerText =
@@ -86,4 +88,41 @@ function draw_main(where) {
 	actions_div.appendChild(favourite_button);
 
 	//#endregion - - - - - RIGHT - - - - -  
+
+	//#region other
+	async function fetch_snippets() {
+		try {
+			let fetched_snippets = [];
+			const response = await fetch("http://127.0.0.1:5000/snippets");
+			const data = await response.json();
+			const snippets_data = data.snippet;
+	
+			snippets_data.forEach((snippet_data) => {
+				const snippet = create_fetched_snippet(snippet_data);
+				fetched_snippets.push(snippet);
+			});
+			return fetched_snippets;
+	
+		} catch (error) {
+			console.error("Error fetching snippets:", error);
+		}
+	}
+	
+	function create_fetched_snippet(data) {
+		return new snippet(
+			data.snippet_id,
+			data.name,
+			data.code,
+			data.short_desc,
+			data.full_desc,
+			data.favourite,
+			data.snippet_list_id
+		);
+	}
+	
+	async function render_snippet_list(where) {
+		const snippet_list_data = await fetch_snippets();
+		const snippet_list_default = new snippet_list(1, 100, 1, snippet_list_data);
+		snippet_list_default.display(where);
+	}	
 }
