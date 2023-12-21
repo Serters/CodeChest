@@ -133,6 +133,8 @@ main .left .code-editor textarea {
 }
 main .right {
   flex: 35;
+  display: flex;
+  flex-direction: column;
 }
 main .right .snippet-name,
 main .right .full-description,
@@ -169,13 +171,18 @@ main .right .short-description textarea {
   resize: none;
 }
 main .right .full-description {
-  height: 328px;
+  flex: 1;
 }
 main .right .short-description {
   height: 124px;
 }
 main .right .tags {
   height: 120px;
+}
+main .right .tags input {
+  border: 3px solid var(--gray);
+  border-radius: 8px;
+  padding: 8px;
 }
 main .right .tags .current-tags {
   margin-top: 16px;
