@@ -17,7 +17,7 @@ export class snippet {
 		this.snippet_list_id = snippet_list_id;
 	}
 
-	display(where) {
+	display(where, callback) {
 		if (where) {
 			const snippet_div = document.createElement("div");
 			snippet_div.className = "snippet";
@@ -37,6 +37,11 @@ export class snippet {
 			snippet_tags.className = "tags";
 			snippet_short_desc.innerText = this.short_desc;
 			snippet_div.appendChild(snippet_tags);
+
+            snippet_div.addEventListener("click", () => {
+                callback(this.snippet_id);
+            });
+
 		} else {
 			console.error("Error: 'where' is not defined");
 		}
