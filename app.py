@@ -41,6 +41,15 @@ def get_snippet_route(user_id, snippet_id):
         return result
     except Exception as e:
         return jsonify({"error": str(e)})
+    
+@app.route("/snippets/<int:user_id>/<int:snippet_id>", methods=["PUT"])
+def update_snippet_route(user_id, snippet_id):
+    try:
+        # Assuming dbq is an instance of your database queries module
+        result = dbq.update_row(connection, cursor, snippet_id)
+        return result
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})
 
 
 if __name__ == "__main__":

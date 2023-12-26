@@ -84,6 +84,39 @@ def insert_row(connection, cursor):
         connection.commit()
 
         return jsonify({"status": "success", "message": "Row inserted successfully"})
+    
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})
+    
+def update_row(connection, cursor, snippet_id):
+    try:
+        # Get data from the request
+        data = request.get_json()
+
+        # Update the existing row in the table
+        query = """
+            UPDATE snippets
+            SET name = %s,
+                code = %s,
+                short_desc = %s,
+                full_desc = %s,
+                favourite = %s,
+                snippet_list_id = %s
+            WHERE snippet_id = %s
+        """
+        values = (
+            data.get("name"),
+            data.get("code"),
+            data.get("short_desc"),
+            data.get("full_desc"),
+            data.get("favourite", 0),  # Default to 0 if not provided
+            data.get("snippet_list_id", 1),  # Default to 1 if not provided
+            snippet_id,
+        )
+        cursor.execute(query, values)
+        connection.commit()
+
+        return jsonify({"status": "success", "message": f"Row with snippet_id {snippet_id} updated successfully"})
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
