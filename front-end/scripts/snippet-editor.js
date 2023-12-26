@@ -28,6 +28,7 @@ function render() {
 }
 
 function create_fetched_snippet(data) {
+	console.log(data);
 	return new snippet(
 		data.snippet_id,
 		data.name,

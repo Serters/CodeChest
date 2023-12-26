@@ -82,10 +82,6 @@ def insert_row(connection, cursor):
         cursor.execute(query, values)
         connection.commit()
 
-        # Close the database connection
-        cursor.close()
-        connection.close()
-
         return jsonify({'status': 'success', 'message': 'Row inserted successfully'})
 
     except Exception as e:

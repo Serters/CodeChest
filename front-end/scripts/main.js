@@ -126,10 +126,9 @@ async function draw_main(where) {
 
 	// Adding click event listener
 	createSnippet.addEventListener("click", function () {
-		console.log("Cat");
 		insertRowIntoTable(data);
 		active_snippet = snippet_list_default.snippets.length;
-		window.location.href = `snippet-editor.html?active_snippet=${active_snippet}`;
+		//window.location.href = `snippet-editor.html?active_snippet=${active_snippet}`;
 	});
 
 	function insertRowIntoTable(data) {
