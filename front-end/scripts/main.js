@@ -132,29 +132,29 @@ async function draw_main(where) {
 	});
 
 	function insertRowIntoTable(data) {
-		fetch('http://127.0.0.1:5000/insert_row', {
-		  method: 'POST',
-		  headers: {
-			'Content-Type': 'application/json',
-		  },
-		  body: JSON.stringify(data),
+		fetch("http://127.0.0.1:5000/insert_row", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data),
 		})
-		  .then(response => response.json())
-		  .then(result => {
-			console.log(result);
-		  })
-		  .catch(error => {
-			console.error('Error:', error);
-		  });
-	  }
-	  
-	  // Example usage:
+			.then((response) => response.json())
+			.then((result) => {
+				console.log(result);
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+			});
+	}
+
+	// Example usage:
 	const data = {
-		name: 'Snippet Name',
-		code: 'Snippet Code',
-		short_desc: 'Snippet Short Description',
-		full_desc: 'Snippet Full Description',
+		name: "Snippet Name",
+		code: "Snippet Code",
+		short_desc: "Snippet Short Description",
+		full_desc: "Snippet Full Description",
 		favourite: 0,
-		snippet_list_id: 1
+		snippet_list_id: 1,
 	};
 }

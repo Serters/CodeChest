@@ -22,7 +22,7 @@ export class snippet {
 			const snippet_div = document.createElement("div");
 			snippet_div.className = "snippet";
 			where.appendChild(snippet_div);
-			
+
 			const snippet_name = document.createElement("h3");
 			snippet_name.className = "snippetTitle";
 			snippet_name.innerText = this.name;
@@ -38,15 +38,13 @@ export class snippet {
 			snippet_short_desc.innerText = this.short_desc;
 			snippet_div.appendChild(snippet_tags);
 
-            snippet_div.addEventListener("click", () => {
-                callback(this.snippet_id);
-            });
-
+			snippet_div.addEventListener("click", () => {
+				callback(this.snippet_id);
+			});
 		} else {
 			console.error("Error: 'where' is not defined");
 		}
 	}
-	
 }
 if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
 	module.exports = snippet;

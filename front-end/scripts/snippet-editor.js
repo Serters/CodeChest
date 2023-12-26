@@ -46,11 +46,20 @@ async function draw_main(where) {
 	const m = document.createElement("main");
 	where.appendChild(m);
 
+	// FORM
+	const form = document.createElement("form");
+	form.onsubmit = function (event) {
+		event.preventDefault(); // Prevent the default form submission behavior
+		saveSnippet(); // Call your save function here
+	};
+	form.className = "main";
+	m.appendChild(form);
+
 	//#region - - - - - -  LEFT - - - - - -
 
 	const left = document.createElement("div");
 	left.className = "left";
-	m.appendChild(left);
+	form.appendChild(left);
 
 	const code_editor = document.createElement("div");
 	code_editor.className = "code-editor";
@@ -73,7 +82,7 @@ async function draw_main(where) {
 
 	const right = document.createElement("div");
 	right.className = "right";
-	m.appendChild(right);
+	form.appendChild(right);
 
 	const snippet_name = document.createElement("div");
 	snippet_name.className = "snippet-name";
@@ -134,6 +143,7 @@ async function draw_main(where) {
 	const save_button = document.createElement("button");
 	save_button.className = "save";
 	save_button.innerText = "Save";
+	save_button.type = "submit";
 	actions_div.appendChild(save_button);
 
 	const delete_button = document.createElement("button");
@@ -143,12 +153,21 @@ async function draw_main(where) {
 
 	//#endregion - - - - - RIGHT - - - - -
 
-	const data = {
-		name: snippet_name_input.value,
-		code: code_editor_textarea.value,
-		short_desc: short_description_textarea.value,
-		full_desc: full_description_textarea.value,
-		favourite: 0,
-		snippet_list_id: 1,
-	};
+	function saveSnippet() {
+		const snippet_name_value = snippet_name_input.value;
+		const code_value = code_editor_textarea.value;
+		const short_desc_value = short_description_textarea.value;
+		const full_desc_value = full_description_textarea.value;
+
+		const data = {
+			name: snippet_name_value,
+			code: code_value,
+			short_desc: short_desc_value,
+			full_desc: full_desc_value,
+			favourite: 0,
+			snippet_list_id: 1,
+		};
+
+		console.table(data);
+	}
 }

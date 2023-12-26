@@ -104,24 +104,30 @@ footer span {
     width: 92.5%;
   }
 }
-main .left {
+main form {
+  background-color: var(--gray);
+  width: 100%;
+  min-height: calc(100vh - 180px);
+  display: flex;
+}
+main form .left {
   flex: 65;
   min-height: 100%;
   padding-right: 16px;
   margin-right: 16px;
   border-right: 4px solid var(--brown);
 }
-main .left .code-editor {
+main form .left .code-editor {
   height: 100%;
   padding: 16px;
   background-color: var(--darkgray);
   border-radius: 16px;
 }
-main .left .code-editor .title {
+main form .left .code-editor .title {
   grid-area: title;
   margin-bottom: 16px;
 }
-main .left .code-editor textarea {
+main form .left .code-editor textarea {
   width: 100%;
   height: calc(100% - 32px);
   color: inherit;
@@ -131,36 +137,36 @@ main .left .code-editor textarea {
   padding: 8px;
   resize: none;
 }
-main .right {
+main form .right {
   flex: 35;
   display: flex;
   flex-direction: column;
 }
-main .right .snippet-name,
-main .right .full-description,
-main .right .short-description,
-main .right .tags {
+main form .right .snippet-name,
+main form .right .full-description,
+main form .right .short-description,
+main form .right .tags {
   width: 100%;
   background-color: var(--darkgray);
   margin-bottom: 16px;
   padding: 16px;
   border-radius: 16px;
 }
-main .right .snippet-name h3,
-main .right .full-description h3,
-main .right .short-description h3,
-main .right .tags h3 {
+main form .right .snippet-name h3,
+main form .right .full-description h3,
+main form .right .short-description h3,
+main form .right .tags h3 {
   margin-bottom: 16px;
 }
-main .right .snippet-name input,
-main .right .tags input {
+main form .right .snippet-name input,
+main form .right .tags input {
   width: 100%;
   background-color: inherit;
   color: inherit;
   border: 0;
 }
-main .right .full-description textarea,
-main .right .short-description textarea {
+main form .right .full-description textarea,
+main form .right .short-description textarea {
   width: 100%;
   height: calc(100% - 32px);
   color: inherit;
@@ -170,21 +176,21 @@ main .right .short-description textarea {
   padding: 8px;
   resize: none;
 }
-main .right .full-description {
+main form .right .full-description {
   flex: 1;
 }
-main .right .short-description {
+main form .right .short-description {
   height: 124px;
 }
-main .right .tags {
+main form .right .tags {
   height: 120px;
 }
-main .right .tags input {
+main form .right .tags input {
   border: 3px solid var(--gray);
   border-radius: 8px;
   padding: 8px;
 }
-main .right .tags .current-tags {
+main form .right .tags .current-tags {
   margin-top: 16px;
   height: 16px;
   display: flex;
@@ -192,19 +198,19 @@ main .right .tags .current-tags {
   justify-content: left;
   align-items: center;
 }
-main .right .tags .current-tags .tag {
+main form .right .tags .current-tags .tag {
   background-color: var(--brown);
   color: whitesmoke;
   border-radius: 16px;
   padding: 4px 8px;
 }
-main .right .actions {
+main form .right .actions {
   width: 100%;
   display: flex;
   gap: 16px;
 }
-main .right .actions .save,
-main .right .actions .delete {
+main form .right .actions .save,
+main form .right .actions .delete {
   height: 48px;
   width: 50%;
   background-color: var(--darkgray);
@@ -213,9 +219,9 @@ main .right .actions .delete {
   border-radius: 16px;
   transition: color 0.3s;
 }
-main .right .actions .save:hover {
+main form .right .actions .save:hover {
   color: rgb(158, 230, 50);
 }
-main .right .actions .delete:hover {
+main form .right .actions .delete:hover {
   color: rgb(204, 80, 80);
 }/*# sourceMappingURL=snippet-editor.css.map */
