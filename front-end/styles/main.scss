@@ -41,46 +41,52 @@ main {
 			}
 		}
 
-		.snippetList .snippet {
-			height: 156px;
+		.snippetList {
+			overflow-y: scroll;
+			max-height: calc(100% - 64px);
 
-			background-color: var(--darkgray);
-			display: grid;
-			margin-bottom: 16px;
-			padding: 16px;
-			border-radius: 16px;
+			.snippet {
+				height: 156px;
 
-			display: flex;
-			flex-direction: column;
-			gap: 16px;
+				background-color: var(--darkgray);
+				display: grid;
+				margin-bottom: 16px;
+				padding: 16px;
+				margin-right: 16px;
+				border-radius: 16px;
 
-			.shortDescription {
-				height: 54px;
-			}
-
-			.tags {
-				grid-area: tags;
-				.tag {
-					background-color: var(--brown);
-					color: whitesmoke;
-					border-radius: 16px;
-					padding: 4px 8px;
-				}
-			}
-
-			.actions {
-				grid-area: actn;
-				gap: 16px;
-				margin: auto;
 				display: flex;
 				flex-direction: column;
+				gap: 16px;
 
-				button {
-					width: 100%;
-					aspect-ratio: 1/1;
-					background-color: whitesmoke;
-					border: none;
-					border-radius: 4px;
+				.shortDescription {
+					height: 54px;
+				}
+
+				.tags {
+					grid-area: tags;
+					.tag {
+						background-color: var(--brown);
+						color: whitesmoke;
+						border-radius: 16px;
+						padding: 4px 8px;
+					}
+				}
+
+				.actions {
+					grid-area: actn;
+					gap: 16px;
+					margin: auto;
+					display: flex;
+					flex-direction: column;
+
+					button {
+						width: 100%;
+						aspect-ratio: 1/1;
+						background-color: whitesmoke;
+						border: none;
+						border-radius: 4px;
+					}
 				}
 			}
 		}
