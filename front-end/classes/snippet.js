@@ -21,7 +21,7 @@ export class snippet {
 		if (where) {
 			const snippet_div = document.createElement("div");
 			snippet_div.className = "snippet";
-			where.appendChild(snippet_div);
+			where.prepend(snippet_div);
 
 			const snippet_name = document.createElement("h3");
 			snippet_name.className = "snippetTitle";
