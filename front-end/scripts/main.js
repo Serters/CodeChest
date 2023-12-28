@@ -109,6 +109,11 @@ async function draw_main(where) {
 		);
 	}
 
+	async function render_snippet_list(where) {
+		const snippet_list_data = await fetch_snippets();
+		return new snippet_list(1, 100, 1, snippet_list_data);
+	}
+
 	function click_callback(active_snippet_id) {
 		console.log("Snippet clicked! Index:", active_snippet_id);
 		active_snippet = active_snippet_id - 1;
@@ -119,19 +124,12 @@ async function draw_main(where) {
 		console.log(active_snippet);
 	}
 
-	async function render_snippet_list(where) {
-		const snippet_list_data = await fetch_snippets();
-		return new snippet_list(1, 100, 1, snippet_list_data);
-	}
-
 	// Adding click event listener
-	createSnippet.addEventListener("click", function () {
-		insertRowIntoTable(data);
-		active_snippet = snippet_list_default.snippets.length;
-		//window.location.href = `snippet-editor.html?active_snippet=${active_snippet}`;
-	});
+	// createSnippet.addEventListener("click", async function () {
+	// 	insertRowIntoTable(data);
+	// });
 
-	function insertRowIntoTable(data) {
+	async function insertRowIntoTable(data) {
 		fetch("http://127.0.0.1:5000/insert_row", {
 			method: "POST",
 			headers: {
@@ -148,13 +146,25 @@ async function draw_main(where) {
 			});
 	}
 
-	// Example usage:
-	const data = {
-		name: "Snippet Name",
-		code: "Snippet Code",
-		short_desc: "Snippet Short Description",
-		full_desc: "Snippet Full Description",
-		favourite: 0,
-		snippet_list_id: 1,
-	};
+	function delayedFunction() {
+		console.log("Delay complete!");
+	}
+
+	createSnippet.addEventListener("click", async function () {
+		const data = {
+			name: "Snippet Name",
+			code: "Snippet Code",
+			short_desc: "Snippet Short Description",
+			full_desc: "Snippet Full Description",
+			favourite: 0,
+			snippet_list_id: 1,
+		};
+		await insertRowIntoTable(data);
+		setTimeout(delayedFunction, 500);
+		const updatedSnippetList = await fetch_snippets();
+		setTimeout(delayedFunction, 500);
+		snippet_list_default.update_snippets(updatedSnippetList, left, click_callback);
+		console.log("END");
+	});
+
 }

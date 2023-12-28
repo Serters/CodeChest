@@ -1,8 +1,16 @@
 from flask import Flask, jsonify, request
+import back_end.database_control.db_access as dba
+import back_end.database_control.db_secret as dbs
 
+import time 
 
-def get_snippets(cursor, snippet_list_id):
+def get_snippets(snippet_list_id):
     try:
+        time.sleep(0.5)
+
+        connection = dba.connect_to_database(dbs.db_login)
+        cursor = connection.cursor()
+
         query = """
             SELECT snippet_id, snippets.name, code, short_desc, full_desc, favourite, snippets.snippet_list_id
             FROM snippets
@@ -18,14 +26,19 @@ def get_snippets(cursor, snippet_list_id):
         # Create a list of dictionaries
         snippet_list = [dict(zip(columns, row)) for row in rows]
 
+        dba.close_connection(connection, cursor)
+
         return jsonify({"snippet": snippet_list})
 
     except Exception as err:
         print(f"Error: {err}")
 
 
-def get_snippet_list(cursor, user_id):
+def get_snippet_list(user_id):
     try:
+        connection = dba.connect_to_database(dbs.db_login)
+        cursor = connection.cursor()
+    
         query = """
             SELECT snippet_list.snippet_list_id, max_storage, user_id, COUNT(snippets.snippet_id)
             FROM snippet_list
@@ -34,14 +47,17 @@ def get_snippet_list(cursor, user_id):
         """
         cursor.execute(query)
         rows = cursor.fetchall()
-
+        dba.close_connection(connection, cursor)
         return jsonify({"snippet_list": rows})
     except Exception as err:
         print(f"Error: {err}")
 
 
-def get_snippet(cursor, user_id, snippet_id):
+def get_snippet(user_id, snippet_id):
     try:
+        connection = dba.connect_to_database(dbs.db_login)
+        cursor = connection.cursor()
+
         query = """
             SELECT snippet_id, name, code, short_desc, full_desc, favourite, snippets.snippet_list_id
             FROM snippets
@@ -54,15 +70,18 @@ def get_snippet(cursor, user_id, snippet_id):
         columns = [desc[0] for desc in cursor.description]
 
         snippet = [dict(zip(columns, row)) for row in rows]
-
+        dba.close_connection(connection, cursor)
         return jsonify({"snippet": snippet})
 
     except Exception as err:
         print(f"Error: {err}")
 
 
-def insert_row(connection, cursor):
+def insert_row():
+
     try:
+        connection = dba.connect_to_database(dbs.db_login)
+        cursor = connection.cursor()
         # Get data from the request
         data = request.get_json()
 
@@ -82,14 +101,16 @@ def insert_row(connection, cursor):
         )
         cursor.execute(query, values)
         connection.commit()
-
+        dba.close_connection(connection, cursor)
         return jsonify({"status": "success", "message": "Row inserted successfully"})
     
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
     
-def update_row(connection, cursor, snippet_id):
+def update_row(snippet_id):
     try:
+        connection = dba.connect_to_database(dbs.db_login)
+        cursor = connection.cursor()
         # Get data from the request
         data = request.get_json()
 
@@ -115,7 +136,7 @@ def update_row(connection, cursor, snippet_id):
         )
         cursor.execute(query, values)
         connection.commit()
-
+        dba.close_connection(connection, cursor)
         return jsonify({"status": "success", "message": f"Row with snippet_id {snippet_id} updated successfully"})
 
     except Exception as e:
