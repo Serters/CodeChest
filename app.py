@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 from flask_cors import CORS
 import back_end.database_control.db_queries as dbq
 
@@ -39,7 +39,6 @@ def get_snippet_route(user_id, snippet_id):
 @app.route("/snippets/<int:user_id>/<int:snippet_id>", methods=["PUT"])
 def update_snippet_route(user_id, snippet_id):
     try:
-        # Assuming dbq is an instance of your database queries module
         result = dbq.update_row(snippet_id)
         return result
     except Exception as e:
@@ -48,4 +47,3 @@ def update_snippet_route(user_id, snippet_id):
 
 if __name__ == "__main__":
     app.run(debug=True)
-    # dba.close_connection(connection, cursor)

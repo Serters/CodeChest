@@ -3,10 +3,8 @@ import { snippet } from "../../front-end/classes/snippet.js";
 
 document.addEventListener("DOMContentLoaded", render);
 
-// Get the value of active_snippet from the URL
 const urlParams = new URLSearchParams(window.location.search);
-const active_snippet = parseInt(urlParams.get("active_snippet"), 10) + 1;
-//const snippet_id = active_snippet + 1;
+const active_snippet = parseInt(urlParams.get("active_snippet"), 10);
 
 async function fetch_snippet(user_id, snippet_id) {
 	try {

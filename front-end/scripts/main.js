@@ -114,21 +114,11 @@ async function draw_main(where) {
 		return new snippet_list(1, 100, 1, snippet_list_data);
 	}
 
-	function click_callback(active_snippet_id) {
-		console.log("Snippet clicked! Index:", active_snippet_id);
-		active_snippet = active_snippet_id - 1;
-
-		full_description.update_desc(
-			snippet_list_default.snippets[active_snippet].full_desc
-		);
-		console.log(active_snippet);
+	function click_callback(active_full_desc, active_snippet_id) {
+		active_snippet = active_snippet_id
+		full_description.update_desc(active_full_desc);
 	}
-
-	// Adding click event listener
-	// createSnippet.addEventListener("click", async function () {
-	// 	insertRowIntoTable(data);
-	// });
-
+	
 	async function insertRowIntoTable(data) {
 		fetch("http://127.0.0.1:5000/insert_row", {
 			method: "POST",

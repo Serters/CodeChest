@@ -39,7 +39,7 @@ export class snippet {
 			snippet_div.appendChild(snippet_tags);
 
 			snippet_div.addEventListener("click", () => {
-				callback(this.snippet_id);
+				callback(this.full_desc, this.snippet_id);
 			});
 		} else {
 			console.error("Error: 'where' is not defined");
