@@ -27,12 +27,11 @@ export class snippet {
 			where.prepend(snippet_div);
 
 			const snippet_name = document.createElement("h3");
-			snippet_name.className = "snippetTitle";
 			snippet_name.innerText = this.name;
 			snippet_div.appendChild(snippet_name);
 
 			const snippet_short_desc = document.createElement("div");
-			snippet_short_desc.className = "shortDescription";
+			snippet_short_desc.className = "short_description";
 			snippet_short_desc.innerText = this.short_desc;
 			snippet_div.appendChild(snippet_short_desc);
 
@@ -49,6 +48,7 @@ export class snippet {
 		}
 	}
 }
+
 if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
 	module.exports = snippet;
 }

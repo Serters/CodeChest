@@ -132,7 +132,7 @@ main .left {
   margin-right: 16px;
   min-height: 100%;
 }
-main .left .create-snippet {
+main .left .create_snippet {
   height: 48px;
   width: 100%;
   background-color: var(--darkgray);
@@ -142,7 +142,7 @@ main .left .create-snippet {
   padding: 16px;
   border-radius: 16px;
 }
-main .left .create-snippet:hover {
+main .left .create_snippet:hover {
   text-decoration: underline;
   text-decoration-color: whitesmoke;
   cursor: default;
@@ -156,19 +156,19 @@ main .left .create-snippet:hover {
     transform: translateY(-6px);
   }
 }
-main .left .create-snippet ::-moz-selection {
+main .left .create_snippet ::-moz-selection {
   color: inherit;
   background-color: inherit;
 }
-main .left .create-snippet ::selection {
+main .left .create_snippet ::selection {
   color: inherit;
   background-color: inherit;
 }
-main .left .snippetList {
+main .left .snippet_list {
   overflow-y: scroll;
   max-height: calc(100% - 64px);
 }
-main .left .snippetList .snippet {
+main .left .snippet_list .snippet {
   height: 156px;
   background-color: var(--darkgray);
   display: grid;
@@ -180,36 +180,36 @@ main .left .snippetList .snippet {
   flex-direction: column;
   gap: 16px;
 }
-main .left .snippetList .snippet .shortDescription {
+main .left .snippet_list .snippet .short_description {
   height: 54px;
 }
-main .left .snippetList .snippet .tags {
+main .left .snippet_list .snippet .tags {
   grid-area: tags;
 }
-main .left .snippetList .snippet .tags .tag {
+main .left .snippet_list .snippet .tags .tag {
   background-color: var(--brown);
   color: whitesmoke;
   border-radius: 16px;
   padding: 4px 8px;
 }
-main .left .snippetList .snippet .actions {
+main .left .snippet_list .snippet .actions {
   grid-area: actn;
   gap: 16px;
   margin: auto;
   display: flex;
   flex-direction: column;
 }
-main .left .snippetList .snippet .actions button {
+main .left .snippet_list .snippet .actions button {
   width: 100%;
   aspect-ratio: 1/1;
   background-color: whitesmoke;
   border: none;
   border-radius: 4px;
 }
-main .left .snippetList .favourite h3 {
+main .left .snippet_list .favourite h3 {
   color: gold;
 }
-main .left .snippetList .snippet:last-child {
+main .left .snippet_list .snippet:last-child {
   margin-bottom: 0;
 }
 main .right {
@@ -220,7 +220,7 @@ main .right {
 main .right .title {
   color: whitesmoke;
 }
-main .right .snippetDescription {
+main .right .snippet_description {
   flex: 1;
   background-color: var(--darkgray);
   border-left: 0;
@@ -230,12 +230,12 @@ main .right .snippetDescription {
   display: flex;
   flex-direction: column;
 }
-main .right .snippetDescription .title {
+main .right .snippet_description .title {
   margin-bottom: 16px;
   width: 100%;
   height: 16px;
 }
-main .right .snippetDescription .description {
+main .right .snippet_description .description {
   width: 100%;
   height: calc(100% - 4em);
 }

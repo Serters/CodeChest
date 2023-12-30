@@ -1,7 +1,3 @@
-export function draw_static(where) {
-	draw_header(where);
-}
-
 export function draw_header(where) {
 	const h = document.createElement("header");
 	where.appendChild(h);
@@ -11,7 +7,7 @@ export function draw_header(where) {
 	h.appendChild(left);
 
 	const logo = document.createElement("img");
-	logo.src = "../../assets/images/logo.png";
+	logo.src = "../static/assets/logo.png";
 	logo.className = "logo";
 	left.appendChild(logo);
 

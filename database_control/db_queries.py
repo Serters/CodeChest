@@ -1,6 +1,6 @@
-from flask import Flask, jsonify, request
-import back_end.database_control.db_access as dba
-import back_end.database_control.db_secret as dbs
+from flask import jsonify, request
+import database_control.db_access as dba
+import database_control.db_secret as dbs
 
 import time 
 

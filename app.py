@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-import back_end.database_control.db_queries as dbq
+import database_control.db_queries as dbq
 
 
 app = Flask(__name__)

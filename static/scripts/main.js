@@ -1,8 +1,8 @@
 import { draw_footer, draw_header } from "./codechest.js";
-import { snippet } from "../../front-end/classes/snippet.js";
-import { snippet_list } from "../../front-end/classes/snippet_list.js";
-import { snippet_description } from "../../front-end/classes/snippet_description.js";
-import { user } from "../../front-end/classes/user.js";
+import { snippet } from "./classes/snippet.js";
+import { snippet_list } from "./classes/snippet_list.js";
+import { snippet_description } from "./classes/snippet_description.js";
+import { user } from "./classes/user.js";
 document.addEventListener("DOMContentLoaded", render);
 
 function render() {
@@ -12,19 +12,18 @@ function render() {
 }
 
 async function draw_main(where) {
+	let active_snippet = 0;
+
 	const m = document.createElement("main");
 	where.appendChild(m);
 
-	let active_snippet = 0;
-
 	//#region - - - - - -  LEFT - - - - - -
-
 	const left = document.createElement("div");
 	left.className = "left";
 	m.appendChild(left);
 
 	const createSnippet = document.createElement("div");
-	createSnippet.className = "create-snippet";
+	createSnippet.className = "create_snippet";
 	left.appendChild(createSnippet);
 
 	const createSnippetText = document.createElement("h3");
@@ -33,7 +32,6 @@ async function draw_main(where) {
 
 	let snippet_list_default = await render_snippet_list(left);
 	snippet_list_default.display(left, click_callback);
-
 	//#endregion - - - - - LEFT - - - - -
 
 	//#region - - - - - -  RIGHT - - - - - -
@@ -67,7 +65,6 @@ async function draw_main(where) {
 	edit_button.className = "edit";
 	edit_button.innerText = "Edit";
 	edit_button.onclick = function () {
-		//window.location.assign("snippet-editor.html");
 		window.location.href = `snippet-editor.html?active_snippet=${active_snippet}`;
 	};
 	actions_div.appendChild(edit_button);
@@ -76,7 +73,6 @@ async function draw_main(where) {
 	delete_button.className = "delete";
 	delete_button.innerText = "Delete";
 	actions_div.appendChild(delete_button);
-
 	//#endregion - - - - - RIGHT - - - - -
 
 	//#region other
@@ -150,11 +146,8 @@ async function draw_main(where) {
 			snippet_list_id: 1,
 		};
 		await insertRowIntoTable(data);
-		setTimeout(delayedFunction, 500);
-		const updatedSnippetList = await fetch_snippets();
-		setTimeout(delayedFunction, 500);
-		snippet_list_default.update_snippets(updatedSnippetList, left, click_callback);
-		console.log("END");
+		const updated_snippet_list = await fetch_snippets();
+		snippet_list_default.update_snippets(updated_snippet_list, left, click_callback);
 	});
 
 }

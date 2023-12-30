@@ -8,7 +8,7 @@ main {
 		margin-right: 16px;
 		min-height: 100%;
 
-		.create-snippet {
+		.create_snippet {
 			height: 48px;
 			width: 100%;
 
@@ -41,7 +41,7 @@ main {
 			}
 		}
 
-		.snippetList {
+		.snippet_list {
 			overflow-y: scroll;
 			max-height: calc(100% - 64px);
 
@@ -59,7 +59,7 @@ main {
 				flex-direction: column;
 				gap: 16px;
 
-				.shortDescription {
+				.short_description {
 					height: 54px;
 				}
 
@@ -97,7 +97,7 @@ main {
 			}
 		}
 
-		.snippetList .snippet:last-child {
+		.snippet_list .snippet:last-child {
 			margin-bottom: 0;
 		}
 	}
@@ -111,8 +111,7 @@ main {
 			color: whitesmoke;
 		}
 
-		.snippetDescription {
-			// height: 328px;
+		.snippet_description {
 			flex: 1;
 
 			background-color: var(--darkgray);

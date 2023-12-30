@@ -11,9 +11,13 @@ export class snippet_list {
 			this.snippets = snippets || [];
 	}
 
+	append_snippet(snippet) {
+		this.snippets.push(snippet);
+	}
+
 	display(where, callback) {
 		const snippet_list_div = document.createElement("div");
-		snippet_list_div.className = "snippetList";
+		snippet_list_div.className = "snippet_list";
 		where.appendChild(snippet_list_div);
 
 		this.snippets.forEach(s => {
@@ -21,25 +25,10 @@ export class snippet_list {
 		});
 	}
 
-	delete_displayed_list(where) {
-		const snippetListDiv = where.querySelector(".snippetList");
-	
-		if (snippetListDiv) {
-			// while (snippetListDiv.firstChild) {
-			// 	snippetListDiv.removeChild(snippetListDiv.firstChild);
-			// }
-			snippetListDiv.innerHTML = "";
-			this.snippets.forEach(s => {
-				s.display(snippet_list_div, callback)
-			});
-		}
-	}
-
 	async update_snippets(new_snippets, where, callback) {
-		console.log(new_snippets);
 		this.snippets = [...new_snippets];
 
-		const snippet_list_div = where.querySelector(".snippetList");
+		const snippet_list_div = where.querySelector(".snippet_list");
 		if (snippet_list_div) {
 			snippet_list_div.innerHTML = "";
 			new_snippets.forEach(s => {
@@ -47,14 +36,8 @@ export class snippet_list {
 			});
 		}
 	}
-	
-	append_snippet(snippet) {
-		this.snippets.push(snippet);
-	}
 }
 
-
-// Export the SnippetList class for use in other files (optional)
 if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
 	module.exports = snippet_list;
 }

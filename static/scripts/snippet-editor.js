@@ -1,5 +1,5 @@
 import { draw_footer, draw_header } from "./codechest.js";
-import { snippet } from "../../front-end/classes/snippet.js";
+import { snippet } from "./classes/snippet.js";
 
 document.addEventListener("DOMContentLoaded", render);
 
