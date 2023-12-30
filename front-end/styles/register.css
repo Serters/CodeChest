@@ -131,7 +131,7 @@ html, * {
 
 form[name=login-form] {
   width: 30em;
-  height: 21em;
+  height: 33em;
   margin: auto;
   background-color: var(--darkgray);
   color: #000;
@@ -189,4 +189,4 @@ form[name=login-form] button {
   padding: 1em;
   border-radius: 1em;
   margin-top: auto;
-}/*# sourceMappingURL=login.css.map */
+}/*# sourceMappingURL=register.css.map */
