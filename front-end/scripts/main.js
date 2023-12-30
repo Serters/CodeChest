@@ -72,10 +72,10 @@ async function draw_main(where) {
 	};
 	actions_div.appendChild(edit_button);
 
-	const favourite_button = document.createElement("button");
-	favourite_button.className = "favourite";
-	favourite_button.innerText = "Favourite";
-	actions_div.appendChild(favourite_button);
+	const delete_button = document.createElement("button");
+	delete_button.className = "delete";
+	delete_button.innerText = "Delete";
+	actions_div.appendChild(delete_button);
 
 	//#endregion - - - - - RIGHT - - - - -
 

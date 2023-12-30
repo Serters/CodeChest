@@ -120,7 +120,7 @@ main {
 				gap: 16px;
 
 				.save,
-				.delete {
+				.favourite {
 					height: 48px;
 					width: 50%;
 					background-color: var(--darkgray);
@@ -133,8 +133,12 @@ main {
 				.save:hover {
 					color: rgb(158, 230, 50);
 				}
-				.delete:hover {
-					color: rgb(204, 80, 80);
+				.favourite:hover {
+					color: gold;
+				}
+
+				.favorited {
+					color: gold;
 				}
 			}
 		}

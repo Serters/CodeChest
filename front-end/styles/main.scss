@@ -89,6 +89,12 @@ main {
 					}
 				}
 			}
+
+			.favourite {
+				h3 {
+					color: gold;
+				}
+			}
 		}
 
 		.snippetList .snippet:last-child {
@@ -157,7 +163,7 @@ main {
 			gap: 16px;
 
 			.edit,
-			.favourite {
+			.delete {
 				height: 48px;
 				width: 50%;
 				background-color: var(--darkgray);
@@ -170,8 +176,8 @@ main {
 			.edit:hover {
 				color: rgb(158, 230, 50);
 			}
-			.favourite:hover {
-				color: gold;
+			.delete:hover {
+				color: rgb(204, 80, 80);
 			}
 		}
 	}

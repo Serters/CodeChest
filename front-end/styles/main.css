@@ -206,6 +206,9 @@ main .left .snippetList .snippet .actions button {
   border: none;
   border-radius: 4px;
 }
+main .left .snippetList .favourite h3 {
+  color: gold;
+}
 main .left .snippetList .snippet:last-child {
   margin-bottom: 0;
 }
@@ -264,7 +267,7 @@ main .right .actions {
   gap: 16px;
 }
 main .right .actions .edit,
-main .right .actions .favourite {
+main .right .actions .delete {
   height: 48px;
   width: 50%;
   background-color: var(--darkgray);
@@ -276,6 +279,6 @@ main .right .actions .favourite {
 main .right .actions .edit:hover {
   color: rgb(158, 230, 50);
 }
-main .right .actions .favourite:hover {
-  color: gold;
+main .right .actions .delete:hover {
+  color: rgb(204, 80, 80);
 }/*# sourceMappingURL=main.css.map */

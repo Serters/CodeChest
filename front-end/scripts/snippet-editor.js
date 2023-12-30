@@ -144,10 +144,17 @@ async function draw_main(where) {
 	save_button.type = "submit";
 	actions_div.appendChild(save_button);
 
-	const delete_button = document.createElement("button");
-	delete_button.className = "delete";
-	delete_button.innerText = "Delete";
-	actions_div.appendChild(delete_button);
+	const favourite_button = document.createElement("button");
+	favourite_button.className = "favourite";
+	if (current_snippet.favourite) {
+		favourite_button.classList.add("favorited");
+	}
+	favourite_button.innerText = "Favourite";
+	favourite_button.type = "button";
+	favourite_button.addEventListener("click", () => {
+		console.log("FAV");
+	});
+	actions_div.appendChild(favourite_button);
 
 	//#endregion - - - - - RIGHT - - - - -
 
@@ -156,7 +163,7 @@ async function draw_main(where) {
 		const code_value = code_editor_textarea.value;
 		const short_desc_value = short_description_textarea.value;
 		const full_desc_value = full_description_textarea.value;
-	
+
 		const data = {
 			name: snippet_name_value,
 			code: code_value,
@@ -165,24 +172,23 @@ async function draw_main(where) {
 			favourite: 0,
 			snippet_list_id: 1,
 		};
-	
+
 		// Assuming user_id and snippet_id are available in your context
-		const user_id = 1;  // Replace with the actual user ID
-		const snippet_id = active_snippet;  // Replace with the actual snippet ID
-	
+		const user_id = 1; // Replace with the actual user ID
+		const snippet_id = active_snippet; // Replace with the actual snippet ID
+
 		fetch(`http://127.0.0.1:5000/snippets/${user_id}/${snippet_id}`, {
-			method: 'PUT',
+			method: "PUT",
 			headers: {
-				'Content-Type': 'application/json',
+				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(data),
 		})
-		.then(response => response.json())
-		.then(result => {
-			console.log(result);
-			// Handle the result as needed
-		})
-		.catch(error => console.error('Error:', error));
+			.then((response) => response.json())
+			.then((result) => {
+				console.log(result);
+				// Handle the result as needed
+			})
+			.catch((error) => console.error("Error:", error));
 	}
-	
 }

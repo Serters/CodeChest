@@ -21,6 +21,9 @@ export class snippet {
 		if (where) {
 			const snippet_div = document.createElement("div");
 			snippet_div.className = "snippet";
+			if(this.favourite){
+				snippet_div.classList.add("favourite");
+			}
 			where.prepend(snippet_div);
 
 			const snippet_name = document.createElement("h3");

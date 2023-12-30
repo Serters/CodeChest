@@ -231,7 +231,7 @@ main form .right .actions {
   gap: 16px;
 }
 main form .right .actions .save,
-main form .right .actions .delete {
+main form .right .actions .favourite {
   height: 48px;
   width: 50%;
   background-color: var(--darkgray);
@@ -243,6 +243,9 @@ main form .right .actions .delete {
 main form .right .actions .save:hover {
   color: rgb(158, 230, 50);
 }
-main form .right .actions .delete:hover {
-  color: rgb(204, 80, 80);
+main form .right .actions .favourite:hover {
+  color: gold;
+}
+main form .right .actions .favorited {
+  color: gold;
 }/*# sourceMappingURL=snippet-editor.css.map */
