@@ -1,4 +1,4 @@
-import { draw_footer, draw_header } from "./codechest.js";
+import { draw_footer, draw_header } from "./static.js";
 
 document.addEventListener("DOMContentLoaded", render);
 
@@ -13,7 +13,7 @@ function draw_main(where) {
 	where.appendChild(m);
 
 	const login_form = document.createElement("form");
-	login_form.name = "login-form";
+	login_form.name = "login_form";
 	m.appendChild(login_form);
 
 	const email_div = document.createElement("div");
@@ -26,7 +26,7 @@ function draw_main(where) {
 
 	const email_input = document.createElement("input");
 	email_input.type = "text";
-	email_input.name = "email-input";
+	email_input.name = "email_input";
 	email_input.placeholder = "user@codechest.com";
 	email_div.appendChild(email_input);
 
@@ -40,25 +40,26 @@ function draw_main(where) {
 
 	const password_input = document.createElement("input");
 	password_input.type = "password";
-	password_input.name = "password-input";
+	password_input.name = "password_input";
 	password_input.placeholder = "password";
 	password_div.appendChild(password_input);
 
 	const password_toggle = document.createElement("i");
-	password_toggle.className = "password-toggle";
+	password_toggle.className = "password_toggle";
 	password_toggle.addEventListener("click", toggle_password);
 	password_toggle.textContent = "Show";
 	password_div.appendChild(password_toggle);
 
-	const login_btn = document.createElement("button");
-	login_btn.name = "login-btn";
-	login_btn.innerText = "Log in";
-	login_form.appendChild(login_btn);
+	const login_button = document.createElement("button");
+	login_button.name = "login_button";
+	login_button.innerText = "Log in";
+	login_button.type = "submit";
+	login_form.appendChild(login_button);
 }
 
 function toggle_password() {
-	const password_input = document.querySelector("[name=password-input]");
-	const password_toggle = document.querySelector(".password-toggle");
+	const password_input = document.querySelector("[name=password_input]");
+	const password_toggle = document.querySelector(".password_toggle");
 
 	if (password_input.type === "password") {
 		password_input.type = "text";

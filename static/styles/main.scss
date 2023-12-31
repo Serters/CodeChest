@@ -107,11 +107,11 @@ main {
 		display: flex;
 		flex-direction: column;
 
-		.title {
+		h3 {
 			color: whitesmoke;
 		}
 
-		.snippet_description {
+		.full_description {
 			flex: 1;
 
 			background-color: var(--darkgray);
@@ -127,7 +127,7 @@ main {
 				width: 100%;
 				height: 16px;
 			}
-			.description {
+			p {
 				width: 100%;
 				height: calc(100% - 4em);
 			}

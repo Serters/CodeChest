@@ -1,5 +1,5 @@
-import { draw_footer, draw_header } from "./codechest.js";
-
+import { draw_footer, draw_header } from "./static.js";
+//TODO Cleanup
 document.addEventListener("DOMContentLoaded", render);
 
 function render() {

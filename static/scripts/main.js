@@ -1,4 +1,4 @@
-import { draw_footer, draw_header } from "./codechest.js";
+import { draw_footer, draw_header } from "./static.js";
 import { snippet } from "./classes/snippet.js";
 import { snippet_list } from "./classes/snippet_list.js";
 import { snippet_description } from "./classes/snippet_description.js";
@@ -65,7 +65,7 @@ async function draw_main(where) {
 	edit_button.className = "edit";
 	edit_button.innerText = "Edit";
 	edit_button.onclick = function () {
-		window.location.href = `snippet-editor.html?active_snippet=${active_snippet}`;
+		window.location.href = `snippet_editor.html?active_snippet=${active_snippet}`;
 	};
 	actions_div.appendChild(edit_button);
 

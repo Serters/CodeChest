@@ -1,10 +1,10 @@
-import { draw_footer, draw_header } from "./codechest.js";
+import { draw_footer, draw_header } from "./static.js";
 import { snippet } from "./classes/snippet.js";
 
 document.addEventListener("DOMContentLoaded", render);
 
-const urlParams = new URLSearchParams(window.location.search);
-const active_snippet = parseInt(urlParams.get("active_snippet"), 10);
+const url_parameters = new URLSearchParams(window.location.search);
+const active_snippet_id = parseInt(url_parameters.get("active_snippet"), 10);
 
 async function fetch_snippet(user_id, snippet_id) {
 	try {
@@ -26,7 +26,6 @@ function render() {
 }
 
 function create_fetched_snippet(data) {
-	console.log(data);
 	return new snippet(
 		data.snippet_id,
 		data.name,
@@ -39,7 +38,9 @@ function create_fetched_snippet(data) {
 }
 
 async function draw_main(where) {
-	const current_snippet = await fetch_snippet(1, active_snippet);
+	const user_id = 1;
+	const snippet_id = active_snippet_id;
+	const current_snippet = await fetch_snippet(user_id, snippet_id);
 
 	const m = document.createElement("main");
 	where.appendChild(m);
@@ -47,14 +48,13 @@ async function draw_main(where) {
 	// FORM
 	const form = document.createElement("form");
 	form.onsubmit = function (event) {
-		event.preventDefault(); // Prevent the default form submission behavior
-		saveSnippet(); // Call your save function here
+		event.preventDefault();
+		save_snippet();
 	};
-	form.className = "main";
+	// form.className = "main";
 	m.appendChild(form);
 
 	//#region - - - - - -  LEFT - - - - - -
-
 	const left = document.createElement("div");
 	left.className = "left";
 	form.appendChild(left);
@@ -73,11 +73,10 @@ async function draw_main(where) {
 	code_editor_textarea.placeholder = "Your code goes here.";
 	code_editor_textarea.value = current_snippet.code;
 	code_editor.appendChild(code_editor_textarea);
-
+	
 	//#endregion - - - - - LEFT - - - - -
 
 	//#region - - - - - -  RIGHT - - - - - -
-
 	const right = document.createElement("div");
 	right.className = "right";
 	form.appendChild(right);
@@ -155,10 +154,9 @@ async function draw_main(where) {
 		console.log("FAV");
 	});
 	actions_div.appendChild(favourite_button);
-
 	//#endregion - - - - - RIGHT - - - - -
 
-	function saveSnippet() {
+	function save_snippet() {
 		const snippet_name_value = snippet_name_input.value;
 		const code_value = code_editor_textarea.value;
 		const short_desc_value = short_description_textarea.value;
@@ -172,10 +170,6 @@ async function draw_main(where) {
 			favourite: 0,
 			snippet_list_id: 1,
 		};
-
-		// Assuming user_id and snippet_id are available in your context
-		const user_id = 1; // Replace with the actual user ID
-		const snippet_id = active_snippet; // Replace with the actual snippet ID
 
 		fetch(`http://127.0.0.1:5000/snippets/${user_id}/${snippet_id}`, {
 			method: "PUT",

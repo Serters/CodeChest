@@ -217,10 +217,10 @@ main .right {
   display: flex;
   flex-direction: column;
 }
-main .right .title {
+main .right h3 {
   color: whitesmoke;
 }
-main .right .snippet_description {
+main .right .full_description {
   flex: 1;
   background-color: var(--darkgray);
   border-left: 0;
@@ -230,12 +230,12 @@ main .right .snippet_description {
   display: flex;
   flex-direction: column;
 }
-main .right .snippet_description .title {
+main .right .full_description .title {
   margin-bottom: 16px;
   width: 100%;
   height: 16px;
 }
-main .right .snippet_description .description {
+main .right .full_description p {
   width: 100%;
   height: calc(100% - 4em);
 }

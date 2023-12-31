@@ -21,24 +21,23 @@ export class snippet {
 		if (where) {
 			const snippet_div = document.createElement("div");
 			snippet_div.className = "snippet";
-			if(this.favourite){
+			if (this.favourite) {
 				snippet_div.classList.add("favourite");
 			}
 			where.prepend(snippet_div);
 
-			const snippet_name = document.createElement("h3");
-			snippet_name.innerText = this.name;
-			snippet_div.appendChild(snippet_name);
+			const name_div = document.createElement("h3");
+			name_div.innerText = this.name;
+			snippet_div.appendChild(name_div);
 
-			const snippet_short_desc = document.createElement("div");
-			snippet_short_desc.className = "short_description";
-			snippet_short_desc.innerText = this.short_desc;
-			snippet_div.appendChild(snippet_short_desc);
+			const short_desc_div = document.createElement("div");
+			short_desc_div.className = "short_description";
+			short_desc_div.innerText = this.short_desc;
+			snippet_div.appendChild(short_desc_div);
 
-			const snippet_tags = document.createElement("div");
-			snippet_tags.className = "tags";
-			snippet_short_desc.innerText = this.short_desc;
-			snippet_div.appendChild(snippet_tags);
+			const tags_div = document.createElement("div");
+			tags_div.className = "tags";
+			snippet_div.appendChild(tags_div);
 
 			snippet_div.addEventListener("click", () => {
 				callback(this.full_desc, this.snippet_id);

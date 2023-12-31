@@ -4,7 +4,7 @@ html, *{
     border: 0;
 }
 
-form[name="login-form"] {
+form[name="login_form"] {
 	width: 30em;
 	height: 21em;
 	margin: auto;
@@ -20,7 +20,7 @@ form[name="login-form"] {
 		flex-direction: column;
 		position: relative;
 
-		input[name="password-input"] {
+		input[name="password_input"] {
 			width: calc(100% - 4.5em);
 			border-top-right-radius: 0;
 			border-bottom-right-radius: 0;
