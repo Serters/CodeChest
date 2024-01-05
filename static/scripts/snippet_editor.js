@@ -33,6 +33,7 @@ function create_fetched_snippet(data) {
 		data.short_desc,
 		data.full_desc,
 		data.favourite,
+		data.tags,
 		data.snippet_list_id
 	);
 }
@@ -73,7 +74,7 @@ async function draw_main(where) {
 	code_editor_textarea.placeholder = "Your code goes here.";
 	code_editor_textarea.value = current_snippet.code;
 	code_editor.appendChild(code_editor_textarea);
-	
+
 	//#endregion - - - - - LEFT - - - - -
 
 	//#region - - - - - -  RIGHT - - - - - -
@@ -128,10 +129,13 @@ async function draw_main(where) {
 	tags_div_title.innerText = "Tags:";
 	tags_div.appendChild(tags_div_title);
 
-	const tags_div_textarea = document.createElement("input");
-	tags_div_textarea.name = "tags";
-	tags_div_textarea.placeholder = "Add a tag:";
-	tags_div.appendChild(tags_div_textarea);
+	const tags_input = document.createElement("input");
+	tags_input.name = "tags";
+	tags_input.placeholder = "Add a tag:";
+	if (current_snippet) {
+		tags_input.value = current_snippet.tags.join(", ");
+	}
+	tags_div.appendChild(tags_input);
 
 	const actions_div = document.createElement("div");
 	actions_div.className = "actions";
@@ -151,7 +155,7 @@ async function draw_main(where) {
 	favourite_button.innerText = "Favourite";
 	favourite_button.type = "button";
 	favourite_button.addEventListener("click", () => {
-		console.log("FAV");
+		favourite_button.classList.toggle("favorited");
 	});
 	actions_div.appendChild(favourite_button);
 	//#endregion - - - - - RIGHT - - - - -
@@ -161,13 +165,18 @@ async function draw_main(where) {
 		const code_value = code_editor_textarea.value;
 		const short_desc_value = short_description_textarea.value;
 		const full_desc_value = full_description_textarea.value;
+		const favourite_value = favourite_button.classList.contains("favorited")
+			? 1
+			: 0;
+		const tags_value = tags_input.value.replaceAll(",", "");
 
 		const data = {
 			name: snippet_name_value,
 			code: code_value,
 			short_desc: short_desc_value,
 			full_desc: full_desc_value,
-			favourite: 0,
+			favourite: favourite_value,
+			tags: tags_value,
 			snippet_list_id: 1,
 		};
 
@@ -181,6 +190,7 @@ async function draw_main(where) {
 			.then((response) => response.json())
 			.then((result) => {
 				console.log(result);
+				window.location.href = "main";
 				// Handle the result as needed
 			})
 			.catch((error) => console.error("Error:", error));

@@ -20,7 +20,7 @@ export class snippet_list {
 		});
 	}
 
-	async update_snippets(where, callback, new_snippets) {
+	async update_snippets(where, new_snippets, callback) {
 		this.snippets = [...new_snippets];
 
 		const snippet_list_div = where.querySelector(".snippet_list");
@@ -30,6 +30,12 @@ export class snippet_list {
 				s.display(snippet_list_div, callback);
 			});
 		}
+	}
+
+	get_snippet_by_id(id) {
+		let i = 0;
+		while (this.snippets[i++].snippet_id != id);
+		return this.snippets[i - 1];
 	}
 }
 

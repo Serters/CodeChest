@@ -6,6 +6,7 @@ export class snippet {
 		short_desc,
 		full_desc,
 		favourite,
+		tags,
 		snippet_list_id
 	) {
 		this.snippet_id = snippet_id;
@@ -14,6 +15,7 @@ export class snippet {
 		this.short_desc = short_desc;
 		this.full_desc = full_desc;
 		this.favourite = favourite;
+		this.tags = string_to_array(tags);
 		this.snippet_list_id = snippet_list_id;
 	}
 
@@ -39,6 +41,15 @@ export class snippet {
 			tags_div.className = "tags";
 			snippet_div.appendChild(tags_div);
 
+			if (this.tags) {
+				this.tags.forEach((tag) => {
+					const tag_span = document.createElement("span");
+					tag_span.textContent = tag;
+					tag_span.className = "tag";
+					tags_div.appendChild(tag_span);
+				});
+			}
+
 			snippet_div.addEventListener("click", () => {
 				callback(this.full_desc, this.snippet_id);
 			});
@@ -50,4 +61,9 @@ export class snippet {
 
 if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
 	module.exports = snippet;
+}
+
+function string_to_array(tags) {
+	if (tags === "") return [];
+	else return Array.from(tags.split(" "));
 }

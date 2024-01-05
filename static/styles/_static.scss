@@ -1,27 +1,23 @@
 @import "colours";
 
 /* the scrollbar */
-::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 	border-radius: 10px;
 	background-color: var(--darkgray);
 }
 
-::-webkit-scrollbar
-{
+::-webkit-scrollbar {
 	width: 8px;
 	border-radius: 4px;
 	background-color: var(--darkgray);
 }
 
-::-webkit-scrollbar-thumb
-{
+::-webkit-scrollbar-thumb {
 	border-radius: 4px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 	background-color: var(--brown);
 }
-
 
 html,
 * {
@@ -30,6 +26,7 @@ html,
 	font-family: "Courier New", monospace;
 	font-size: 16px;
 	outline: none;
+	cursor: default;
 }
 
 body {
@@ -37,6 +34,11 @@ body {
 	color: whitesmoke;
 	position: relative;
 	height: 100vh;
+}
+
+input,
+textarea {
+	cursor: text;
 }
 
 header {
@@ -52,7 +54,7 @@ header {
 	flex-direction: row;
 	justify-content: space-between;
 
-	.header-left {
+	.left {
 		width: 50%;
 		height: 100%;
 
@@ -61,34 +63,75 @@ header {
 		align-items: center;
 
 		.logo {
-			height: 50px;
-			margin: auto 0;
-		}
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
 
-		h1 {
-			font-size: 40px;
-			text-shadow: 3px 4px 2px var(--brown);
+			img {
+				height: 50px;
+				margin: auto 0;
+				cursor: inherit;
+			}
+			h1 {
+				font-size: 40px;
+				text-shadow: 3px 4px 2px var(--brown);
+				cursor: inherit;
+			}
 		}
 	}
 
-	.header-right {
+	.right {
+		position: relative;
 		width: 50%;
 		height: 100%;
-		font-size: 24px;
 
 		display: flex;
 		justify-content: right;
 		align-items: center;
 
-		#username {
-			font-size: inherit;
-			margin-right: 16px;
+		.user {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 24px;
+			cursor: pointer;
+
+			.username {
+				font-size: inherit;
+				margin-right: 16px;
+				cursor: inherit;
+			}
+
+			.profile_picture {
+				height: 50px;
+				aspect-ratio: 1/1;
+				margin: auto 0;
+				cursor: inherit;
+			}
 		}
 
-		#profile-picture {
-			height: 50px;
-			aspect-ratio: 1/1;
-			margin: auto 0;
+		.user_options {
+			display: none;
+			padding: 16px;
+			background-color: var(--darkgray);
+			position: absolute;
+			border: 4px solid var(--brown);
+			border-top: 0;
+			border-bottom-left-radius: 16px;
+			border-bottom-right-radius: 16px;
+			right: 0;
+			top: 60px;
+
+			button {
+				background: none;
+				border: 0;
+				color: whitesmoke;
+			}
+		}
+
+		.visible {
+			display: inherit;
 		}
 	}
 }

@@ -13,6 +13,8 @@ function render() {
 
 async function draw_main(where) {
 	let active_snippet = 0;
+	let data = JSON.parse(localStorage.getItem("user_info")).user;
+	const current_user = new user(data[0], data[1], data[2], data[3]);
 
 	const m = document.createElement("main");
 	where.appendChild(m);
@@ -22,16 +24,17 @@ async function draw_main(where) {
 	left.className = "left";
 	m.appendChild(left);
 
-	const createSnippet = document.createElement("div");
-	createSnippet.className = "create_snippet";
-	left.appendChild(createSnippet);
+	const create_snippet_div = document.createElement("div");
+	create_snippet_div.className = "create_snippet";
+	left.appendChild(create_snippet_div);
 
-	const createSnippetText = document.createElement("h3");
-	createSnippetText.innerText = "Create new snippet";
-	createSnippet.appendChild(createSnippetText);
+	const create_snippet_div_text = document.createElement("h3");
+	create_snippet_div_text.innerText = "Create new snippet";
+	create_snippet_div.appendChild(create_snippet_div_text);
 
 	let snippet_list_default = await render_snippet_list(left);
 	snippet_list_default.display(left, click_callback);
+	active_snippet = snippet_list_default.snippets.at(-1).snippet_id;
 	//#endregion - - - - - LEFT - - - - -
 
 	//#region - - - - - -  RIGHT - - - - - -
@@ -39,21 +42,22 @@ async function draw_main(where) {
 	right.className = "right";
 	m.appendChild(right);
 
-	const searchDiv = document.createElement("div");
-	searchDiv.className = "search";
-	right.appendChild(searchDiv);
+	const search_div = document.createElement("div");
+	search_div.className = "search";
+	right.appendChild(search_div);
 
-	const searchInput = document.createElement("input");
-	searchInput.type = "text";
-	searchInput.name = "search";
-	searchInput.placeholder = "Search:";
-	searchDiv.appendChild(searchInput);
+	const search_input = document.createElement("input");
+	search_input.type = "text";
+	search_input.name = "search";
+	search_input.placeholder = "Search:";
+	search_div.appendChild(search_input);
 
 	// long desc
 
 	let full_description = new snippet_description(
-		snippet_list_default.snippets[active_snippet].full_desc
+		snippet_list_default.get_snippet_by_id(active_snippet).full_desc
 	);
+	// snippet_list_default.at(active_snippet).full_desc
 	full_description.display(right);
 
 	// buttons
@@ -65,7 +69,7 @@ async function draw_main(where) {
 	edit_button.className = "edit";
 	edit_button.innerText = "Edit";
 	edit_button.onclick = function () {
-		window.location.href = `snippet_editor.html?active_snippet=${active_snippet}`;
+		window.location.href = `snippet_editor?active_snippet=${active_snippet}`;
 	};
 	actions_div.appendChild(edit_button);
 
@@ -101,6 +105,7 @@ async function draw_main(where) {
 			data.short_desc,
 			data.full_desc,
 			data.favourite,
+			data.tags,
 			data.snippet_list_id
 		);
 	}
@@ -111,11 +116,11 @@ async function draw_main(where) {
 	}
 
 	function click_callback(active_full_desc, active_snippet_id) {
-		active_snippet = active_snippet_id
+		active_snippet = active_snippet_id;
 		full_description.update_desc(active_full_desc);
 	}
-	
-	async function insertRowIntoTable(data) {
+
+	async function insert_row_into_table(data) {
 		fetch("http://127.0.0.1:5000/insert_row", {
 			method: "POST",
 			headers: {
@@ -132,11 +137,7 @@ async function draw_main(where) {
 			});
 	}
 
-	function delayedFunction() {
-		console.log("Delay complete!");
-	}
-
-	createSnippet.addEventListener("click", async function () {
+	create_snippet_div.addEventListener("click", async function () {
 		const data = {
 			name: "Snippet Name",
 			code: "Snippet Code",
@@ -145,9 +146,30 @@ async function draw_main(where) {
 			favourite: 0,
 			snippet_list_id: 1,
 		};
-		await insertRowIntoTable(data);
+		await insert_row_into_table(data);
 		const updated_snippet_list = await fetch_snippets();
-		snippet_list_default.update_snippets(updated_snippet_list, left, click_callback);
+		await snippet_list_default.update_snippets(
+			left,
+			updated_snippet_list,
+			click_callback
+		);
+		window.location.href = `snippet_editor?active_snippet=${active_snippet}`;
 	});
 
+	delete_button.addEventListener("click", async () => {
+		try {
+			const response = await fetch(
+				`http://127.0.0.1:5000/delete_snippet/${active_snippet}`
+			);
+			const data = await response.json();
+			const updated_snippet_list = await fetch_snippets();
+			snippet_list_default.update_snippets(
+				left,
+				updated_snippet_list,
+				click_callback
+			);
+		} catch (error) {
+			console.error("Error fetching snippets:", error);
+		}
+	});
 }

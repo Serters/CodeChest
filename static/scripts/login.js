@@ -1,3 +1,4 @@
+import { user } from "./classes/user.js";
 import { draw_footer, draw_header } from "./static.js";
 
 document.addEventListener("DOMContentLoaded", render);
@@ -13,6 +14,8 @@ function draw_main(where) {
 	where.appendChild(m);
 
 	const login_form = document.createElement("form");
+	login_form.action = "login";
+	login_form.method = "POST";
 	login_form.name = "login_form";
 	m.appendChild(login_form);
 
@@ -28,6 +31,7 @@ function draw_main(where) {
 	email_input.type = "text";
 	email_input.name = "email_input";
 	email_input.placeholder = "user@codechest.com";
+	email_input.value = "demo@codechest.com";
 	email_div.appendChild(email_input);
 
 	const password_div = document.createElement("div");
@@ -42,6 +46,7 @@ function draw_main(where) {
 	password_input.type = "password";
 	password_input.name = "password_input";
 	password_input.placeholder = "password";
+	password_input.value = "demo";
 	password_div.appendChild(password_input);
 
 	const password_toggle = document.createElement("i");

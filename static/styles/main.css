@@ -40,6 +40,7 @@ html,
   font-family: "Courier New", monospace;
   font-size: 16px;
   outline: none;
+  cursor: default;
 }
 
 body {
@@ -47,6 +48,11 @@ body {
   color: whitesmoke;
   position: relative;
   height: 100vh;
+}
+
+input,
+textarea {
+  cursor: text;
 }
 
 header {
@@ -60,37 +66,74 @@ header {
   flex-direction: row;
   justify-content: space-between;
 }
-header .header-left {
+header .left {
   width: 50%;
   height: 100%;
   display: flex;
   justify-content: left;
   align-items: center;
 }
-header .header-left .logo {
+header .left .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+header .left .logo img {
   height: 50px;
   margin: auto 0;
+  cursor: inherit;
 }
-header .header-left h1 {
+header .left .logo h1 {
   font-size: 40px;
   text-shadow: 3px 4px 2px var(--brown);
+  cursor: inherit;
 }
-header .header-right {
+header .right {
+  position: relative;
   width: 50%;
   height: 100%;
-  font-size: 24px;
   display: flex;
   justify-content: right;
   align-items: center;
 }
-header .header-right #username {
+header .right .user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+header .right .user .username {
   font-size: inherit;
   margin-right: 16px;
+  cursor: inherit;
 }
-header .header-right #profile-picture {
+header .right .user .profile_picture {
   height: 50px;
   aspect-ratio: 1/1;
   margin: auto 0;
+  cursor: inherit;
+}
+header .right .user_options {
+  display: none;
+  padding: 16px;
+  background-color: var(--darkgray);
+  position: absolute;
+  border: 4px solid var(--brown);
+  border-top: 0;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  right: 0;
+  top: 60px;
+}
+header .right .user_options button {
+  background: none;
+  border: 0;
+  color: whitesmoke;
+}
+header .right .visible {
+  display: inherit;
 }
 
 main {
@@ -191,6 +234,7 @@ main .left .snippet_list .snippet .tags .tag {
   color: whitesmoke;
   border-radius: 16px;
   padding: 4px 8px;
+  margin-right: 8px;
 }
 main .left .snippet_list .snippet .actions {
   grid-area: actn;
@@ -230,7 +274,7 @@ main .right .full_description {
   display: flex;
   flex-direction: column;
 }
-main .right .full_description .title {
+main .right .full_description h3 {
   margin-bottom: 16px;
   width: 100%;
   height: 16px;

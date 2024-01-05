@@ -6,8 +6,38 @@ export class user {
 		this.profile_picture = profile_picture;
 	}
 
-	display() {
-		
+	display(where) {
+		const user_div = document.createElement("div");
+		user_div.className = "user";
+		where.appendChild(user_div);
+
+		const username_div = document.createElement("div");
+		username_div.className = "username";
+		username_div.innerText = this.username;
+		user_div.appendChild(username_div);
+
+		if (this.profile_picture) {
+			const profile_picture = document.createElement("img");
+			profile_picture.className = "profile_picture";
+			profile_picture.src = `./static/assets/${this.profile_picture}`;
+			user_div.appendChild(profile_picture);
+		}
+
+		const user_options = document.createElement("div");
+		user_options.className = "user_options";
+		user_div.addEventListener("click", () => {
+			user_options.classList.toggle("visible");
+		});
+		where.appendChild(user_options);
+
+		const logout_button = document.createElement("button");
+		logout_button.type = "button";
+		logout_button.className = "logout";
+		logout_button.innerText = "Log out";
+		logout_button.addEventListener("click", () => {
+			window.location.href = "logout";
+		});
+		user_options.appendChild(logout_button);
 	}
 }
 
