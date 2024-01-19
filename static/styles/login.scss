@@ -1,7 +1,8 @@
 @import "static";
 
-html, *{
-    border: 0;
+html,
+* {
+	border: 0;
 }
 
 form[name="login_form"] {
@@ -26,17 +27,22 @@ form[name="login_form"] {
 			border-bottom-right-radius: 0;
 		}
 
-		i {
-			background-color: color-mix(in srgb, var(--gray) 50%, var(--darkgray));
+		.password_toggle {
+			background-color: color-mix(
+				in srgb,
+				var(--gray) 50%,
+				var(--darkgray)
+			);
 			color: whitesmoke;
 			width: 4.5em;
 			padding: 1em;
 			font-size: inherit;
+			border-radius: 0;
 			border-top-right-radius: 1em;
 			border-bottom-right-radius: 1em;
 			font-style: normal;
 			position: absolute;
-			left: 21.5em;
+			right: 0;
 			top: 2em;
 			user-select: none;
 		}

@@ -126,6 +126,7 @@ header .right .user_options {
   border-bottom-right-radius: 16px;
   right: 0;
   top: 60px;
+  z-index: 1;
 }
 header .right .user_options button {
   background: none;
@@ -168,7 +169,8 @@ footer span {
     width: 92.5%;
   }
 }
-html, * {
+html,
+* {
   border: 0;
 }
 
@@ -193,17 +195,18 @@ form[name=login_form] > .container input[name=password_input] {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-form[name=login_form] > .container i {
+form[name=login_form] > .container .password_toggle {
   background-color: color-mix(in srgb, var(--gray) 50%, var(--darkgray));
   color: whitesmoke;
   width: 4.5em;
   padding: 1em;
   font-size: inherit;
+  border-radius: 0;
   border-top-right-radius: 1em;
   border-bottom-right-radius: 1em;
   font-style: normal;
   position: absolute;
-  left: 21.5em;
+  right: 0;
   top: 2em;
   -webkit-user-select: none;
      -moz-user-select: none;

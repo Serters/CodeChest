@@ -126,6 +126,7 @@ header .right .user_options {
   border-bottom-right-radius: 16px;
   right: 0;
   top: 60px;
+  z-index: 1;
 }
 header .right .user_options button {
   background: none;
@@ -287,6 +288,7 @@ main .right .search {
   width: 100%;
   height: 48px;
   margin-bottom: 16px;
+  position: relative;
 }
 main .right .search input {
   font-size: inherit;
@@ -304,6 +306,23 @@ main .right .search input::-moz-placeholder {
 main .right .search input::placeholder {
   color: silver;
   opacity: 1;
+}
+main .right .search .search_button {
+  background-color: color-mix(in srgb, var(--gray) 50%, var(--darkgray));
+  color: whitesmoke;
+  width: 4.5em;
+  padding: 1em;
+  font-size: inherit;
+  border: 0;
+  border-top-right-radius: 1em;
+  border-bottom-right-radius: 1em;
+  font-style: normal;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 main .right .actions {
   width: 100%;

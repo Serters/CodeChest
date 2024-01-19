@@ -13,7 +13,7 @@ function draw_main(where) {
 	where.appendChild(m);
 
 	const login_form = document.createElement("form");
-	login_form.name = "login-form";
+	login_form.name = "login_form";
 	m.appendChild(login_form);
 
 	const email_div = document.createElement("div");
@@ -21,14 +21,14 @@ function draw_main(where) {
 	login_form.appendChild(email_div);
 
 	const email_lbl = document.createElement("label");
-	email_lbl.innerText = "E-mail";
+	email_lbl.innerText = "E_mail";
 	email_div.appendChild(email_lbl);
 
 	const email_input = document.createElement("input");
 	email_input.type = "email";
-	email_input.name = "email-input";
+	email_input.name = "email_input";
 	email_input.placeholder = "user@codechest.com";
-	email_lbl.htmlFor = "email-input";
+	email_lbl.htmlFor = "email_input";
 	email_div.appendChild(email_input);
 
 	const username_div = document.createElement("div");
@@ -41,9 +41,9 @@ function draw_main(where) {
 
 	const username_input = document.createElement("input");
 	username_input.type = "text";
-	username_input.name = "username-input";
+	username_input.name = "username_input";
 	username_input.placeholder = "username";
-	username_lbl.htmlFor = "username-input";
+	username_lbl.htmlFor = "username_input";
 	username_div.appendChild(username_input);
 
 	const password_div = document.createElement("div");
@@ -56,14 +56,15 @@ function draw_main(where) {
 
 	const password_input = document.createElement("input");
 	password_input.type = "password";
-	password_input.name = "password-input";
+	password_input.name = "password_input";
 	password_input.placeholder = "password";
-	password_lbl.htmlFor = "password-input";
+	password_lbl.htmlFor = "password_input";
 	password_div.appendChild(password_input);
 
-	const password_toggle = document.createElement("i");
-	password_toggle.className = "password-toggle";
+	const password_toggle = document.createElement("button");
+	password_toggle.className = "password_toggle";
 	password_toggle.textContent = "Show";
+	password_toggle.type = "button";
 	password_div.appendChild(password_toggle);
 	password_toggle.addEventListener("click", (e) =>
 		toggle_password(e.currentTarget)
@@ -79,23 +80,24 @@ function draw_main(where) {
 
 	const confirm_password_input = document.createElement("input");
 	confirm_password_input.type = "password";
-	confirm_password_input.name = "confirm-password-input";
+	confirm_password_input.name = "confirm_password_input";
 	confirm_password_input.placeholder = "password";
-	confirm_password_lbl.htmlFor = "confirm-password-input";
+	confirm_password_lbl.htmlFor = "confirm_password_input";
 	confirm_password_div.appendChild(confirm_password_input);
 
-	const confirm_password_toggle = document.createElement("i");
-	confirm_password_toggle.className = "confirm-password-toggle";
+	const confirm_password_toggle = document.createElement("button");
+	confirm_password_toggle.className = "password_toggle";
 	confirm_password_toggle.textContent = "Show";
+	confirm_password_toggle.type = "button";
 	confirm_password_div.appendChild(confirm_password_toggle);
 	confirm_password_toggle.addEventListener("click", (e) =>
 		toggle_password(e.currentTarget)
 	);
 
-	const login_btn = document.createElement("button");
-	login_btn.name = "login-btn";
-	login_btn.innerText = "Log in";
-	login_form.appendChild(login_btn);
+	const register_button = document.createElement("button");
+	register_button.name = "register_button";
+	register_button.innerText = "Register";
+	login_form.appendChild(register_button);
 }
 
 function toggle_password(e) {

@@ -52,6 +52,12 @@ async function draw_main(where) {
 	search_input.placeholder = "Search:";
 	search_div.appendChild(search_input);
 
+	const search_button = document.createElement("button");
+	search_button.type = "button";
+	search_button.className = "search_button";
+	search_button.innerText = "GO";
+	search_div.appendChild(search_button);
+
 	// long desc
 
 	let full_description = new snippet_description(

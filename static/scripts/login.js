@@ -49,8 +49,9 @@ function draw_main(where) {
 	password_input.value = "demo";
 	password_div.appendChild(password_input);
 
-	const password_toggle = document.createElement("i");
+	const password_toggle = document.createElement("button");
 	password_toggle.className = "password_toggle";
+	password_toggle.type = "button";
 	password_toggle.addEventListener("click", toggle_password);
 	password_toggle.textContent = "Show";
 	password_div.appendChild(password_toggle);

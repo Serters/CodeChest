@@ -1,10 +1,11 @@
 @import "static";
 
-html, *{
-    border: 0;
+html,
+* {
+	border: 0;
 }
 
-form[name="login-form"] {
+form[name="login_form"] {
 	width: 30em;
 	height: 33em;
 	margin: auto;
@@ -20,18 +21,24 @@ form[name="login-form"] {
 		flex-direction: column;
 		position: relative;
 
-		input[name="password-input"] {
+		input[name="password_input"],
+		input[name="confirm_password_input"] {
 			width: calc(100% - 4.5em);
 			border-top-right-radius: 0;
 			border-bottom-right-radius: 0;
 		}
 
-		i {
-			background-color: color-mix(in srgb, var(--gray) 50%, var(--darkgray));
+		.password_toggle {
+			background-color: color-mix(
+				in srgb,
+				var(--gray) 50%,
+				var(--darkgray)
+			);
 			color: whitesmoke;
 			width: 4.5em;
 			padding: 1em;
 			font-size: inherit;
+			border-radius: 0;
 			border-top-right-radius: 1em;
 			border-bottom-right-radius: 1em;
 			font-style: normal;
@@ -59,7 +66,7 @@ form[name="login-form"] {
 		padding: 0.5em;
 	}
 
-	button {
+	button[name="register_button"] {
 		background-color: var(--brown);
 		color: whitesmoke;
 		font-weight: bold;

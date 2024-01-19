@@ -138,6 +138,7 @@ main {
 			width: 100%;
 			height: 48px;
 			margin-bottom: 16px;
+			position: relative;
 
 			input {
 				font-size: inherit;
@@ -154,6 +155,26 @@ main {
 					color: silver;
 					opacity: 1;
 				}
+			}
+
+			.search_button {
+				background-color: color-mix(
+					in srgb,
+					var(--gray) 50%,
+					var(--darkgray)
+				);
+				color: whitesmoke;
+				width: 4.5em;
+				padding: 1em;
+				font-size: inherit;
+				border: 0;
+				border-top-right-radius: 1em;
+				border-bottom-right-radius: 1em;
+				font-style: normal;
+				position: absolute;
+				right: 0;
+				top: 0;
+				user-select: none;
 			}
 		}
 
