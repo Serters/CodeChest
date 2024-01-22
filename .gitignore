@@ -1,3 +1,3 @@
 __pycache__/
-flask_session/
 db_secret.py
+flask_session
