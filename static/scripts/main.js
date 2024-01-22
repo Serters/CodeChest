@@ -57,8 +57,11 @@ async function draw_main(where) {
 	const search_button = document.createElement("button");
 	search_button.type = "button";
 	search_button.className = "search_button";
-	search_button.innerText = "GO";
-	search_button.addEventListener("click", search);
+	search_button.innerText = "Clear";
+	search_button.addEventListener("click", () => {
+		search_input.value = "";
+		search();
+	});
 	search_div.appendChild(search_button);
 
 	// long desc

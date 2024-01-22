@@ -120,8 +120,8 @@ header .right .user_options {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 16px;
-  padding: 16px;
+  padding: 16px 0;
+  gap: 8px;
   background-color: var(--darkgray);
   position: absolute;
   border: 4px solid var(--brown);
@@ -133,12 +133,15 @@ header .right .user_options {
   z-index: 1;
 }
 header .right .user_options button {
+  width: 100%;
+  padding: 8px 16px;
   background: none;
   border: 0;
   color: whitesmoke;
 }
 header .right .user_options button:hover {
   cursor: pointer;
+  background-color: var(--brown);
 }
 header .right .visible {
   display: flex;
@@ -179,13 +182,11 @@ footer span {
 main .left {
   flex: 65;
   padding-right: 16px;
-  border-right: 4px solid var(--brown);
-  margin-right: 16px;
   min-height: 100%;
 }
 main .left .create_snippet {
   height: 48px;
-  width: 100%;
+  width: calc(100% - 24px);
   background-color: var(--darkgray);
   text-align: center;
   display: block;
@@ -293,7 +294,7 @@ main .right .full_description p {
 }
 main .right .search {
   width: 100%;
-  height: 48px;
+  max-height: 48px;
   margin-bottom: 16px;
   position: relative;
 }
@@ -301,9 +302,10 @@ main .right .search input {
   font-size: inherit;
   color: whitesmoke;
   background-color: var(--darkgray);
-  width: 100%;
+  width: calc(100% - 5em);
+  max-height: 48px;
   border: 0;
-  border-radius: 16px;
+  border-radius: 16px 0 0 16px;
   padding: 16px;
 }
 main .right .search input::-moz-placeholder {
@@ -317,7 +319,8 @@ main .right .search input::placeholder {
 main .right .search .search_button {
   background-color: color-mix(in srgb, var(--gray) 50%, var(--darkgray));
   color: whitesmoke;
-  width: 4.5em;
+  width: 5em;
+  max-height: 48px;
   padding: 1em;
   font-size: inherit;
   border: 0;

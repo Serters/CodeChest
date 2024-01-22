@@ -4,13 +4,13 @@ main {
 	.left {
 		flex: 65;
 		padding-right: 16px;
-		border-right: 4px solid var(--brown);
-		margin-right: 16px;
+		// border-right: 4px solid var(--brown);
+		// margin-right: 16px;
 		min-height: 100%;
 
 		.create_snippet {
 			height: 48px;
-			width: 100%;
+			width: calc(100% - 24px);
 
 			background-color: var(--darkgray);
 			text-align: center;
@@ -136,7 +136,7 @@ main {
 
 		.search {
 			width: 100%;
-			height: 48px;
+			max-height: 48px;
 			margin-bottom: 16px;
 			position: relative;
 
@@ -145,10 +145,11 @@ main {
 				color: whitesmoke;
 				background-color: var(--darkgray);
 
-				width: 100%;
+				width: calc(100% - 5em);
+				max-height: 48px;
 
 				border: 0;
-				border-radius: 16px;
+				border-radius: 16px 0 0 16px;
 				padding: 16px;
 
 				&::placeholder {
@@ -164,7 +165,8 @@ main {
 					var(--darkgray)
 				);
 				color: whitesmoke;
-				width: 4.5em;
+				width: 5em;
+				max-height: 48px;
 				padding: 1em;
 				font-size: inherit;
 				border: 0;
