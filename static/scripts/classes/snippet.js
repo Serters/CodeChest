@@ -57,6 +57,19 @@ export class snippet {
 			console.error("Error: 'where' is not defined");
 		}
 	}
+
+	search(string) {
+		const regex = new RegExp(string, "i");
+		if (
+			regex.test(this.name) ||
+			regex.test(this.tags) ||
+			regex.test(this.short_desc) ||
+			regex.test(this.full_desc) ||
+			regex.test(this.code)
+		)
+			return true;
+		return false;
+	}
 }
 
 if (typeof module !== "undefined" && typeof module.exports !== "undefined") {

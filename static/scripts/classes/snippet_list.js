@@ -6,6 +6,15 @@ export class snippet_list {
 		this.snippets = snippets || [];
 	}
 
+	static from(input_snippet_list) {
+		return new snippet_list(
+			input_snippet_list.snippet_list_id,
+			input_snippet_list.user_id,
+			input_snippet_list.max_storage,
+			input_snippet_list.snippets
+		);
+	}
+
 	append_snippet(snippet) {
 		this.snippets.push(snippet);
 	}
@@ -36,6 +45,16 @@ export class snippet_list {
 		let i = 0;
 		while (this.snippets[i++].snippet_id != id);
 		return this.snippets[i - 1];
+	}
+
+	search(string) {
+		let results = [];
+		this.snippets.forEach((el) => {
+			if (el.search(string)) {
+				results.push(el);
+			}
+		});
+		return results;
 	}
 }
 

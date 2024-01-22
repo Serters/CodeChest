@@ -35,6 +35,7 @@ async function draw_main(where) {
 	let snippet_list_default = await render_snippet_list(left);
 	snippet_list_default.display(left, click_callback);
 	active_snippet = snippet_list_default.snippets.at(-1).snippet_id;
+	const full_snippet_list = snippet_list.from(snippet_list_default);
 	//#endregion - - - - - LEFT - - - - -
 
 	//#region - - - - - -  RIGHT - - - - - -
@@ -50,12 +51,14 @@ async function draw_main(where) {
 	search_input.type = "text";
 	search_input.name = "search";
 	search_input.placeholder = "Search:";
+	search_input.addEventListener("keyup", search);
 	search_div.appendChild(search_input);
 
 	const search_button = document.createElement("button");
 	search_button.type = "button";
 	search_button.className = "search_button";
 	search_button.innerText = "GO";
+	search_button.addEventListener("click", search);
 	search_div.appendChild(search_button);
 
 	// long desc
@@ -178,4 +181,20 @@ async function draw_main(where) {
 			console.error("Error fetching snippets:", error);
 		}
 	});
+
+	function search() {
+		const query = search_input.value;
+		const result = full_snippet_list.search(query);
+
+		if (query != "") {
+			snippet_list_default.update_snippets(left, result, click_callback);
+			console.log(snippet_list_default, "if");
+		} else {
+			snippet_list_default.update_snippets(
+				left,
+				full_snippet_list.snippets,
+				click_callback
+			);
+		}
+	}
 }
