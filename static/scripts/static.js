@@ -25,8 +25,8 @@ export async function draw_header(where) {
 	logo_div.appendChild(title);
 
 	if (
-		window.location.href.includes("main") ||
-		window.location.href.includes("snippet_edito")
+		!window.location.href.includes("login") &&
+		!window.location.href.includes("register")
 	) {
 		const user_data = await get_user();
 

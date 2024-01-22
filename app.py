@@ -124,5 +124,19 @@ def update_snippet_route(user_id, snippet_id):
         return jsonify({"status": "error", "message": str(e)})
 
 
+@app.route("/account")
+def render_account():
+    if not session.get("user"):
+        return "forbidden"
+    return render_template("base.html", page="main")
+
+
+@app.route("/premium")
+def render_premium():
+    if not session.get("user"):
+        return "forbidden"
+    return render_template("base.html", page="main")
+
+
 if __name__ == "__main__":
     app.run(debug=True)

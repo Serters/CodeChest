@@ -117,6 +117,10 @@ header .right .user .profile_picture {
 }
 header .right .user_options {
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
   padding: 16px;
   background-color: var(--darkgray);
   position: absolute;
@@ -133,8 +137,11 @@ header .right .user_options button {
   border: 0;
   color: whitesmoke;
 }
+header .right .user_options button:hover {
+  cursor: pointer;
+}
 header .right .visible {
-  display: inherit;
+  display: flex;
 }
 
 main {

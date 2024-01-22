@@ -30,6 +30,24 @@ export class user {
 		});
 		where.appendChild(user_options);
 
+		const edit_account_button = document.createElement("button");
+		edit_account_button.type = "button";
+		edit_account_button.className = "edit_account";
+		edit_account_button.innerText = "Edit Account";
+		edit_account_button.addEventListener("click", () => {
+			window.location.href = "account";
+		});
+		user_options.appendChild(edit_account_button);
+
+		const buy_premium_button = document.createElement("button");
+		buy_premium_button.type = "button";
+		buy_premium_button.className = "buy_premium";
+		buy_premium_button.innerText = "Buy Premium";
+		buy_premium_button.addEventListener("click", () => {
+			window.location.href = "premium";
+		});
+		user_options.appendChild(buy_premium_button);
+
 		const logout_button = document.createElement("button");
 		logout_button.type = "button";
 		logout_button.className = "logout";

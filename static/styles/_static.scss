@@ -113,6 +113,10 @@ header {
 
 		.user_options {
 			display: none;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 16px;
 			padding: 16px;
 			background-color: var(--darkgray);
 			position: absolute;
@@ -128,11 +132,15 @@ header {
 				background: none;
 				border: 0;
 				color: whitesmoke;
+
+				&:hover {
+					cursor: pointer;
+				}
 			}
 		}
 
 		.visible {
-			display: inherit;
+			display: flex;
 		}
 	}
 }
