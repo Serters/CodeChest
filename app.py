@@ -6,12 +6,10 @@ import database_control.db_queries as dbq
 
 app = Flask(__name__)
 app.secret_key = "demo"
-# CORS(app, resources={r"/*": {"origins": "*"}})
 CORS(app)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
-
 
 @app.route("/")
 def home():
@@ -128,7 +126,7 @@ def update_snippet_route(user_id, snippet_id):
 def render_account():
     if not session.get("user"):
         return "forbidden"
-    return render_template("base.html", page="main")
+    return render_template("base.html", page="user_account")
 
 
 @app.route("/premium")
