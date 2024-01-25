@@ -4,9 +4,7 @@ main {
 	.left {
 		flex: 65;
 		padding-right: 16px;
-		// border-right: 4px solid var(--brown);
-		// margin-right: 16px;
-		min-height: 100%;
+		min-height: calc(100vh - 180px);
 
 		.create_snippet {
 			height: 48px;
@@ -114,6 +112,7 @@ main {
 
 		.full_description {
 			flex: 1;
+			max-height: calc(100vh - 308px);
 
 			background-color: var(--darkgray);
 			border-left: 0;
@@ -129,8 +128,10 @@ main {
 				height: 16px;
 			}
 			p {
-				width: 100%;
-				height: calc(100% - 4em);
+				min-height: calc(100% - 32px);
+				max-height: calc(100% - 32px);
+				flex: 1;
+				overflow-y: auto;
 			}
 		}
 
@@ -203,5 +204,59 @@ main {
 				color: rgb(204, 80, 80);
 			}
 		}
+	}
+}
+
+@media only screen and (orientation: portrait) and (max-aspect-ratio: 3/4) {
+	main {
+		min-height: calc(100vh - 220px);
+		max-height: calc(100vh - 220px);
+		flex-direction: column-reverse;
+
+		.left {
+			max-height: calc(70% - 16px);
+			min-height: calc(70% - 16px);
+			padding-right: 0;
+
+			.create_snippet {
+				display: none;
+				visibility: hidden;
+			}
+
+			.snippet_list {
+				min-height: 100%;
+				max-height: 100%;
+				overflow: scroll;
+				scrollbar-width: none;
+
+				&::-webkit-scrollbar {
+					display: none;
+				}
+
+				.snippet {
+					margin-right: 0;
+				}
+			}
+		}
+		.right {
+			max-height: 30%;
+			min-height: 30%;
+			border-bottom: 4px solid var(--brown);
+			margin-bottom: 16px;
+
+			.full_description {
+				height: calc(100% - 80px);
+			}
+
+			.actions {
+				display: none;
+				visibility: hidden;
+			}
+		}
+	}
+	header,
+	footer {
+		min-height: 80px;
+		max-height: 80px;
 	}
 }

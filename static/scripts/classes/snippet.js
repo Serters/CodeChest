@@ -53,6 +53,23 @@ export class snippet {
 			snippet_div.addEventListener("click", () => {
 				callback(this.full_desc, this.snippet_id);
 			});
+
+			let sid = this.snippet_id;
+			let lastTapTime = 0;
+			snippet_div.addEventListener("touchend", function (event) {
+				var currentTime = new Date().getTime();
+				var tapLength = currentTime - lastTapTime;
+
+				if (tapLength < 500 && tapLength > 0) {
+					window.location.href = `snippet_editor?active_snippet=${sid}`;
+					event.preventDefault();
+				} else {
+					lastTapTime = currentTime;
+				}
+			});
+			snippet_div.addEventListener("dblclick", function (event) {
+				window.location.href = `snippet_editor?active_snippet=${sid}`;
+			});
 		} else {
 			console.error("Error: 'where' is not defined");
 		}
