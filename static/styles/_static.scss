@@ -192,3 +192,10 @@ footer {
 		width: 92.5%;
 	}
 }
+
+@media only screen and (orientation: portrait) and (max-aspect-ratio: 3/4) {
+	header .left .logo h1 {
+		display: none;
+		visibility: hidden;
+	}
+}

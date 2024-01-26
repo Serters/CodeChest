@@ -19,9 +19,9 @@ async function fetch_snippet(user_id, snippet_id) {
 	}
 }
 
-function render() {
+async function render() {
 	draw_header(document.body);
-	draw_main(document.body);
+	await draw_main(document.body);
 	draw_footer(document.body);
 }
 
