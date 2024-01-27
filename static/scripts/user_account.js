@@ -38,9 +38,6 @@ async function draw_main(where) {
     buy_premium_button.className = "buy_premium_button";
 	buy_premium_button.innerText = "Buy Premium";
 
-	// buy_premium_button.style.backgroundImage = 'url("static/scripts/cats.png")';
-	// buy_premium_button.style.backgroundSize = 'contain'; // You can adjust this property based on your needs
-
     buy_premium_button.addEventListener("click", () => {
     });
     left.appendChild(buy_premium_button);

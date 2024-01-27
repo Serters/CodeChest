@@ -55,7 +55,7 @@ export function draw_footer(where) {
 
 async function get_user() {
 	try {
-		const response = await fetch("http://127.0.0.1:5000/user");
+		const response = await fetch(`${window.app_url}/user`);
 		const data = await response.json();
 		const user_data = data.user;
 		return user_data;

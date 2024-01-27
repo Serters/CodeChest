@@ -9,7 +9,7 @@ const active_snippet_id = parseInt(url_parameters.get("active_snippet"), 10);
 async function fetch_snippet(user_id, snippet_id) {
 	try {
 		const response = await fetch(
-			`http://127.0.0.1:5000/snippets/${user_id}/${snippet_id}`
+			`${window.app_url}/snippets/${user_id}/${snippet_id}`
 		);
 		const snippet_data = await response.json();
 		const snippet = create_fetched_snippet(snippet_data.snippet[0]);
@@ -45,14 +45,12 @@ async function draw_main(where) {
 
 	const m = document.createElement("main");
 	where.appendChild(m);
-
 	// FORM
 	const form = document.createElement("form");
 	form.onsubmit = function (event) {
 		event.preventDefault();
 		save_snippet();
 	};
-	// form.className = "main";
 	m.appendChild(form);
 
 	//#region - - - - - -  LEFT - - - - - -
@@ -74,7 +72,6 @@ async function draw_main(where) {
 	code_editor_textarea.placeholder = "Your code goes here.";
 	code_editor_textarea.value = current_snippet.code;
 	code_editor.appendChild(code_editor_textarea);
-
 	//#endregion - - - - - LEFT - - - - -
 
 	//#region - - - - - -  RIGHT - - - - - -
@@ -180,7 +177,7 @@ async function draw_main(where) {
 			snippet_list_id: 1,
 		};
 
-		fetch(`http://127.0.0.1:5000/snippets/${user_id}/${snippet_id}`, {
+		fetch(`${window.app_url}/snippets/${user_id}/${snippet_id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
@@ -191,7 +188,6 @@ async function draw_main(where) {
 			.then((result) => {
 				console.log(result);
 				window.location.href = "main";
-				// Handle the result as needed
 			})
 			.catch((error) => console.error("Error:", error));
 	}
