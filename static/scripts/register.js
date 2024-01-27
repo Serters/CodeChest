@@ -12,13 +12,13 @@ function draw_main(where) {
 	const m = document.createElement("main");
 	where.appendChild(m);
 
-	const login_form = document.createElement("form");
-	login_form.name = "login_form";
-	m.appendChild(login_form);
+	const register_form = document.createElement("form");
+	register_form.name = "register_form";
+	m.appendChild(register_form);
 
 	const email_div = document.createElement("div");
 	email_div.className = "container";
-	login_form.appendChild(email_div);
+	register_form.appendChild(email_div);
 
 	const email_lbl = document.createElement("label");
 	email_lbl.innerText = "E_mail";
@@ -33,7 +33,7 @@ function draw_main(where) {
 
 	const username_div = document.createElement("div");
 	username_div.className = "container";
-	login_form.appendChild(username_div);
+	register_form.appendChild(username_div);
 
 	const username_lbl = document.createElement("label");
 	username_lbl.innerText = "Username";
@@ -48,7 +48,7 @@ function draw_main(where) {
 
 	const password_div = document.createElement("div");
 	password_div.className = "container";
-	login_form.appendChild(password_div);
+	register_form.appendChild(password_div);
 
 	const password_lbl = document.createElement("label");
 	password_lbl.innerText = "Password";
@@ -72,7 +72,7 @@ function draw_main(where) {
 
 	const confirm_password_div = document.createElement("div");
 	confirm_password_div.className = "container";
-	login_form.appendChild(confirm_password_div);
+	register_form.appendChild(confirm_password_div);
 
 	const confirm_password_lbl = document.createElement("label");
 	confirm_password_lbl.innerText = "Confirm password";
@@ -97,7 +97,7 @@ function draw_main(where) {
 	const register_button = document.createElement("button");
 	register_button.name = "register_button";
 	register_button.innerText = "Register";
-	login_form.appendChild(register_button);
+	register_form.appendChild(register_button);
 }
 
 function toggle_password(e) {

@@ -5,14 +5,14 @@ html,
 	border: 0;
 }
 
-form[name="login_form"] {
+form[name="register_form"] {
 	width: 30em;
 	height: 33em;
 	margin: auto;
 	background-color: var(--darkgray);
 	color: #000;
 	padding: 2em;
-	border-radius: 2em;
+	border-radius: 2em;	
 	display: flex;
 	flex-direction: column;
 

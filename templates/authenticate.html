@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>CodeChest</title>
-		<link rel="icon" type="image/x-icon" href="../static/assets/logo.png" />
-	</head>
-	<body style="background-color: black">
-		<script>
-			document.addEventListener("DOMContentLoaded", save_user);
 
-			async function save_user() {
-				const request = new XMLHttpRequest();
-				request.open("GET", "http://127.0.0.1:5000/user", true);
-				request.setRequestHeader("Content-Type", "application/json");
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>CodeChest</title>
+	<link rel="icon" type="image/x-icon" href="../static/assets/logo.png" />
+</head>
 
-				request.onload = () => {
-					if (request.status >= 200 && request.status < 400) {
-						localStorage.setItem("user_info", request.responseText);
-						window.location.href = "../main";
-					} else {
-						localStorage.setItem("user_info", request.status);
-						window.location.href = "../login";
-					}
-				};
+<body style="background-color: black">
+	<script>
+		document.addEventListener("DOMContentLoaded", save_user);
 
-				request.onerror = () => {
-					console.log("Connection error");
-					localStorage.setItem("user_info", "Connection error");
-				};
+		async function save_user() {
+			const request = new XMLHttpRequest();
+			request.open("GET", "http://127.0.0.1:5000/user", true);
+			request.setRequestHeader("Content-Type", "application/json");
 
-				request.send();
-			}
-		</script>
-	</body>
+			request.onload = () => {
+				if (request.status >= 200 && request.status < 400) {
+					localStorage.setItem("user_info", request.responseText);
+					window.location.href = "../main";
+				} else {
+					localStorage.setItem("user_info", request.status);
+					window.location.href = "../login";
+				}
+			};
+
+			request.onerror = () => {
+				console.log("Connection error");
+				localStorage.setItem("user_info", "Connection error");
+			};
+
+			request.send();
+		}
+	</script>
+</body>
+
 </html>

@@ -196,7 +196,7 @@ html,
   border: 0;
 }
 
-form[name=login_form] {
+form[name=register_form] {
   width: 30em;
   height: 33em;
   margin: auto;
@@ -207,18 +207,18 @@ form[name=login_form] {
   display: flex;
   flex-direction: column;
 }
-form[name=login_form] > .container {
+form[name=register_form] > .container {
   display: flex;
   flex-direction: column;
   position: relative;
 }
-form[name=login_form] > .container input[name=password_input],
-form[name=login_form] > .container input[name=confirm_password_input] {
+form[name=register_form] > .container input[name=password_input],
+form[name=register_form] > .container input[name=confirm_password_input] {
   width: calc(100% - 4.5em);
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-form[name=login_form] > .container .password_toggle {
+form[name=register_form] > .container .password_toggle {
   background-color: color-mix(in srgb, var(--gray) 50%, var(--darkgray));
   color: whitesmoke;
   width: 4.5em;
@@ -235,7 +235,7 @@ form[name=login_form] > .container .password_toggle {
      -moz-user-select: none;
           user-select: none;
 }
-form[name=login_form] input {
+form[name=register_form] input {
   background-color: var(--gray);
   color: whitesmoke;
   font-size: inherit;
@@ -243,14 +243,14 @@ form[name=login_form] input {
   border-radius: 1em;
   margin-bottom: 1em;
 }
-form[name=login_form] label {
+form[name=register_form] label {
   background-color: inherit;
   color: whitesmoke;
   font-size: inherit;
   line-height: 1em;
   padding: 0.5em;
 }
-form[name=login_form] button[name=register_button] {
+form[name=register_form] button[name=register_button] {
   background-color: var(--brown);
   color: whitesmoke;
   font-weight: bold;

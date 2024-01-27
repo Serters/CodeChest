@@ -95,7 +95,7 @@ async function draw_main(where) {
 	async function fetch_snippets() {
 		try {
 			let fetched_snippets = [];
-			const response = await fetch("http://127.0.0.1:5000/snippets");
+			const response = await fetch(`${window.app_url}/snippets`);
 			const data = await response.json();
 			const snippets_data = data.snippet;
 
@@ -165,7 +165,8 @@ async function draw_main(where) {
 			updated_snippet_list,
 			click_callback
 		);
-		window.location.href = `snippet_editor?active_snippet=${active_snippet}`;
+		const cats = snippet_list_default.snippets[snippet_list_default.snippets.length - 1].snippet_id;
+		window.location.href = `snippet_editor?active_snippet=${cats}`;
 	});
 
 	delete_button.addEventListener("click", async () => {
