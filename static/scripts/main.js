@@ -201,4 +201,5 @@ async function draw_main(where) {
         active_snippet = active_snippet_id;
         full_description.update_desc(active_full_desc);
     }
+    //#endregion
 }
