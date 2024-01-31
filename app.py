@@ -2,7 +2,6 @@ from flask import Flask, jsonify, render_template, request, url_for, redirect, s
 from flask_cors import CORS
 from flask_session import Session
 import os
-import json
 import bcrypt
 import database_control.db_queries as dbq
 import auth.login as al
@@ -97,6 +96,7 @@ def render_logout():
     session["user_id"] = None
     return redirect(url_for("render_login"))
 
+
 @app.route("/register", methods=["GET", "POST"])
 def render_register():
     if not session.get("user"):
@@ -105,6 +105,8 @@ def render_register():
         if request.method == "POST":
             return ar.register_post()
     return redirect(url_for("render_main"))
+
+
 # endregion Auth
 
 
