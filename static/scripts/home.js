@@ -11,14 +11,8 @@ async function draw_main(where) {
     const m = document.createElement("main");
     m.classList.add("main-container");
 
-    const imageContainer = document.createElement("div");
-    imageContainer.classList.add("image-container");
+    m.style.backgroundImage = 'url("static/assets/img.png")';
+    m.style.backgroundSize = "cover";
 
-    const img = document.createElement("img");
-    img.classList.add("main-image");
-    img.src = 'static/assets/Untitled.png';
-    imageContainer.appendChild(img);
-
-    m.appendChild(imageContainer);
     where.appendChild(m);
 }

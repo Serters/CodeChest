@@ -190,4 +190,7 @@ footer span {
     display: none;
     visibility: hidden;
   }
+}
+main {
+  min-height: calc(100vh - 180px);
 }/*# sourceMappingURL=home.css.map */
