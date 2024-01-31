@@ -97,6 +97,7 @@ def render_logout():
     session["user_id"] = None
     return redirect(url_for("render_login"))
 
+@app.route("/register", methods=["GET", "POST"])
 def render_register():
     if not session.get("user"):
         if request.method == "GET":
