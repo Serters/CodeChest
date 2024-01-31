@@ -23,7 +23,7 @@ def home():
 def render_main():
     if not session.get("user"):
         return redirect(url_for("render_login"))
-    return render_template("home.html")
+    return render_template("base.html", page="main")
 
 @app.route("/snippet_editor", methods=["GET"])
 def render_snippet_editor():
