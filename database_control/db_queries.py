@@ -2,13 +2,8 @@ from flask import jsonify, request
 import database_control.db_access as dba
 import database_control.db_secret as dbs
 
-import time
-
-
 def get_snippets(snippet_list_id):
     try:
-        time.sleep(0.5)
-
         connection = dba.connect_to_database(dbs.db_login)
         cursor = connection.cursor()
 
@@ -82,10 +77,8 @@ def insert_row():
     try:
         connection = dba.connect_to_database(dbs.db_login)
         cursor = connection.cursor()
-        # Get data from the request
         data = request.get_json()
-
-        # Insert the new row into the table
+        
         query = """
             INSERT INTO snippets
             (name, code, short_desc, full_desc, favourite, snippet_list_id)
@@ -96,8 +89,8 @@ def insert_row():
             data.get("code"),
             data.get("short_desc"),
             data.get("full_desc"),
-            data.get("favourite", 0),  # Default to 0 if not provided
-            data.get("snippet_list_id", 1),  # Default to 1 if not provided
+            data.get("favourite", 0),  
+            data.get("snippet_list_id", 1),  
         )
         cursor.execute(query, values)
         connection.commit()

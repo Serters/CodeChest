@@ -6,6 +6,7 @@ import json
 import bcrypt
 import database_control.db_queries as dbq
 import auth.login as al
+import auth.register as ar
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -96,14 +97,13 @@ def render_logout():
     session["user_id"] = None
     return redirect(url_for("render_login"))
 
-
-@app.route("/register", methods=["GET"])
 def render_register():
     if not session.get("user"):
-        return render_template("base.html", page="register")
+        if request.method == "GET":
+            return render_template("base.html", page="register")
+        if request.method == "POST":
+            return ar.register_post()
     return redirect(url_for("render_main"))
-
-
 # endregion Auth
 
 

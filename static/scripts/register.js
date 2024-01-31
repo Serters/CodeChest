@@ -14,6 +14,7 @@ function draw_main(where) {
 
 	const register_form = document.createElement("form");
 	register_form.name = "register_form";
+	register_form.method = "POST";
 	m.appendChild(register_form);
 
 	const email_div = document.createElement("div");
