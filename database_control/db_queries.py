@@ -112,10 +112,8 @@ def update_row(snippet_id):
     try:
         connection = dba.connect_to_database(dbs.db_login)
         cursor = connection.cursor()
-        # Get data from the request
         data = request.get_json()
 
-        # Update the existing row in the table
         query = """
             UPDATE snippets
             SET name = %s,
@@ -132,9 +130,9 @@ def update_row(snippet_id):
             data.get("code"),
             data.get("short_desc"),
             data.get("full_desc"),
-            data.get("favourite", 0),  # Default to 0 if not provided
+            data.get("favourite", 0),
             data.get("tags", ""),
-            data.get("snippet_list_id", 1),  # Default to 1 if not provided
+            data.get("snippet_list_id", 1),
             snippet_id,
         )
         cursor.execute(query, values)
@@ -220,29 +218,48 @@ def delete_row(snippet_id):
         return jsonify({"status": "error", "message": str(e)})
 
 
-def update_password(new_password):
+def update_password(new_password, user_id):
     try:
         connection = dba.connect_to_database(dbs.db_login)
         cursor = connection.cursor()
-        # Get data from the request
-        data = request.get_json()
 
-        # Update the existing row in the table
         query = """
-            UPDATE snippets
-            SET password = %s,
-            WHERE snippet_id = %s
+            UPDATE users
+            SET password = %s
+            WHERE user_id = %s
         """
-        values = (new_password,)
+        values = (new_password, user_id)
         cursor.execute(query, values)
         connection.commit()
         dba.close_connection(connection, cursor)
         return jsonify(
             {
                 "status": "success",
-                "message": f"Password updated successfully",
+                "message": "Password updated successfully",
             }
         )
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
+
+
+def get_user_password(email):
+    try:
+        connection = dba.connect_to_database(dbs.db_login)
+        cursor = connection.cursor()
+
+        query = """
+            SELECT password
+            FROM users
+            WHERE email = %s;
+        """
+
+        cursor.execute(query, (email,))
+        password = cursor.fetchone()
+        connection.commit()
+        dba.close_connection(connection, cursor)
+
+        return {"password": password}
+
+    except Exception as err:
+        print(f"Error: {err}")

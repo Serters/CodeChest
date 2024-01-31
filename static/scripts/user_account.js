@@ -145,11 +145,12 @@ async function draw_main(where) {
 
 		const change_password_form = document.createElement("form");
 		change_password_form.name = "change_password_form";
+		change_password_form.method = "POST";
 		right.appendChild(change_password_form);
 
 		//#region current password
 		const current_password_label = document.createElement("label");
-		current_password_label.textContent = "new password";
+		current_password_label.textContent = "Current password";
 		current_password_label.htmlFor = "current_password";
 		change_password_form.appendChild(current_password_label);
 

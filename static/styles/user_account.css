@@ -319,4 +319,5 @@ main .right form .container button:disabled {
 }
 main .right form .container:last-child {
   margin-top: auto;
+  margin-bottom: 0;
 }/*# sourceMappingURL=user_account.css.map */
