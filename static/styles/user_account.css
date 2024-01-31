@@ -40,6 +40,7 @@ html,
   font-family: "Courier New", monospace;
   font-size: 16px;
   outline: none;
+  border: 0;
   cursor: default;
 }
 
@@ -75,13 +76,15 @@ header .left {
   width: 50%;
   height: 100%;
   display: flex;
-  justify-content: left;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
 }
 header .left .logo {
   height: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
   cursor: pointer;
 }
@@ -100,12 +103,14 @@ header .right {
   width: 50%;
   height: 100%;
   display: flex;
-  justify-content: right;
+  flex-direction: row;
+  justify-content: flex-end;
   align-items: center;
 }
 header .right .user {
   height: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   font-size: 24px;
@@ -191,14 +196,6 @@ footer span {
     visibility: hidden;
   }
 }
-header {
-  margin-bottom: 128px;
-}
-
-footer {
-  margin-top: 128px;
-}
-
 main {
   min-height: 0;
   flex: 1;
@@ -221,9 +218,12 @@ main .left .my_account {
   gap: 16px;
   margin-bottom: auto;
   align-items: center;
+  justify-content: center;
 }
 main .left .my_account img {
-  flex: 1;
+  min-width: 100%;
+  max-width: 100%;
+  aspect-ratio: 1;
 }
 main .left .my_account h2 {
   font-size: 24px;
@@ -254,26 +254,69 @@ main .left .logout_button:hover {
 }
 main .right {
   flex: 75;
-  display: flex;
-  flex-direction: column;
   background-color: var(--darkgray);
   border-radius: 16px;
-  justify-content: center;
+}
+main .right form {
+  width: 100%;
+  height: 100%;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-main .right input {
-  border: 0;
-  background-color: var(--gray);
-  color: whitesmoke;
-  font-size: inherit;
-  padding: 1em;
-  border-radius: 1em;
-  margin-bottom: 1em;
-}
-main .right label {
+main .right form label {
   background-color: inherit;
   color: whitesmoke;
   font-size: inherit;
   line-height: 1em;
   padding: 0.5em;
+}
+main .right form .container {
+  min-height: 48px;
+  max-height: 48px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 16px;
+}
+main .right form .container input {
+  flex: 1;
+  min-height: 48px;
+  max-height: 48px;
+  background-color: var(--gray);
+  color: whitesmoke;
+  padding: 1em;
+  border-radius: 16px;
+  margin-bottom: 1em;
+}
+main .right form .container input:-moz-read-only {
+  color: lightgray;
+}
+main .right form .container input:read-only {
+  color: lightgray;
+}
+main .right form .container input[type=password] {
+  border-radius: 16px 0 0 16px;
+}
+main .right form .container button {
+  min-height: 48px;
+  max-height: 48px;
+  background-color: color-mix(in srgb, var(--gray) 50%, var(--darkgray));
+  color: whitesmoke;
+  font-weight: bold;
+  padding: 1em;
+  border-radius: 0 16px 16px 0;
+  margin-top: auto;
+}
+main .right form .container button[type=submit] {
+  width: 100%;
+  border-radius: 16px;
+  background-color: var(--brown);
+}
+main .right form .container button:disabled {
+  background-color: var(--gray);
+}
+main .right form .container:last-child {
+  margin-top: auto;
 }/*# sourceMappingURL=user_account.css.map */

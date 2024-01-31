@@ -218,3 +218,31 @@ def delete_row(snippet_id):
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
+
+
+def update_password(new_password):
+    try:
+        connection = dba.connect_to_database(dbs.db_login)
+        cursor = connection.cursor()
+        # Get data from the request
+        data = request.get_json()
+
+        # Update the existing row in the table
+        query = """
+            UPDATE snippets
+            SET password = %s,
+            WHERE snippet_id = %s
+        """
+        values = (new_password,)
+        cursor.execute(query, values)
+        connection.commit()
+        dba.close_connection(connection, cursor)
+        return jsonify(
+            {
+                "status": "success",
+                "message": f"Password updated successfully",
+            }
+        )
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})

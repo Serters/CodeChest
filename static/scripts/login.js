@@ -32,6 +32,7 @@ function draw_main(where) {
 	email_input.name = "email_input";
 	email_input.placeholder = "user@codechest.com";
 	email_input.value = "demo@codechest.com";
+	email_input.autocomplete = "email";
 	email_div.appendChild(email_input);
 
 	const password_div = document.createElement("div");
@@ -47,13 +48,15 @@ function draw_main(where) {
 	password_input.name = "password_input";
 	password_input.placeholder = "password";
 	password_input.value = "demo";
+	password_input.autocomplete = "current-password";
 	password_div.appendChild(password_input);
 
 	const password_toggle = document.createElement("button");
 	password_toggle.className = "password_toggle";
 	password_toggle.type = "button";
-	password_toggle.addEventListener("click", toggle_password);
+	password_toggle.addEventListener("click", toggle_password, false);
 	password_toggle.textContent = "Show";
+	password_toggle.tabIndex = -1;
 	password_div.appendChild(password_toggle);
 
 	const login_button = document.createElement("button");
@@ -63,15 +66,14 @@ function draw_main(where) {
 	login_form.appendChild(login_button);
 }
 
-function toggle_password() {
-	const password_input = document.querySelector("[name=password_input]");
-	const password_toggle = document.querySelector(".password_toggle");
-
-	if (password_input.type === "password") {
-		password_input.type = "text";
-		password_toggle.textContent = "Hide";
+function toggle_password(event) {
+	const button = event.target;
+	const input = event.target.previousSibling;
+	if (input.type === "password") {
+		button.textContent = "Hide";
+		input.type = "text";
 	} else {
-		password_input.type = "password";
-		password_toggle.textContent = "Show";
+		button.textContent = "Show";
+		input.type = "password";
 	}
 }

@@ -65,10 +65,9 @@ function draw_main(where) {
 	password_toggle.className = "password_toggle";
 	password_toggle.textContent = "Show";
 	password_toggle.type = "button";
+	password_toggle.tabIndex = -1;
 	password_div.appendChild(password_toggle);
-	password_toggle.addEventListener("click", (e) =>
-		toggle_password(e.currentTarget)
-	);
+	password_toggle.addEventListener("click", toggle_password, false);
 
 	const confirm_password_div = document.createElement("div");
 	confirm_password_div.className = "container";
@@ -89,10 +88,9 @@ function draw_main(where) {
 	confirm_password_toggle.className = "password_toggle";
 	confirm_password_toggle.textContent = "Show";
 	confirm_password_toggle.type = "button";
+	confirm_password_toggle.tabIndex = -1;
 	confirm_password_div.appendChild(confirm_password_toggle);
-	confirm_password_toggle.addEventListener("click", (e) =>
-		toggle_password(e.currentTarget)
-	);
+	confirm_password_toggle.addEventListener("click", toggle_password, false);
 
 	const register_button = document.createElement("button");
 	register_button.name = "register_button";
@@ -100,15 +98,14 @@ function draw_main(where) {
 	register_form.appendChild(register_button);
 }
 
-function toggle_password(e) {
-	const password_input = e.previousSibling;
-	const password_toggle = e;
-
-	if (password_input.type === "password") {
-		password_input.type = "text";
-		password_toggle.textContent = "Hide";
+function toggle_password(event) {
+	const button = event.target;
+	const input = event.target.previousSibling;
+	if (input.type === "password") {
+		button.textContent = "Hide";
+		input.type = "text";
 	} else {
-		password_input.type = "password";
-		password_toggle.textContent = "Show";
+		button.textContent = "Show";
+		input.type = "password";
 	}
 }

@@ -40,6 +40,7 @@ html,
   font-family: "Courier New", monospace;
   font-size: 16px;
   outline: none;
+  border: 0;
   cursor: default;
 }
 
@@ -75,13 +76,15 @@ header .left {
   width: 50%;
   height: 100%;
   display: flex;
-  justify-content: left;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
 }
 header .left .logo {
   height: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
   cursor: pointer;
 }
@@ -100,12 +103,14 @@ header .right {
   width: 50%;
   height: 100%;
   display: flex;
-  justify-content: right;
+  flex-direction: row;
+  justify-content: flex-end;
   align-items: center;
 }
 header .right .user {
   height: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   font-size: 24px;
