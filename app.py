@@ -2,6 +2,7 @@ from flask import Flask, jsonify, render_template, request, url_for, redirect, s
 from flask_cors import CORS
 from flask_session import Session
 import os
+import json
 import bcrypt
 import database_control.db_queries as dbq
 import auth.login as al
@@ -16,8 +17,8 @@ app.config["SESSION_FILE_DIR"] = "auth/flask_session"
 Session(app)
 
 
+print(bcrypt.hashpw("demodemo".encode("utf-8"), bcrypt.gensalt()))
 
-print(bcrypt.hashpw("demo1234".encode("utf-8"), bcrypt.gensalt()))
 
 # region Pages
 @app.route("/")
@@ -50,9 +51,13 @@ def render_account():
     try:
         current_password = dbq.get_user_password(session["user"])["password"][0]
         current_password_input = request.form["current_password"]
-        new_password = request.form["confirm_new_password"]
 
-        if current_password_input == current_password:
+        if bcrypt.checkpw(
+            current_password_input.encode("utf-8"), current_password.encode("utf-8")
+        ):
+            new_password = bcrypt.hashpw(
+                request.form["confirm_new_password"].encode("utf-8"), bcrypt.gensalt()
+            )
             result = dbq.update_password(new_password, session["user_id"])
             return redirect(url_for("render_logout"))
         else:
@@ -114,6 +119,8 @@ def render_user():
 def snippets():
     if not session.get("user"):
         return "forbidden"
+    # snippet_list_id = dbq.get_snippet_list(1) #json.loads(dbq.get_snippet_list(session["user_id"]))["snippet_list"][0]
+    # print(snippet_list_id)
     return dbq.get_snippets(1)
 
 
@@ -121,7 +128,7 @@ def snippets():
 def snippet_list():
     if not session.get("user"):
         return "forbidden"
-    return dbq.get_snippet_list(1)
+    return dbq.get_snippet_list(session["user_id"])
 
 
 @app.route("/insert_row", methods=["POST"])
