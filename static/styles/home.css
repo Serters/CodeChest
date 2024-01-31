@@ -198,21 +198,4 @@ footer span {
 }
 main {
   min-height: calc(100vh - 180px);
-}
-main .main-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-main .main-container .main-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  background-image: url("../assets/Untitled.png");
-  background-repeat: no-repeat;
-  background-size: cover;
 }/*# sourceMappingURL=home.css.map */

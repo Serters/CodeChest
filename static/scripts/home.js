@@ -10,9 +10,7 @@ async function render() {
 async function draw_main(where) {
     const m = document.createElement("main");
     m.classList.add("main-container");
-
     m.style.backgroundImage = 'url("static/assets/img.png")';
     m.style.backgroundSize = "cover";
-
     where.appendChild(m);
 }
