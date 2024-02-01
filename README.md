@@ -20,3 +20,8 @@ CodeChest is a user-friendly web platform designed to simplify the management an
 1. **User-Friendly Interface:** CodeChest offers an intuitive and clean user interface, making it easy for users of all levels to navigate and manage their code snippets effortlessly.
 2. **Search:** Utilize powerful search option to find specific code snippets in seconds. Save time and stay focused on your coding tasks.
 3. **Fast Performance:** Experience quick response times and seamless interactions with CodeChest, ensuring that you can efficiently organize and retrieve your code snippets.
+
+
+## Usage
+
+Follow our guide to create a new snippet [https://scribehow.com/shared/CodeChest](https://scribehow.com/shared/How_to_Create_and_Save_a_Snippet__D1jjydRTSdCZhQfgrky3tg)
