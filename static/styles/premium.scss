@@ -1,0 +1,46 @@
+@import "static";
+
+main {
+	width: 50%;
+	.jumbotron {
+		background-color: var(--darkgray);
+		border-radius: 16px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		h1 {
+			font-size: 40px;
+			margin-bottom: 16px;
+            font-weight: bold;
+		}
+
+		p {
+			font-size: 16px;
+			margin-bottom: 16px;
+		}
+
+		form {
+			background-color: var(--darkgray);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			margin-top: auto;
+            width: 100%;
+
+			.stripe-button-el {
+				background-image: none;
+				background-color: var(--brown);
+				border: 0;
+                width: 100%;
+
+				span {
+					background-image: none;
+					background-color: var(--brown);
+				}
+			}
+		}
+	}
+}

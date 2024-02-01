@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+			integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+			integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+			integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+			crossorigin="anonymous"
+		></script>
+		<link rel="stylesheet" href="../static/styles/premium.css" />
+	</head>
+	<body>
+		<header>
+			<div class="left">
+				<div class="logo">
+					<img src="../static/assets/logo.png" alt="logo" />
+					<h1>CodeChest</h1>
+				</div>
+			</div>
+			<div class="right">
+				<div>Login</div>
+				<div>/</div>
+				<div>Register</div>
+			</div>
+		</header>
+		<main>
+			<div class="jumbotron">
+				<h1>CodeChest Premium</h1>
+				<p>
+					Upgrade to premium today! Not only will you gain the
+					exclusive ability to customize your username and profile
+					picture with a one-time payment, but you'll also contribute
+					to the ongoing development of our platform. Your purchase
+					plays a vital role in supporting future enhancements and
+					features for an even better user experience. Elevate your
+					experience and be a part of our exciting journey with a
+					premium upgrade!
+				</p>
+				<form action="{{url_for('payment')}}" method="POST">
+					<script
+						src="https://checkout.stripe.com/checkout.js"
+						class="stripe-button"
+						data-key="{{public_key}}"
+						data-amount="999"
+						data-name="Buying Premium"
+						data-description="Premium"
+						data-locale="auto"
+						data-zip-code="true"
+					></script>
+				</form>
+			</div>
+		</main>
+		<footer><span>© CodeChest 2023.</span></footer>
+	</body>
+</html>

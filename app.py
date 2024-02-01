@@ -6,6 +6,7 @@ import bcrypt
 import database_control.db_queries as dbq
 import auth.login as al
 import auth.register as ar
+import stripe
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -16,8 +17,39 @@ app.config["SESSION_TYPE"] = "filesystem"
 app.config["SESSION_FILE_DIR"] = "auth/flask_session"
 Session(app)
 
+public_key = "pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+stripe.api_key = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
 
 print(bcrypt.hashpw("demodemo".encode("utf-8"), bcrypt.gensalt()))
+
+
+# region Payment
+@app.route("/premium")
+def render_premium():
+    if not session.get("user"):
+        return "forbidden"
+    return render_template("premium.html", public_key=public_key)
+
+
+@app.route("/payment", methods=["POST"])
+def payment():
+
+    # CUSTOMER INFO
+    customer = stripe.Customer.create(
+        email=request.form["stripeEmail"], source=request.form["stripeToken"]
+    )
+
+    # PAYMENT INFO
+    charge = stripe.Charge.create(
+        customer=customer.id, amount=999, currency="usd", description="Premium"  # $9.99
+    )
+
+    dbq.update_premium(session["user_id"])
+
+    return redirect(url_for("render_account"))
+
+
+# endregion
 
 
 # region Pages
@@ -65,13 +97,6 @@ def render_account():
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
-
-
-@app.route("/premium")
-def render_premium():
-    if not session.get("user"):
-        return "forbidden"
-    return render_template("base.html", page="main")
 
 
 # endregion Pages
