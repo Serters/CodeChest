@@ -1,0 +1,155 @@
+@import "static";
+
+// header {
+// 	margin-bottom: 128px;
+// }
+
+// footer {
+// 	margin-top: 128px;
+// }
+
+main {
+	min-height: 0;
+	flex: 1;
+
+	.left {
+		flex: 25;
+		padding-right: 16px;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+
+		.my_account {
+			background-color: var(--darkgray);
+			border-radius: 16px;
+			width: calc(100% - 24px);
+			flex: 1;
+			padding: 16px;
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			margin-bottom: auto;
+			align-items: center;
+			justify-content: center;
+
+			img {
+				// flex: content;
+				min-width: 100%;
+				max-width: 100%;
+				aspect-ratio: 1;
+			}
+
+			h2 {
+				font-size: 24px;
+			}
+		}
+
+		button {
+			border: 0;
+			height: 64px;
+			width: calc(100% - 24px);
+
+			background-color: var(--darkgray);
+			color: whitesmoke;
+			text-align: center;
+			display: block;
+			padding: 16px;
+			border-radius: 16px;
+		}
+
+		.buy_premium_button {
+			position: relative;
+			z-index: 1;
+			background-image: url("../assets/cats.png");
+			background-size: cover;
+		}
+
+		.logout_button {
+			transition: all 0.2s ease-in-out;
+
+			&:hover {
+				color: rgb(204, 80, 80);
+				transition: all 0.2s;
+			}
+		}
+	}
+	.right {
+		flex: 75;
+		background-color: var(--darkgray);
+		border-radius: 16px;
+
+		form {
+			width: 100%;
+			height: 100%;
+			padding: 16px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+
+			label {
+				background-color: inherit;
+				color: whitesmoke;
+				font-size: inherit;
+				line-height: 1em;
+				padding: 0.5em;
+			}
+
+			.container {
+				min-height: 48px;
+				max-height: 48px;
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				margin-bottom: 16px;
+
+				input {
+					flex: 1;
+					min-height: 48px;
+					max-height: 48px;
+					background-color: var(--gray);
+					color: whitesmoke;
+					padding: 1em;
+					border-radius: 16px;
+					margin-bottom: 1em;
+
+					&:read-only {
+						color: lightgray;
+					}
+					&[type="password"] {
+						border-radius: 16px 0 0 16px;
+					}
+				}
+
+				button {
+					min-height: 48px;
+					max-height: 48px;
+					background-color: color-mix(
+						in srgb,
+						var(--gray) 50%,
+						var(--darkgray)
+					);
+					color: whitesmoke;
+					font-weight: bold;
+					padding: 1em;
+					border-radius: 0 16px 16px 0;
+					margin-top: auto;
+
+					&[type="submit"] {
+						width: 100%;
+						border-radius: 16px;
+						background-color: var(--brown);
+					}
+
+					&:disabled {
+						background-color: var(--gray);
+					}
+				}
+
+				&:last-child {
+					margin-top: auto;
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+}
