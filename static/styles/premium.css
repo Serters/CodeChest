@@ -217,7 +217,8 @@ main .jumbotron p {
   margin-bottom: 16px;
 }
 main .jumbotron form {
-  background-color: var(--darkgray);
+  background-image: none;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -229,9 +230,19 @@ main .jumbotron form .stripe-button-el {
   background-image: none;
   background-color: var(--brown);
   border: 0;
+  outline: 0;
   width: 100%;
+  box-shadow: none;
 }
 main .jumbotron form .stripe-button-el span {
   background-image: none;
-  background-color: var(--brown);
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  transition: all 0.2s ease-in-out;
+  box-shadow: none;
+}
+main .jumbotron form .stripe-button-el span:hover {
+  color: gold;
+  transition: all 0.2s;
 }/*# sourceMappingURL=premium.css.map */
