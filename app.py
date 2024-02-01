@@ -147,9 +147,8 @@ def render_user():
 def snippets():
     if not session.get("user"):
         return "forbidden"
-    # snippet_list_id = dbq.get_snippet_list(1) #json.loads(dbq.get_snippet_list(session["user_id"]))["snippet_list"][0]
-    # print(snippet_list_id)
-    return dbq.get_snippets(1)
+    x = dbq.get_sl_id(session["user_id"])
+    return dbq.get_snippets(x)
 
 
 @app.route("/snippet_list", methods=["GET"])

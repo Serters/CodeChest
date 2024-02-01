@@ -1,4 +1,4 @@
-from flask import jsonify, request
+from flask import Flask, jsonify, render_template, request, url_for, redirect, session
 import database_control.db_access as dba
 import database_control.db_secret as dbs
 
@@ -17,10 +17,8 @@ def get_snippets(snippet_list_id):
         cursor.execute(query, (snippet_list_id,))
         rows = cursor.fetchall()
 
-        # Get column names from cursor description
         columns = [desc[0] for desc in cursor.description]
 
-        # Create a list of dictionaries
         snippet_list = [dict(zip(columns, row)) for row in rows]
 
         dba.close_connection(connection, cursor)
@@ -46,7 +44,7 @@ def get_snippet_list(user_id):
         rows = cursor.fetchall()
         dba.close_connection(connection, cursor)
         return jsonify({"snippet_list": rows})
-    
+
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
 
@@ -295,6 +293,31 @@ def update_premium(user_id):
         connection.commit()
 
         dba.close_connection(connection, cursor)
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})
+
+
+def get_sl_id(user_id):
+    try:
+        connection = dba.connect_to_database(dbs.db_login)
+        cursor = connection.cursor()
+
+        select_query = """
+                    SELECT snippet_list_id
+                    FROM snippet_list
+                    WHERE user_id = %s;
+        """
+        cursor.execute(select_query, (user_id,))
+        
+        result = cursor.fetchone()  # Fetch the result
+
+        dba.close_connection(connection, cursor)
+
+        if result:
+            return result[0]
+        else:
+            return None
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
