@@ -54,7 +54,8 @@ export async function draw_header(where) {
             user_data[0],
             user_data[1],
             user_data[2],
-            "profile_picture.png"
+            user_data[3],
+            user_data[4]
         );
         current_user.display(right);
     }

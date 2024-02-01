@@ -29,15 +29,26 @@
 	<body>
 		<header>
 			<div class="left">
-				<div class="logo">
+				<div class="logo" onclick="window.location.href = 'main'">
 					<img src="../static/assets/logo.png" alt="logo" />
 					<h1>CodeChest</h1>
 				</div>
 			</div>
 			<div class="right">
-				<div>Login</div>
-				<div>/</div>
-				<div>Register</div>
+				<div class="user">
+					<div class="username">admin</div>
+					<img
+						class="profile_picture"
+						src="./static/assets/profile_picture.png"
+					/>
+				</div>
+				<div class="user_options">
+					<button type="button" class="edit_account">
+						Edit Account</button
+					><button type="button" class="buy_premium">
+						Buy Premium</button
+					><button type="button" class="logout">Log out</button>
+				</div>
 			</div>
 		</header>
 		<main>
@@ -53,6 +64,7 @@
 					experience and be a part of our exciting journey with a
 					premium upgrade!
 				</p>
+				{% if premium == 0 %}
 				<form action="{{url_for('payment')}}" method="POST">
 					<script
 						src="https://checkout.stripe.com/checkout.js"
@@ -65,6 +77,7 @@
 						data-zip-code="true"
 					></script>
 				</form>
+				{% endif %}
 			</div>
 		</main>
 		<footer><span>© CodeChest 2023.</span></footer>

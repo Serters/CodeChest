@@ -172,7 +172,7 @@ def get_user(email):
         cursor = connection.cursor()
 
         query = """
-            SELECT user_id, username, email, profile_picture
+            SELECT user_id, username, email, premium, profile_picture
             FROM users
             WHERE email = %s;
         """

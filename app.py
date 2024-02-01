@@ -28,7 +28,7 @@ print(bcrypt.hashpw("demodemo".encode("utf-8"), bcrypt.gensalt()))
 def render_premium():
     if not session.get("user"):
         return "forbidden"
-    return render_template("premium.html", public_key=public_key)
+    return render_template("premium.html", public_key=public_key, premium=session["premium"])
 
 
 @app.route("/payment", methods=["POST"])

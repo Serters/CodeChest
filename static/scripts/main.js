@@ -13,8 +13,14 @@ async function render() {
 
 async function draw_main(where) {
     let active_snippet = 0;
-    let data = JSON.parse(localStorage.getItem("user_info")).user;
-    const current_user = new user(data[0], data[1], data[2], data[3]);
+    let user_data = JSON.parse(localStorage.getItem("user_info")).user;
+    const current_user = new user(
+		user_data[0],
+		user_data[1],
+		user_data[2],
+		user_data[3],
+		user_data[4]
+	);
     let snippet_list_default = new snippet_list(
         1,
         100,
