@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/Serters/CodeChest/raw/Back-End/static/assets/readme_banner.png" alt="Alt Text" width="70%">
+  <img src="https://github.com/Serters/CodeChest/raw/Back-End/static/assets/readme_banner.png" alt="Alt Text" width="100%">
 </div>
 
 <div align="center">
