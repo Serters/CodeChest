@@ -1,5 +1,6 @@
 import { draw_footer, draw_header } from "./static.js";
 import { snippet } from "./classes/snippet.js";
+import { snippet_list } from "./classes/snippet_list.js";
 
 document.addEventListener("DOMContentLoaded", render);
 
@@ -12,6 +13,7 @@ async function fetch_snippet(user_id, snippet_id) {
 			`${window.app_url}/snippets/${user_id}/${snippet_id}`
 		);
 		const snippet_data = await response.json();
+		console.log(snippet_data)
 		const snippet = create_fetched_snippet(snippet_data.snippet[0]);
 		return snippet;
 	} catch (error) {
@@ -42,6 +44,14 @@ async function draw_main(where) {
 	const user_id = 1;
 	const snippet_id = active_snippet_id;
 	const current_snippet = await fetch_snippet(user_id, snippet_id);
+	const snippet_list_data = JSON.parse(
+		localStorage.getItem("snippet_list")
+	).snippet_list[0];
+	const snippet_list_default = new snippet_list(
+		snippet_list_data[0],
+		snippet_list_data[1],
+		snippet_list_data[2]
+	);
 
 	const m = document.createElement("main");
 	where.appendChild(m);
@@ -174,7 +184,7 @@ async function draw_main(where) {
 			full_desc: full_desc_value,
 			favourite: favourite_value,
 			tags: tags_value,
-			snippet_list_id: 1,
+			snippet_list_id: snippet_list_default.snippet_list_id,
 		};
 
 		fetch(`${window.app_url}/snippets/${user_id}/${snippet_id}`, {

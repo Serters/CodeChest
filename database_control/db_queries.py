@@ -91,9 +91,10 @@ def insert_row():
             data.get("code"),
             data.get("short_desc"),
             data.get("full_desc"),
-            data.get("favourite", 0),
-            data.get("snippet_list_id", 1),
+            data.get("favourite"),
+            data.get("snippet_list_id")
         )
+        print(values)
         cursor.execute(query, values)
         connection.commit()
         dba.close_connection(connection, cursor)
@@ -125,9 +126,9 @@ def update_row(snippet_id):
             data.get("code"),
             data.get("short_desc"),
             data.get("full_desc"),
-            data.get("favourite", 0),
+            data.get("favourite"),
             data.get("tags", ""),
-            data.get("snippet_list_id", 1),
+            data.get("snippet_list_id"),
             snippet_id,
         )
         cursor.execute(query, values)

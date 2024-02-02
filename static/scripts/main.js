@@ -13,7 +13,7 @@ async function render() {
 
 async function draw_main(where) {
 	let active_snippet = 0;
-	let user_data = JSON.parse(localStorage.getItem("user_info")).user;
+	const user_data = JSON.parse(localStorage.getItem("user_info")).user;
 	const current_user = new user(
 		user_data[0],
 		user_data[1],
@@ -21,10 +21,13 @@ async function draw_main(where) {
 		user_data[3],
 		user_data[4]
 	);
-	let snippet_list_default = new snippet_list(
-		1,
-		100,
-		1,
+	const snippet_list_data = JSON.parse(
+		localStorage.getItem("snippet_list")
+	).snippet_list[0];
+	const snippet_list_default = new snippet_list(
+		snippet_list_data[0],
+		snippet_list_data[1],
+		snippet_list_data[2],
 		await fetch_snippets()
 	);
 
@@ -129,6 +132,7 @@ async function draw_main(where) {
 			.then((response) => response.json())
 			.then((result) => {
 				console.log(result);
+				localStorage.setItem("msg", result.message);
 			})
 			.catch((error) => {
 				console.error("Error:", error);
@@ -162,13 +166,14 @@ async function draw_main(where) {
 	}
 
 	async function create_snippet() {
+		const sl_id = snippet_list_default.snippet_list_id;
 		const data = {
 			name: "Snippet Name",
 			code: "Snippet Code",
 			short_desc: "Snippet Short Description",
 			full_desc: "Snippet Full Description",
 			favourite: 0,
-			// snippet_list_id: 1,
+			snippet_list_id: sl_id,
 		};
 		await post_snippet(data);
 		const updated_snippet_list = await fetch_snippets();

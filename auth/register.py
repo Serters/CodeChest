@@ -2,7 +2,6 @@ from flask import Flask, jsonify, render_template, request, url_for, redirect, s
 from flask_session import Session
 import database_control.db_queries as dbq
 import bcrypt
-
 import database_control.db_access as dba
 import database_control.db_secret as dbs
 
@@ -47,17 +46,15 @@ def max_id():
         return None
 
 
-async def sl(email):
-    connection = dba.connect_to_database(dbs.db_login)
-    cursor = connection.cursor()
-
-    query = "INSERT INTO snippet_list (snippet_list_id, max_storage, user_id) VALUES (NULL, 100, %s);"
-    user_id = await dbq.get_user(email)
-    print(email, user_id)
-    values = (user_id,)
-
+def sl(user_id):
     try:
-        cursor.execute(query, values)
+        connection = dba.connect_to_database(dbs.db_login)
+        cursor = connection.cursor()
+
+        query = "INSERT INTO snippet_list (snippet_list_id, max_storage, user_id) VALUES (NULL, 100, %s);"
+        print("IDDD", user_id)
+
+        cursor.execute(query, (user_id,))
         connection.commit()
         return True
     except Exception as e:
@@ -65,8 +62,35 @@ async def sl(email):
         connection.rollback()
         return False
     finally:
-        cursor.close()
-        connection.close()
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.close()
+
+
+# def insert_user(email, username, password):
+#     connection = dba.connect_to_database(dbs.db_login)
+#     cursor = connection.cursor()
+
+#     hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
+
+#     query = "INSERT INTO users (email, username, password) VALUES (%s, %s, %s)"
+#     values = (email, username, hashed_password)
+
+#     try:
+#         cursor.execute(query, values)
+#         connection.commit()
+#         # response = dbq.get_user(email)
+#         # data = response.get_json()
+#         user_id =0# data["user"]["user_id"]
+#         return user_id
+#     except Exception as e:
+#         print(f"Error inserting user: {e}")
+#         connection.rollback()
+#         return False
+#     finally:
+#         cursor.close()
+#         connection.close()
 
 
 def insert_user(email, username, password):
@@ -77,12 +101,15 @@ def insert_user(email, username, password):
 
     query = "INSERT INTO users (email, username, password) VALUES (%s, %s, %s)"
     values = (email, username, hashed_password)
-    sl(email)
 
     try:
         cursor.execute(query, values)
         connection.commit()
-        return True
+
+        cursor.execute("SELECT LAST_INSERT_ID()")
+        user_id = cursor.fetchone()[0]
+
+        return user_id
     except Exception as e:
         print(f"Error inserting user: {e}")
         connection.rollback()
@@ -105,7 +132,9 @@ def register_post():
     elif password != confirm_password:
         log_message = "Confirmed password doesn't match the original password"
     else:
-        if insert_user(email, username, password):
+        new_user = insert_user(email, username, password)
+        if new_user:
+            sl(new_user)
             return redirect(url_for("render_login"))
 
     return render_template("base.html", page="register", log_message=log_message)

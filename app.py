@@ -186,7 +186,7 @@ def get_snippet_route(user_id, snippet_id):
     try:
         if not session.get("user"):
             return "forbidden"
-        result = dbq.get_snippet(user_id, snippet_id)
+        result = dbq.get_snippet(session["user_id"], snippet_id)
         return result
     except Exception as e:
         return jsonify({"error": str(e)})
