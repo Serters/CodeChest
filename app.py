@@ -26,8 +26,9 @@ stripe.api_key = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
 def render_premium():
     if not session.get("user"):
         return "forbidden"
+    x = session["premium"]["premium"][0]    
     return render_template(
-        "premium.html", public_key=public_key, premium=session["premium"]
+        "premium.html", public_key=public_key, premium=x
     )
 
 
@@ -44,7 +45,7 @@ def payment():
 
     dbq.update_premium(session["user_id"])
 
-    return redirect(url_for("render_account"))
+    return redirect(url_for("render_logout"))
 
 
 # endregion
