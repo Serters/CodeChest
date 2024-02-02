@@ -11,7 +11,7 @@ function render() {
 
 async function draw_main(where) {
 	let user_data = JSON.parse(localStorage.getItem("user_info")).user;
-	const new_user = new user(
+	const current_user = new user(
 		user_data[0],
 		user_data[1],
 		user_data[2],
@@ -32,12 +32,12 @@ async function draw_main(where) {
 	left.appendChild(my_account_div);
 
 	const my_account_picture = document.createElement("img");
-	my_account_picture.src = `./static/assets/${new_user.profile_picture}`;
+	my_account_picture.src = `./static/assets/${current_user.profile_picture}`;
 	my_account_picture.alt = "Profile Picture";
 	my_account_div.appendChild(my_account_picture);
 
 	const my_account_username = document.createElement("h2");
-	my_account_username.textContent = new_user.username;
+	my_account_username.textContent = current_user.username;
 	my_account_div.appendChild(my_account_username);
 
 	const my_account_button = document.createElement("button");
@@ -87,7 +87,10 @@ async function draw_main(where) {
 
 		const my_account_form = document.createElement("form");
 		my_account_form.name = "my_account_form";
-		my_account_form.readOnly = true;
+		my_account_form.method = "POST";
+		if (current_user.premium == 0) {
+			my_account_form.readOnly = true;
+		}
 		right.appendChild(my_account_form);
 
 		//#region username
@@ -103,9 +106,11 @@ async function draw_main(where) {
 		const username_input = document.createElement("input");
 		username_input.type = "text";
 		username_input.name = "username";
-		username_input.value = new_user.username;
+		username_input.value = current_user.username;
 		username_input.placeholder = "username";
-		username_input.readOnly = true;
+		if (current_user.premium == 0) {
+			username_input.readOnly = true;
+		}
 		username_input.autocomplete = "email";
 		username_div.appendChild(username_input);
 		//#endregion
@@ -123,7 +128,7 @@ async function draw_main(where) {
 		const email_input = document.createElement("input");
 		email_input.type = "text";
 		email_input.name = "email";
-		email_input.value = new_user.email;
+		email_input.value = current_user.email;
 		email_input.placeholder = "email";
 		email_input.readOnly = true;
 		email_div.appendChild(email_input);
@@ -137,7 +142,9 @@ async function draw_main(where) {
 		update_account_info_button.type = "submit";
 		update_account_info_button.name = "update_account_info_button";
 		update_account_info_button.textContent = "Update Account Info";
-		update_account_info_button.disabled = true;
+		if (current_user.premium == 0) {
+			update_account_info_button.disabled = true;
+		}
 		update_account_info_div.appendChild(update_account_info_button);
 	}
 

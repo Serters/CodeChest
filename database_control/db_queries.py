@@ -38,9 +38,9 @@ def get_snippet_list(user_id):
             SELECT snippet_list.snippet_list_id, max_storage, user_id, COUNT(snippets.snippet_id)
             FROM snippet_list
             JOIN snippets ON snippets.snippet_list_id = snippet_list.snippet_list_id
-            WHERE snippet_list.user_id = 1;
+            WHERE snippet_list.user_id = %s;
         """
-        cursor.execute(query)
+        cursor.execute(query, (user_id,))
         rows = cursor.fetchall()
         dba.close_connection(connection, cursor)
         return jsonify({"snippet_list": rows})
@@ -309,7 +309,7 @@ def get_sl_id(user_id):
                     WHERE user_id = %s;
         """
         cursor.execute(select_query, (user_id,))
-        
+
         result = cursor.fetchone()  # Fetch the result
 
         dba.close_connection(connection, cursor)
@@ -318,6 +318,25 @@ def get_sl_id(user_id):
             return result[0]
         else:
             return None
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})
+
+
+def update_username(user_id, new_username):
+    try:
+        connection = dba.connect_to_database(dbs.db_login)
+        cursor = connection.cursor()
+
+        update_query = """
+            UPDATE users
+            SET username = %s
+            WHERE user_id = %s;
+        """
+        cursor.execute(update_query, (new_username, user_id))
+        connection.commit()
+
+        dba.close_connection(connection, cursor)
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})

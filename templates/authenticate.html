@@ -10,6 +10,7 @@
 	<body style="background-color: black">
 		<script>
 			document.addEventListener("DOMContentLoaded", save_user);
+			document.addEventListener("DOMContentLoaded", save_snippet_list);
 
 			async function save_user() {
 				const request = new XMLHttpRequest();
@@ -29,6 +30,29 @@
 				request.onerror = () => {
 					console.log("Connection error");
 					localStorage.setItem("user_info", "Connection error");
+				};
+
+				request.send();
+			}
+
+			async function save_snippet_list() {
+				const request = new XMLHttpRequest();
+				request.open("GET", `${window.app_url}/snippet_list`, true);
+				request.setRequestHeader("Content-Type", "application/json");
+
+				request.onload = () => {
+					if (request.status >= 200 && request.status < 400) {
+						localStorage.setItem("snippet_list", request.responseText);
+						window.location.href = "../main";
+					} else {
+						localStorage.setItem("snippet_list", request.status);
+						window.location.href = "../login";
+					}
+				};
+
+				request.onerror = () => {
+					console.log("Connection error");
+					localStorage.setItem("snippet_list", "Connection error");
 				};
 
 				request.send();

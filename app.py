@@ -20,26 +20,24 @@ Session(app)
 public_key = "pk_test_6pRNASCoBOKtIshFeQd4XMUh"
 stripe.api_key = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
 
-print(bcrypt.hashpw("demodemo".encode("utf-8"), bcrypt.gensalt()))
-
 
 # region Payment
 @app.route("/premium")
 def render_premium():
     if not session.get("user"):
         return "forbidden"
-    return render_template("premium.html", public_key=public_key, premium=session["premium"])
+    return render_template(
+        "premium.html", public_key=public_key, premium=session["premium"]
+    )
 
 
 @app.route("/payment", methods=["POST"])
 def payment():
 
-    # CUSTOMER INFO
     customer = stripe.Customer.create(
         email=request.form["stripeEmail"], source=request.form["stripeToken"]
     )
 
-    # PAYMENT INFO
     charge = stripe.Charge.create(
         customer=customer.id, amount=999, currency="usd", description="Premium"  # $9.99
     )
@@ -80,23 +78,34 @@ def render_account():
     if request.method == "GET":
         return render_template("base.html", page="user_account")
 
-    try:
-        current_password = dbq.get_user_password(session["user"])["password"][0]
-        current_password_input = request.form["current_password"]
-
-        if bcrypt.checkpw(
-            current_password_input.encode("utf-8"), current_password.encode("utf-8")
-        ):
-            new_password = bcrypt.hashpw(
-                request.form["confirm_new_password"].encode("utf-8"), bcrypt.gensalt()
-            )
-            result = dbq.update_password(new_password, session["user_id"])
+    if request.form.get("username"):
+        try:
+            new_username = request.form["username"]
+            dbq.update_username(session["user_id"], new_username)
             return redirect(url_for("render_logout"))
-        else:
-            return render_template("base.html", page="user_account")
 
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)})
+        except Exception as e:
+            return jsonify({"status": "error", "message": str(e)})
+
+    else:
+        try:
+            current_password = dbq.get_user_password(session["user"])["password"][0]
+            current_password_input = request.form["current_password"]
+
+            if bcrypt.checkpw(
+                current_password_input.encode("utf-8"), current_password.encode("utf-8")
+            ):
+                new_password = bcrypt.hashpw(
+                    request.form["confirm_new_password"].encode("utf-8"),
+                    bcrypt.gensalt(),
+                )
+                result = dbq.update_password(new_password, session["user_id"])
+                return redirect(url_for("render_logout"))
+            else:
+                return render_template("base.html", page="user_account")
+
+        except Exception as e:
+            return jsonify({"status": "error", "message": str(e)})
 
 
 # endregion Pages
