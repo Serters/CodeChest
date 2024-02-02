@@ -47,7 +47,7 @@ function draw_main(where) {
 	password_input.type = "password";
 	password_input.name = "password_input";
 	password_input.placeholder = "password";
-	password_input.value = "demo";
+	password_input.value = "demodemo";
 	password_input.autocomplete = "current-password";
 	password_div.appendChild(password_input);
 

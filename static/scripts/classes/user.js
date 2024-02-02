@@ -1,8 +1,9 @@
 export class user {
-	constructor(user_id, username, email, profile_picture = null) {
+	constructor(user_id, username, email, premium = 0, profile_picture = null) {
 		this.user_id = user_id;
 		this.username = username;
 		this.email = email;
+		this.premium = premium;
 		this.profile_picture = profile_picture;
 	}
 

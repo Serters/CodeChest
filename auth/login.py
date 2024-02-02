@@ -19,6 +19,8 @@ def handle_login():
     if bcrypt.checkpw(password.encode("utf-8"), current_password.encode("utf-8")):
         session["user"] = email
         session["user_id"] = dbq.get_user(email)["user"][0]
+        session["premium"] = dbq.get_premium(session["user_id"])
+        session["snippet_list"] = dbq.get_sl_id(session["user_id"])
         return redirect(url_for("render_authenticate"))
 
     return redirect(url_for("render_login"))

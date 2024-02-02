@@ -6,6 +6,7 @@ import bcrypt
 import database_control.db_queries as dbq
 import auth.login as al
 import auth.register as ar
+import stripe
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -16,8 +17,38 @@ app.config["SESSION_TYPE"] = "filesystem"
 app.config["SESSION_FILE_DIR"] = "auth/flask_session"
 Session(app)
 
+public_key = "pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+stripe.api_key = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
 
-print(bcrypt.hashpw("demodemo".encode("utf-8"), bcrypt.gensalt()))
+
+# region Payment
+@app.route("/premium")
+def render_premium():
+    if not session.get("user"):
+        return "forbidden"
+    x = session["premium"]["premium"][0]    
+    return render_template(
+        "premium.html", public_key=public_key, premium=x
+    )
+
+
+@app.route("/payment", methods=["POST"])
+def payment():
+
+    customer = stripe.Customer.create(
+        email=request.form["stripeEmail"], source=request.form["stripeToken"]
+    )
+
+    charge = stripe.Charge.create(
+        customer=customer.id, amount=999, currency="usd", description="Premium"  # $9.99
+    )
+
+    dbq.update_premium(session["user_id"])
+
+    return redirect(url_for("render_logout"))
+
+
+# endregion
 
 
 # region Pages
@@ -48,30 +79,34 @@ def render_account():
     if request.method == "GET":
         return render_template("base.html", page="user_account")
 
-    try:
-        current_password = dbq.get_user_password(session["user"])["password"][0]
-        current_password_input = request.form["current_password"]
-
-        if bcrypt.checkpw(
-            current_password_input.encode("utf-8"), current_password.encode("utf-8")
-        ):
-            new_password = bcrypt.hashpw(
-                request.form["confirm_new_password"].encode("utf-8"), bcrypt.gensalt()
-            )
-            result = dbq.update_password(new_password, session["user_id"])
+    if request.form.get("username"):
+        try:
+            new_username = request.form["username"]
+            dbq.update_username(session["user_id"], new_username)
             return redirect(url_for("render_logout"))
-        else:
-            return render_template("base.html", page="user_account")
 
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)})
+        except Exception as e:
+            return jsonify({"status": "error", "message": str(e)})
 
+    else:
+        try:
+            current_password = dbq.get_user_password(session["user"])["password"][0]
+            current_password_input = request.form["current_password"]
 
-@app.route("/premium")
-def render_premium():
-    if not session.get("user"):
-        return "forbidden"
-    return render_template("base.html", page="main")
+            if bcrypt.checkpw(
+                current_password_input.encode("utf-8"), current_password.encode("utf-8")
+            ):
+                new_password = bcrypt.hashpw(
+                    request.form["confirm_new_password"].encode("utf-8"),
+                    bcrypt.gensalt(),
+                )
+                result = dbq.update_password(new_password, session["user_id"])
+                return redirect(url_for("render_logout"))
+            else:
+                return render_template("base.html", page="user_account")
+
+        except Exception as e:
+            return jsonify({"status": "error", "message": str(e)})
 
 
 # endregion Pages
@@ -122,9 +157,8 @@ def render_user():
 def snippets():
     if not session.get("user"):
         return "forbidden"
-    # snippet_list_id = dbq.get_snippet_list(1) #json.loads(dbq.get_snippet_list(session["user_id"]))["snippet_list"][0]
-    # print(snippet_list_id)
-    return dbq.get_snippets(1)
+    x = dbq.get_sl_id(session["user_id"])
+    return dbq.get_snippets(x)
 
 
 @app.route("/snippet_list", methods=["GET"])
@@ -153,7 +187,7 @@ def get_snippet_route(user_id, snippet_id):
     try:
         if not session.get("user"):
             return "forbidden"
-        result = dbq.get_snippet(user_id, snippet_id)
+        result = dbq.get_snippet(session["user_id"], snippet_id)
         return result
     except Exception as e:
         return jsonify({"error": str(e)})

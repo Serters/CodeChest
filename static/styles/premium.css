@@ -196,70 +196,53 @@ footer span {
     visibility: hidden;
   }
 }
-html,
-* {
-  border: 0;
+main {
+  width: 50%;
 }
-
-form[name=login_form] {
-  width: 30em;
-  height: 21em;
-  margin: auto;
+main .jumbotron {
   background-color: var(--darkgray);
-  color: #000;
-  padding: 2em;
-  border-radius: 2em;
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-form[name=login_form] > .container {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-form[name=login_form] > .container input[name=password_input] {
-  width: calc(100% - 4.5em);
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-form[name=login_form] > .container .password_toggle {
-  background-color: color-mix(in srgb, var(--gray) 50%, var(--darkgray));
-  color: whitesmoke;
-  width: 4.5em;
-  padding: 1em;
-  font-size: inherit;
-  border-radius: 0;
-  border-top-right-radius: 1em;
-  border-bottom-right-radius: 1em;
-  font-style: normal;
-  position: absolute;
-  right: 0;
-  top: 2em;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-form[name=login_form] input {
-  background-color: var(--gray);
-  color: whitesmoke;
-  font-size: inherit;
-  padding: 1em;
-  border-radius: 1em;
-  margin-bottom: 1em;
-}
-form[name=login_form] label {
-  background-color: inherit;
-  color: whitesmoke;
-  font-size: inherit;
-  line-height: 1em;
-  padding: 0.5em;
-}
-form[name=login_form] button {
-  background-color: var(--brown);
-  color: whitesmoke;
+main .jumbotron h1 {
+  font-size: 40px;
+  margin-bottom: 16px;
   font-weight: bold;
-  font-size: inherit;
-  padding: 1em;
-  border-radius: 1em;
+}
+main .jumbotron p {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+main .jumbotron form {
+  background-image: none;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin-top: auto;
-}/*# sourceMappingURL=login.css.map */
+  width: 100%;
+}
+main .jumbotron form .stripe-button-el {
+  background-image: none;
+  background-color: var(--brown);
+  border: 0;
+  outline: 0;
+  width: 100%;
+  box-shadow: none;
+}
+main .jumbotron form .stripe-button-el span {
+  background-image: none;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  transition: all 0.2s ease-in-out;
+  box-shadow: none;
+}
+main .jumbotron form .stripe-button-el span:hover {
+  color: gold;
+  transition: all 0.2s;
+}/*# sourceMappingURL=premium.css.map */

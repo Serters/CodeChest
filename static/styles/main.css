@@ -46,7 +46,7 @@ html,
 
 body {
   background-color: var(--gray);
-  color: whitesmoke;
+  color: #f5f5f5;
   position: relative;
   height: 100vh;
   display: flex;
@@ -89,7 +89,7 @@ header .left .logo {
   cursor: pointer;
 }
 header .left .logo img {
-  height: 80%;
+  height: 75%;
   margin: auto 0;
   cursor: inherit;
 }
@@ -359,8 +359,7 @@ main .right .actions {
   display: flex;
   gap: 16px;
 }
-main .right .actions .edit,
-main .right .actions .delete {
+main .right .actions button {
   height: 48px;
   width: 50%;
   background-color: var(--darkgray);
@@ -372,7 +371,8 @@ main .right .actions .delete {
 main .right .actions .edit:hover {
   color: rgb(158, 230, 50);
 }
-main .right .actions .delete:hover {
+main .right .actions .delete:hover,
+main .right .actions .confirm_delete:hover {
   color: rgb(204, 80, 80);
 }
 
