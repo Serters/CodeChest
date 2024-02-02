@@ -35,14 +35,16 @@ def get_snippet_list(user_id):
         cursor = connection.cursor()
 
         query = """
-            SELECT snippet_list.snippet_list_id, max_storage, user_id, COUNT(snippets.snippet_id)
+            SELECT snippet_list.snippet_list_id, max_storage, users.user_id
             FROM snippet_list
-            JOIN snippets ON snippets.snippet_list_id = snippet_list.snippet_list_id
+            JOIN users ON users.user_id = snippet_list.user_id
             WHERE snippet_list.user_id = %s;
         """
         cursor.execute(query, (user_id,))
         rows = cursor.fetchall()
         dba.close_connection(connection, cursor)
+        print({"snippet_list": rows})
+        print(user_id)
         return jsonify({"snippet_list": rows})
 
     except Exception as e:

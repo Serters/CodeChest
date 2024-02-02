@@ -27,32 +27,35 @@ def is_registered(email):
     except Exception as e:
         print(f"Error in is_registered: {e}")
 
+
 def max_id():
     connection = dba.connect_to_database(dbs.db_login)
     cursor = connection.cursor()
 
     query = "SELECT MAX(user_id) FROM users"
-    
+
     try:
         cursor.execute(query)
         result = cursor.fetchone()
         highest_user_id = result[0]
         connection.close()
-        return highest_user_id 
+        return highest_user_id
 
     except Exception as e:
         print(f"Error: {e}")
-        connection.rollback() 
+        connection.rollback()
         return None
-    
-def sl():
+
+
+async def sl(email):
     connection = dba.connect_to_database(dbs.db_login)
     cursor = connection.cursor()
 
-    query = "INSERT INTO snippet_list (max_storage, user_id) VALUES (%s, %s)"
-    user_id = int(max_id()) + 1
-    values = (100, user_id)
-    
+    query = "INSERT INTO snippet_list (snippet_list_id, max_storage, user_id) VALUES (NULL, 100, %s);"
+    user_id = await dbq.get_user(email)
+    print(email, user_id)
+    values = (user_id,)
+
     try:
         cursor.execute(query, values)
         connection.commit()
@@ -70,14 +73,12 @@ def insert_user(email, username, password):
     connection = dba.connect_to_database(dbs.db_login)
     cursor = connection.cursor()
 
-    hashed_password = bcrypt.hashpw(
-        password.encode("utf-8"), bcrypt.gensalt()
-    )
+    hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
 
     query = "INSERT INTO users (email, username, password) VALUES (%s, %s, %s)"
     values = (email, username, hashed_password)
-    sl()
-    
+    sl(email)
+
     try:
         cursor.execute(query, values)
         connection.commit()
@@ -89,7 +90,6 @@ def insert_user(email, username, password):
     finally:
         cursor.close()
         connection.close()
-
 
 
 def register_post():

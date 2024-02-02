@@ -9,8 +9,12 @@
 	</head>
 	<body style="background-color: black">
 		<script>
-			document.addEventListener("DOMContentLoaded", save_user);
-			document.addEventListener("DOMContentLoaded", save_snippet_list);
+			document.addEventListener("DOMContentLoaded", save_data);
+
+			async function save_data() {
+				await save_snippet_list();
+				await save_user();
+			}
 
 			async function save_user() {
 				const request = new XMLHttpRequest();
@@ -42,7 +46,10 @@
 
 				request.onload = () => {
 					if (request.status >= 200 && request.status < 400) {
-						localStorage.setItem("snippet_list", request.responseText);
+						localStorage.setItem(
+							"snippet_list",
+							request.responseText
+						);
 						window.location.href = "../main";
 					} else {
 						localStorage.setItem("snippet_list", request.status);
