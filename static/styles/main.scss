@@ -186,8 +186,7 @@ main {
 			display: flex;
 			gap: 16px;
 
-			.edit,
-			.delete {
+			button {
 				height: 48px;
 				width: 50%;
 				background-color: var(--darkgray);
@@ -200,7 +199,8 @@ main {
 			.edit:hover {
 				color: rgb(158, 230, 50);
 			}
-			.delete:hover {
+			.delete:hover,
+			.confirm_delete:hover {
 				color: rgb(204, 80, 80);
 			}
 		}

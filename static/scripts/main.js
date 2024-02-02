@@ -105,15 +105,16 @@ async function draw_main(where) {
 	delete_button.className = "delete";
 	delete_button.innerText = "Delete";
 	actions_div.appendChild(delete_button);
-	delete_button.addEventListener("click", () => {
-		delete_button.textContent = "Confirm delete";
-		delete_button.classList.add("confirm_delete");
-		delete_button.onclick.addEventListener("click", delete_button);
-	});
 
-    const confirm_delete_button = document.createElement("button");
+	const confirm_delete_button = document.createElement("button");
 	confirm_delete_button.className = "confirm_delete";
 	confirm_delete_button.innerText = "Confirm Delete";
+	confirm_delete_button.addEventListener("click", delete_snippet);
+
+	delete_button.addEventListener("click", () => {
+		actions_div.removeChild(delete_button);
+		actions_div.appendChild(confirm_delete_button);
+	});
 	//#endregion - - - - - RIGHT - - - - -
 
 	//#region - - - - - Functions - - - - -
@@ -200,9 +201,8 @@ async function draw_main(where) {
 		} catch (error) {
 			console.error("Error fetching:", error);
 		}
-		delete_button.textContent = "Delete";
-		delete_button.classList.remove("confirm_delete");
-		delete_button.removeEventListener("click", delete_button);
+		actions_div.removeChild(confirm_delete_button);
+		actions_div.appendChild(delete_button);
 	}
 
 	function search() {
