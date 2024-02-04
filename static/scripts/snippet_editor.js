@@ -9,11 +9,16 @@ const active_snippet_id = parseInt(url_parameters.get("active_snippet"), 10);
 
 async function fetch_snippet(user_id, snippet_id) {
 	try {
-		const response = await fetch(
-			`${window.app_url}/snippets/${user_id}/${snippet_id}`
-		);
+		let response = null;
+		if (isNaN(active_snippet_id)) {
+			response = await fetch(`${window.app_url}/newest_snippet`);
+		} else {
+			response = await fetch(
+				`${window.app_url}/snippets/${user_id}/${snippet_id}`
+			);
+		}
 		const snippet_data = await response.json();
-		console.log(snippet_data)
+		console.log(snippet_data);
 		const snippet = create_fetched_snippet(snippet_data.snippet[0]);
 		return snippet;
 	} catch (error) {
@@ -42,11 +47,10 @@ function create_fetched_snippet(data) {
 
 async function draw_main(where) {
 	const user_id = 1;
-	const snippet_id = active_snippet_id;
-	const current_snippet = await fetch_snippet(user_id, snippet_id);
-	const snippet_list_data = JSON.parse(
-		localStorage.getItem("snippet_list")
-	).snippet_list[0];
+	const current_snippet = await fetch_snippet(user_id, active_snippet_id);
+	const snippet_id = current_snippet.snippet_id;
+	const snippet_list_data = JSON.parse(localStorage.getItem("snippet_list"))
+		.snippet_list[0];
 	const snippet_list_default = new snippet_list(
 		snippet_list_data[0],
 		snippet_list_data[1],

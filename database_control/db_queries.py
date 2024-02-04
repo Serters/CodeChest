@@ -75,6 +75,30 @@ def get_snippet(user_id, snippet_id):
         return jsonify({"status": "error", "message": str(e)})
 
 
+def get_newset_snippet(snippet_list_id):
+    try:
+        connection = dba.connect_to_database(dbs.db_login)
+        cursor = connection.cursor()
+
+        query = """
+            SELECT snippet_id, name, code, short_desc, full_desc, favourite, tags, snippets.snippet_list_id
+            FROM snippets
+            WHERE snippet_list_id = %s
+            ORDER BY snippet_id DESC
+            LIMIT 1
+        """
+        cursor.execute(query, (snippet_list_id,))
+        rows = cursor.fetchone()
+
+        columns = [desc[0] for desc in cursor.description]
+
+        snippet = [dict(zip(columns, rows))]
+        dba.close_connection(connection, cursor)
+        return jsonify({"snippet": snippet})
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})
+
 def insert_row():
     try:
         connection = dba.connect_to_database(dbs.db_login)
@@ -92,13 +116,23 @@ def insert_row():
             data.get("short_desc"),
             data.get("full_desc"),
             data.get("favourite"),
-            data.get("snippet_list_id")
+            data.get("snippet_list_id"),
         )
-        print(values)
         cursor.execute(query, values)
         connection.commit()
+
+        cursor.execute(f"SELECT MAX(snippet_id) FROM snippets WHERE snippet_list_id = {data.get("snippet_list_id")}")
+        snippet_id = cursor.fetchone()[0]
+        print("SNIPPET_ID: " + str(snippet_id))
+
         dba.close_connection(connection, cursor)
-        return jsonify({"status": "success", "message": "Row inserted successfully"})
+        return jsonify(
+            {
+                "status": "success",
+                "message": f"Row inserted successfully {snippet_id}",
+                # "new_snippet_id": snippet_id,
+            }
+        )
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
@@ -276,7 +310,7 @@ def get_premium(user_id):
         connection.commit()
         dba.close_connection(connection, cursor)
 
-        return {"premium": premium}
+        return premium[0]
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
@@ -313,7 +347,7 @@ def get_sl_id(user_id):
         """
         cursor.execute(select_query, (user_id,))
 
-        result = cursor.fetchone()  # Fetch the result
+        result = cursor.fetchone()
 
         dba.close_connection(connection, cursor)
 

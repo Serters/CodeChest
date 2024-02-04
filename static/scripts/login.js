@@ -17,6 +17,7 @@ function draw_main(where) {
 	login_form.action = "login";
 	login_form.method = "POST";
 	login_form.name = "login_form";
+	login_form.addEventListener("keyup", check_data_validation);
 	m.appendChild(login_form);
 
 	const email_div = document.createElement("div");
@@ -64,6 +65,14 @@ function draw_main(where) {
 	login_button.innerText = "Log in";
 	login_button.type = "submit";
 	login_form.appendChild(login_button);
+
+	function check_data_validation() {
+		if (email_input.value == "" || password_input.value.length == "") {
+			login_button.disabled = true;
+		} else {
+			login_button.disabled = false;
+		}
+	}
 }
 
 function toggle_password(event) {

@@ -1,4 +1,13 @@
-from flask import Flask, jsonify, render_template, request, url_for, redirect, session
+from flask import (
+    Flask,
+    jsonify,
+    render_template,
+    request,
+    url_for,
+    redirect,
+    session,
+    flash,
+)
 from flask_cors import CORS
 from flask_session import Session
 import os
@@ -25,15 +34,18 @@ stripe.api_key = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
 @app.route("/premium")
 def render_premium():
     if not session.get("user"):
-        return "forbidden"
-    x = session["premium"]["premium"][0]    
+        flash("You need to log in to do that!")
+        return redirect(url_for("render_login"))
     return render_template(
-        "premium.html", public_key=public_key, premium=x
+        "premium.html", public_key=public_key, premium=session["premium"]
     )
 
 
 @app.route("/payment", methods=["POST"])
 def payment():
+    if not session.get("user"):
+        flash("You need to log in to do that!")
+        return redirect(url_for("render_login"))
 
     customer = stripe.Customer.create(
         email=request.form["stripeEmail"], source=request.form["stripeToken"]
@@ -60,6 +72,7 @@ def home():
 @app.route("/main", methods=["GET"])
 def render_main():
     if not session.get("user"):
+        flash("You need to log in to do that!")
         return redirect(url_for("render_login"))
     return render_template("base.html", page="main")
 
@@ -67,6 +80,7 @@ def render_main():
 @app.route("/snippet_editor", methods=["GET"])
 def render_snippet_editor():
     if not session.get("user"):
+        flash("You need to log in to do that!")
         return redirect(url_for("render_login"))
     return render_template("base.html", page="snippet_editor")
 
@@ -74,12 +88,16 @@ def render_snippet_editor():
 @app.route("/account", methods=["GET", "POST"])
 def render_account():
     if not session.get("user"):
-        return "forbidden"
+        flash("You need to log in to do that!")
+        return redirect(url_for("render_login"))
 
     if request.method == "GET":
         return render_template("base.html", page="user_account")
 
     if request.form.get("username"):
+        if session["premium"] == 0:
+            flash("You need premium account to do that!")
+            return redirect(url_for("render_account"))
         try:
             new_username = request.form["username"]
             dbq.update_username(session["user_id"], new_username)
@@ -121,7 +139,8 @@ def render_login():
 @app.route("/login/authenticate", methods=["GET"])
 def render_authenticate():
     if not session.get("user"):
-        return "forbidden"
+        flash("You need to log in to do that!")
+        return redirect(url_for("render_login"))
     return render_template("authenticate.html")
 
 
@@ -129,6 +148,8 @@ def render_authenticate():
 def render_logout():
     session["user"] = None
     session["user_id"] = None
+    session["premium"] = None
+    session["snippet_list"] = None
     return redirect(url_for("render_login"))
 
 
@@ -137,8 +158,7 @@ def render_register():
     if not session.get("user"):
         if request.method == "GET":
             return render_template("base.html", page="register")
-        if request.method == "POST":
-            return ar.register_post()
+        return ar.register_post()
     return redirect(url_for("render_main"))
 
 
@@ -149,59 +169,71 @@ def render_register():
 @app.route("/user", methods=["GET"])
 def render_user():
     if not session.get("user"):
-        return "forbidden"
+        flash("You need to log in to do that!")
+        return redirect(url_for("render_login"))
     return dbq.get_user(session["user"])
 
 
 @app.route("/snippets", methods=["GET"])
 def snippets():
     if not session.get("user"):
-        return "forbidden"
-    x = dbq.get_sl_id(session["user_id"])
-    return dbq.get_snippets(x)
+        flash("You need to log in to do that!")
+        return redirect(url_for("render_login"))
+    return dbq.get_snippets(session["snippet_list"])
 
 
 @app.route("/snippet_list", methods=["GET"])
 def snippet_list():
     if not session.get("user"):
-        return "forbidden"
+        flash("You need to log in to do that!")
+        return redirect(url_for("render_login"))
     return dbq.get_snippet_list(session["user_id"])
 
 
 @app.route("/insert_row", methods=["POST"])
 def create_new_snippet():
     if not session.get("user"):
-        return "forbidden"
+        flash("You need to log in to do that!")
+        return redirect(url_for("render_login"))
     return dbq.insert_row()
 
 
 @app.route("/delete_snippet/<int:snippet_id>", methods=["GET"])
 def delete_snippet(snippet_id):
     if not session.get("user"):
-        return "forbidden"
+        flash("You need to log in to do that!")
+        return redirect(url_for("render_login"))
     return dbq.delete_row(snippet_id)
 
 
 @app.route("/snippets/<int:user_id>/<int:snippet_id>", methods=["GET"])
 def get_snippet_route(user_id, snippet_id):
+    if not session.get("user"):
+        flash("You need to log in to do that!")
+        return redirect(url_for("render_login"))
     try:
-        if not session.get("user"):
-            return "forbidden"
-        result = dbq.get_snippet(session["user_id"], snippet_id)
-        return result
+        return dbq.get_snippet(session["user_id"], snippet_id)
     except Exception as e:
         return jsonify({"error": str(e)})
 
 
 @app.route("/snippets/<int:user_id>/<int:snippet_id>", methods=["PUT"])
 def update_snippet_route(user_id, snippet_id):
+    if not session.get("user"):
+        flash("You need to log in to do that!")
+        return redirect(url_for("render_login"))
     try:
-        if not session.get("user"):
-            return "forbidden"
-        result = dbq.update_row(snippet_id)
-        return result
+        return dbq.update_row(snippet_id)
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
+
+
+@app.route("/newest_snippet", methods=["GET"])
+def get_newset_snippet():
+    if not session.get("user"):
+        flash("You need to log in to do that!")
+        return redirect(url_for("render_login"))
+    return dbq.get_newset_snippet(session["snippet_list"])
 
 
 # endregion Database

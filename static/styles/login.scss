@@ -73,5 +73,9 @@ form[name="login_form"] {
 		padding: 1em;
 		border-radius: 1em;
 		margin-top: auto;
+
+		&:disabled {
+			background-color: var(--gray);
+		}
 	}
 }

@@ -15,6 +15,7 @@ function draw_main(where) {
 	const register_form = document.createElement("form");
 	register_form.name = "register_form";
 	register_form.method = "POST";
+	register_form.addEventListener("keyup", check_data_validation);
 	m.appendChild(register_form);
 
 	const email_div = document.createElement("div");
@@ -23,13 +24,14 @@ function draw_main(where) {
 
 	const email_lbl = document.createElement("label");
 	email_lbl.innerText = "E_mail";
+	email_lbl.htmlFor = "email_input";
 	email_div.appendChild(email_lbl);
 
 	const email_input = document.createElement("input");
 	email_input.type = "email";
 	email_input.name = "email_input";
 	email_input.placeholder = "user@codechest.com";
-	email_lbl.htmlFor = "email_input";
+	email_input.autocomplete = "email";
 	email_div.appendChild(email_input);
 
 	const username_div = document.createElement("div");
@@ -38,13 +40,14 @@ function draw_main(where) {
 
 	const username_lbl = document.createElement("label");
 	username_lbl.innerText = "Username";
+	username_lbl.htmlFor = "username_input";
 	username_div.appendChild(username_lbl);
 
 	const username_input = document.createElement("input");
 	username_input.type = "text";
 	username_input.name = "username_input";
 	username_input.placeholder = "username";
-	username_lbl.htmlFor = "username_input";
+	username_input.autocomplete = "username";
 	username_div.appendChild(username_input);
 
 	const password_div = document.createElement("div");
@@ -53,13 +56,14 @@ function draw_main(where) {
 
 	const password_lbl = document.createElement("label");
 	password_lbl.innerText = "Password";
+	password_lbl.htmlFor = "password_input";
 	password_div.appendChild(password_lbl);
 
 	const password_input = document.createElement("input");
 	password_input.type = "password";
 	password_input.name = "password_input";
 	password_input.placeholder = "password";
-	password_lbl.htmlFor = "password_input";
+	password_input.autocomplete = "new-password";
 	password_div.appendChild(password_input);
 
 	const password_toggle = document.createElement("button");
@@ -76,13 +80,14 @@ function draw_main(where) {
 
 	const confirm_password_lbl = document.createElement("label");
 	confirm_password_lbl.innerText = "Confirm password";
+	confirm_password_lbl.htmlFor = "confirm_password_input";
 	confirm_password_div.appendChild(confirm_password_lbl);
 
 	const confirm_password_input = document.createElement("input");
 	confirm_password_input.type = "password";
 	confirm_password_input.name = "confirm_password_input";
 	confirm_password_input.placeholder = "password";
-	confirm_password_lbl.htmlFor = "confirm_password_input";
+	confirm_password_input.autocomplete = "new-password";
 	confirm_password_div.appendChild(confirm_password_input);
 
 	const confirm_password_toggle = document.createElement("button");
@@ -96,7 +101,22 @@ function draw_main(where) {
 	const register_button = document.createElement("button");
 	register_button.name = "register_button";
 	register_button.innerText = "Register";
+	register_button.disabled = true;
 	register_form.appendChild(register_button);
+
+	function check_data_validation() {
+		if (
+			email_input.value == "" ||
+			username_input.value == "" ||
+			password_input.value.length < 8 ||
+			confirm_password_input.value.length < 8 ||
+			password_input.value != confirm_password_input.value
+		) {
+			register_button.disabled = true;
+		} else {
+			register_button.disabled = false;
+		}
+	}
 }
 
 function toggle_password(event) {

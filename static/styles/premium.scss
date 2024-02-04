@@ -1,14 +1,22 @@
 @import "static";
 
+.jumbotron {
+	display: none;
+	visibility: hidden;
+}
+
 main {
 	width: 50%;
 	.jumbotron {
 		background-color: var(--darkgray);
 		border-radius: 16px;
 		display: flex;
+		visibility: visible;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		padding: 32px;
+		margin: 0;
 
 		h1 {
 			font-size: 40px;
@@ -17,12 +25,11 @@ main {
 		}
 
 		p {
-			font-size: 16px;
-			margin-bottom: 16px;
+			font-size: 18px;
 		}
 
 		form {
-            background-image: none;
+			background-image: none;
 			background-color: transparent;
 			display: flex;
 			flex-direction: column;
@@ -35,25 +42,40 @@ main {
 				background-image: none;
 				background-color: var(--brown);
 				border: 0;
+				border-radius: 8px;
 				outline: 0;
 				width: 100%;
-                box-shadow: none;
+				height: 48px;
+				box-shadow: none;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				align-content: center;
+				padding: 0;
 
 				span {
 					background-image: none;
 					background-color: transparent;
 					outline: 0;
 					border: 0;
-                    transition: all 0.2s ease-in-out;
-                    box-shadow: none;
+					transition: all 0.2s ease-in-out;
+					box-shadow: none;
+					height: 1em;
+					font-size: 18px;
 
-                    &:hover {
-                        color: gold;
-                        transition: all 0.2s;
-                    }
+					&:hover {
+						color: gold;
+						transition: all 0.2s;
+					}
+					&:active {
+						background-image: none;
+						background-color: var(--brown);
+					}
 				}
-
-				
+				&:active {
+					background-image: none;
+					background-color: var(--brown);
+				}
 			}
 		}
 	}

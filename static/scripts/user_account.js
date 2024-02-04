@@ -154,6 +154,7 @@ async function draw_main(where) {
 		const change_password_form = document.createElement("form");
 		change_password_form.name = "change_password_form";
 		change_password_form.method = "POST";
+		change_password_form.addEventListener("keyup", check_data_validation);
 		right.appendChild(change_password_form);
 
 		//#region current password
@@ -172,7 +173,6 @@ async function draw_main(where) {
 		current_password_input.placeholder = "password";
 		current_password_input.required = true;
 		current_password_input.autocomplete = "current-password";
-		current_password_input.onkeyup = check_data_validation;
 		current_password_div.appendChild(current_password_input);
 
 		const current_password_toggle = document.createElement("button");
@@ -204,7 +204,6 @@ async function draw_main(where) {
 		new_password_input.placeholder = "password";
 		new_password_input.required = true;
 		new_password_input.autocomplete = "new-password";
-		new_password_input.onkeyup = check_data_validation;
 		new_password_div.appendChild(new_password_input);
 
 		const new_password_toggle = document.createElement("button");
@@ -232,7 +231,6 @@ async function draw_main(where) {
 		confirm_new_password_input.placeholder = "password";
 		confirm_new_password_input.required = true;
 		confirm_new_password_input.autocomplete = "new-password";
-		confirm_new_password_input.onkeyup = check_data_validation;
 		confirm_new_password_div.appendChild(confirm_new_password_input);
 
 		const confirm_new_password_toggle = document.createElement("button");

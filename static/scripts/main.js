@@ -21,9 +21,8 @@ async function draw_main(where) {
 		user_data[3],
 		user_data[4]
 	);
-	const snippet_list_data = JSON.parse(
-		localStorage.getItem("snippet_list")
-	).snippet_list[0];
+	const snippet_list_data = JSON.parse(localStorage.getItem("snippet_list"))
+		.snippet_list[0];
 	const snippet_list_default = new snippet_list(
 		snippet_list_data[0],
 		snippet_list_data[1],
@@ -133,6 +132,8 @@ async function draw_main(where) {
 			.then((result) => {
 				console.log(result);
 				localStorage.setItem("msg", result.message);
+				// localStorage.setItem("new_snippet_id", result.new_snippet_id);
+				return result.new_snippet_id;
 			})
 			.catch((error) => {
 				console.error("Error:", error);
@@ -145,6 +146,8 @@ async function draw_main(where) {
 			const response = await fetch(`${window.app_url}/snippets`);
 			const data = await response.json();
 			const snippets_data = data.snippet;
+
+			localStorage.setItem("banana", snippets_data.at(-1).snippet_id);
 
 			snippets_data.forEach((snippet_data) => {
 				const fetched_snippet = new snippet(
@@ -175,15 +178,14 @@ async function draw_main(where) {
 			favourite: 0,
 			snippet_list_id: sl_id,
 		};
-		await post_snippet(data);
+		const test = await post_snippet(data);
 		const updated_snippet_list = await fetch_snippets();
 		await snippet_list_default.update_snippets(
 			left,
 			updated_snippet_list,
 			update_active_snippet
 		);
-		const new_snippet_id = snippet_list_default.snippets.at(-1).snippet_id;
-		window.location.href = `snippet_editor?active_snippet=${new_snippet_id}`;
+		window.location.href = `snippet_editor`;
 	}
 
 	async function delete_snippet() {
@@ -206,8 +208,6 @@ async function draw_main(where) {
 		} catch (error) {
 			console.error("Error fetching:", error);
 		}
-		actions_div.removeChild(confirm_delete_button);
-		actions_div.appendChild(delete_button);
 	}
 
 	function search() {
@@ -220,7 +220,6 @@ async function draw_main(where) {
 				result,
 				update_active_snippet
 			);
-			console.log(snippet_list_default, "if");
 		} else {
 			snippet_list_default.update_snippets(
 				left,
@@ -234,5 +233,15 @@ async function draw_main(where) {
 		active_snippet = active_snippet_id;
 		full_description.update_desc(active_full_desc);
 	}
+
+	document.body.addEventListener("click", (e) => {
+		if (
+			e.target != delete_button &&
+			actions_div.contains(confirm_delete_button)
+		) {
+			actions_div.removeChild(confirm_delete_button);
+			actions_div.appendChild(delete_button);
+		}
+	});
 	//#endregion
 }

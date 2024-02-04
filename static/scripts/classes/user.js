@@ -17,12 +17,10 @@ export class user {
 		username_div.innerText = this.username;
 		user_div.appendChild(username_div);
 
-		if (this.profile_picture) {
-			const profile_picture = document.createElement("img");
-			profile_picture.className = "profile_picture";
-			profile_picture.src = `./static/assets/${this.profile_picture}`;
-			user_div.appendChild(profile_picture);
-		}
+		const profile_picture = document.createElement("img");
+		profile_picture.className = "profile_picture";
+		profile_picture.src = `./static/assets/${this.profile_picture}`;
+		user_div.appendChild(profile_picture);
 
 		const user_options = document.createElement("div");
 		user_options.className = "user_options";
@@ -57,6 +55,11 @@ export class user {
 			window.location.href = "logout";
 		});
 		user_options.appendChild(logout_button);
+
+		document.body.addEventListener("click", (e) => {
+			if (!user_div.contains(e.target))
+				user_options.classList.remove("visible");
+		});
 	}
 }
 

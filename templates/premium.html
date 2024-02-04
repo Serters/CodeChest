@@ -25,61 +25,35 @@
 			crossorigin="anonymous"
 		></script>
 		<link rel="stylesheet" href="../static/styles/premium.css" />
+		<script src="../static/scripts/config.js"></script>
 	</head>
 	<body>
-		<header>
-			<div class="left">
-				<div class="logo" onclick="window.location.href = 'main'">
-					<img src="../static/assets/logo.png" alt="logo" />
-					<h1>CodeChest</h1>
-				</div>
-			</div>
-			<div class="right">
-				<div class="user">
-					<div class="username">admin</div>
-					<img
-						class="profile_picture"
-						src="./static/assets/profile_picture.png"
-					/>
-				</div>
-				<div class="user_options">
-					<button type="button" class="edit_account">
-						Edit Account</button
-					><button type="button" class="buy_premium">
-						Buy Premium</button
-					><button type="button" class="logout">Log out</button>
-				</div>
-			</div>
-		</header>
-		<main>
-			<div class="jumbotron">
-				<h1>CodeChest Premium</h1>
-				<p>
-					Upgrade to premium today! Not only will you gain the
-					exclusive ability to customize your username and profile
-					picture with a one-time payment, but you'll also contribute
-					to the ongoing development of our platform. Your purchase
-					plays a vital role in supporting future enhancements and
-					features for an even better user experience. Elevate your
-					experience and be a part of our exciting journey with a
-					premium upgrade!
-				</p>
-				{% if premium == 0 %}
-				<form action="{{url_for('payment')}}" method="POST">
-					<script
-						src="https://checkout.stripe.com/checkout.js"
-						class="stripe-button"
-						data-key="{{public_key}}"
-						data-amount="999"
-						data-name="Buying Premium"
-						data-description="Premium"
-						data-locale="auto"
-						data-zip-code="true"
-					></script>
-				</form>
-				{% endif %}
-			</div>
-		</main>
-		<footer><span>© CodeChest 2023.</span></footer>
+		<div class="jumbotron">
+			<h1>CodeChest Premium</h1>
+			<p>
+				Upgrade to premium today! Not only will you gain the exclusive
+				ability to customize your username and profile picture with a
+				one-time payment, but you'll also contribute to the ongoing
+				development of our platform. Your purchase plays a vital role in
+				supporting future enhancements and features for an even better
+				user experience. Elevate your experience and be a part of our
+				exciting journey with a premium upgrade!
+			</p>
+			{% if premium == 0 %}
+			<form action="{{url_for('payment')}}" method="POST">
+				<script
+					src="https://checkout.stripe.com/checkout.js"
+					class="stripe-button"
+					data-key="{{public_key}}"
+					data-amount="999"
+					data-name="Buying Premium"
+					data-description="Premium"
+					data-locale="auto"
+					data-zip-code="true"
+				></script>
+			</form>
+			{% endif %}
+		</div>
+		<script type="module" src="../static/scripts/premium.js"></script>
 	</body>
 </html>

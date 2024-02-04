@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request, url_for, redirect, session
+from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_session import Session
 import database_control.db_queries as dbq
 import bcrypt
@@ -68,31 +68,6 @@ def sl(user_id):
             connection.close()
 
 
-# def insert_user(email, username, password):
-#     connection = dba.connect_to_database(dbs.db_login)
-#     cursor = connection.cursor()
-
-#     hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
-
-#     query = "INSERT INTO users (email, username, password) VALUES (%s, %s, %s)"
-#     values = (email, username, hashed_password)
-
-#     try:
-#         cursor.execute(query, values)
-#         connection.commit()
-#         # response = dbq.get_user(email)
-#         # data = response.get_json()
-#         user_id =0# data["user"]["user_id"]
-#         return user_id
-#     except Exception as e:
-#         print(f"Error inserting user: {e}")
-#         connection.rollback()
-#         return False
-#     finally:
-#         cursor.close()
-#         connection.close()
-
-
 def insert_user(email, username, password):
     connection = dba.connect_to_database(dbs.db_login)
     cursor = connection.cursor()
@@ -126,15 +101,15 @@ def register_post():
     password = request.form["password_input"]
     confirm_password = request.form["confirm_password_input"]
     if is_registered(email):
-        log_message = "Email already exists"
+        flash("Email already exists!")
     elif len(password) < 8:
-        log_message = "Password must be at least 8 characters long"
+        flash("Password must be at least 8 characters long!")
     elif password != confirm_password:
-        log_message = "Confirmed password doesn't match the original password"
+        flash("Password inputs don't match!")
     else:
         new_user = insert_user(email, username, password)
         if new_user:
             sl(new_user)
             return redirect(url_for("render_login"))
 
-    return render_template("base.html", page="register", log_message=log_message)
+    return render_template("base.html", page="register")

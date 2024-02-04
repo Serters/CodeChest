@@ -3,8 +3,11 @@
 main {
 	.left {
 		flex: 65;
+		min-height: 100%;
+		max-height: 100%;
 		padding-right: 16px;
-		min-height: calc(100vh - 180px);
+		display: flex;
+		flex-direction: column;
 
 		.create_snippet {
 			height: 48px;
@@ -22,7 +25,7 @@ main {
 				text-decoration: underline;
 				text-decoration-color: whitesmoke;
 				cursor: default;
-				animation: shake 0.4s ease-in-out; /* Define the @keyframes shake animation */
+				animation: shake 0.4s ease-in-out;
 			}
 			@keyframes shake {
 				100% {
@@ -41,6 +44,7 @@ main {
 
 		.snippet_list {
 			overflow-y: scroll;
+			min-height: calc(100% - 64px);
 			max-height: calc(100% - 64px);
 
 			.snippet {
@@ -103,6 +107,7 @@ main {
 
 	.right {
 		flex: 35;
+		min-height: 100%;
 		display: flex;
 		flex-direction: column;
 
@@ -112,7 +117,8 @@ main {
 
 		.full_description {
 			flex: 1;
-			max-height: calc(100vh - 308px);
+			min-height: calc(100% - 308px);
+			max-height: calc(100% - 308px);
 
 			background-color: var(--darkgray);
 			border-left: 0;
@@ -209,14 +215,16 @@ main {
 
 @media only screen and (orientation: portrait) and (max-aspect-ratio: 3/4) {
 	main {
-		min-height: calc(100vh - 220px);
-		max-height: calc(100vh - 220px);
 		flex-direction: column-reverse;
+		justify-content: flex-start;
 
 		.left {
-			max-height: calc(70% - 16px);
-			min-height: calc(70% - 16px);
+			min-height: 60%;
+			max-height: 60%;
+			width: 100%;
 			padding-right: 0;
+			padding-top: 16px;
+			border-top: 4px solid var(--brown);
 
 			.create_snippet {
 				display: none;
@@ -239,13 +247,14 @@ main {
 			}
 		}
 		.right {
-			max-height: 30%;
-			min-height: 30%;
-			border-bottom: 4px solid var(--brown);
-			margin-bottom: 16px;
+			min-height: 40%;
+			max-height: 40%;
+			width: 100%;
 
 			.full_description {
-				height: calc(100% - 80px);
+				flex: none;
+				min-height: calc(100% - 84px);
+				max-height: calc(100% - 84px);
 			}
 
 			.actions {
@@ -253,10 +262,5 @@ main {
 				visibility: hidden;
 			}
 		}
-	}
-	header,
-	footer {
-		min-height: 80px;
-		max-height: 80px;
 	}
 }
