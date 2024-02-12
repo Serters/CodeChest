@@ -12,57 +12,37 @@
 			document.addEventListener("DOMContentLoaded", save_data);
 
 			async function save_data() {
-				await save_snippet_list();
-				await save_user();
-			}
+				const promises = [
+					fetch(`${window.app_url}/user`, {
+						headers: {
+							"Content-Type": "application/json",
+						},
+					}),
+					fetch(`${window.app_url}/snippet_list`, {
+						headers: {
+							"Content-Type": "application/json",
+						},
+					}),
+				];
 
-			async function save_user() {
-				const request = new XMLHttpRequest();
-				request.open("GET", `${window.app_url}/user`, true);
-				request.setRequestHeader("Content-Type", "application/json");
+				const responses = await Promise.all(promises);
 
-				request.onload = () => {
-					if (request.status >= 200 && request.status < 400) {
-						localStorage.setItem("user_info", request.responseText);
-						window.location.href = "../main";
-					} else {
-						localStorage.setItem("user_info", request.status);
-						window.location.href = "../login";
-					}
-				};
+				if (responses[0].ok && responses[1].ok) {
+					const user = await responses[0].json();
+					const snippet_list = await responses[1].json();
 
-				request.onerror = () => {
-					console.log("Connection error");
-					localStorage.setItem("user_info", "Connection error");
-				};
+					localStorage.setItem("user_info", JSON.stringify(user));
+					localStorage.setItem(
+						"snippet_list",
+						JSON.stringify(snippet_list)
+					);
 
-				request.send();
-			}
-
-			async function save_snippet_list() {
-				const request = new XMLHttpRequest();
-				request.open("GET", `${window.app_url}/snippet_list`, true);
-				request.setRequestHeader("Content-Type", "application/json");
-
-				request.onload = () => {
-					if (request.status >= 200 && request.status < 400) {
-						localStorage.setItem(
-							"snippet_list",
-							request.responseText
-						);
-						window.location.href = "../main";
-					} else {
-						localStorage.setItem("snippet_list", request.status);
-						window.location.href = "../login";
-					}
-				};
-
-				request.onerror = () => {
-					console.log("Connection error");
-					localStorage.setItem("snippet_list", "Connection error");
-				};
-
-				request.send();
+					window.location.replace("../main");
+				} else {
+					localStorage.setItem("user_info", responses[0].status);
+					localStorage.setItem("snippet_list", responses[1].status);
+					window.location.replace("../login");
+				}
 			}
 		</script>
 	</body>
