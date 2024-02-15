@@ -1,10 +1,10 @@
 <div align="center">
-  <img src="https://github.com/Serters/CodeChest/raw/Back-End/static/assets/readme_banner.png" alt="Alt Text" width="100%">
+  <img src="https://github.com/Serters/CodeChest/raw/Back-End/static/assets/readme_banner.png" alt="CodeChest" width="100%">
 </div>
 
 <div align="center">
 
-![Static Badge](https://img.shields.io/badge/CodeChest-brown?logoColor=%23523b27&label=DevsCompass&labelColor=%2386ffca)
+![Static Badge](https://img.shields.io/badge/DevsCompass-CodeChest-brown?logo=DevsCompass&logoColor=523B27&label=DevsCompass&labelColor=86FFCA&color=523B27)
 ![GitHub contributors](https://img.shields.io/github/contributors/Serters/CodeChest)
 ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/Serters/CodeChest/Back-End)
 ![GitHub language count](https://img.shields.io/github/languages/count/Serters/CodeChest)
