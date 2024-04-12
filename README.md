@@ -6,7 +6,6 @@
 
 ![Static Badge](https://img.shields.io/badge/DevsCompass-CodeChest-brown?logo=DevsCompass&logoColor=523B27&label=DevsCompass&labelColor=86FFCA&color=523B27)
 ![GitHub contributors](https://img.shields.io/github/contributors/Serters/CodeChest)
-![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/Serters/CodeChest/Back-End)
 ![GitHub language count](https://img.shields.io/github/languages/count/Serters/CodeChest)
 ![GitHub top language](https://img.shields.io/github/languages/top/Serters/CodeChest)
 ![GitHub Repo stars](https://img.shields.io/github/stars/Serters/CodeChest)
